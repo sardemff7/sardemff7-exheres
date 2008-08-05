@@ -3,7 +3,7 @@
 # Based in part upon 'unixODBC-2.2.12.ebuild' from Gentoo, which is:
 #     Copyright 1999-2008 Gentoo Foundation
 
-DESCRIPTION="ODBC solution for UNIX/Linux"
+SUMMARY="ODBC solution for UNIX/Linux"
 HOMEPAGE="http://www.unixodbc.org/"
 SRC_URI="http://www.unixodbc.org/${P}.tar.gz"
 
