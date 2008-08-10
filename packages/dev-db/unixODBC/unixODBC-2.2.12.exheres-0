@@ -14,7 +14,7 @@ MYOPTIONS=""
 
 DEPENDENCIES=""
 
-DEFAULT_SRC_CONFIGURE_PARAMS="--sysconfdir=/etc/${PN} --disable-gui --enable-fdb"
+DEFAULT_SRC_CONFIGURE_PARAMS=( --sysconfdir=/etc/${PN} --disable-gui --enable-fdb )
 
 src_install() {
     default
