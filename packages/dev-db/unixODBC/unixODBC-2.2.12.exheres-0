@@ -5,9 +5,9 @@
 
 SUMMARY="ODBC solution for UNIX/Linux"
 HOMEPAGE="http://www.unixodbc.org/"
-SRC_URI="http://www.unixodbc.org/${P}.tar.gz"
+SOURCES="http://www.unixodbc.org/${P}.tar.gz"
 
-LICENSE="|| ( GPL-2 LGPL-2 )"
+LICENCES="|| ( GPL-2 LGPL-2 )"
 SLOT="0"
 PLATFORMS="~amd64 ~x86 ~ia64"
 MYOPTIONS=""
