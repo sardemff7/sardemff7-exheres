@@ -3,6 +3,8 @@
 # Based in part upon 'unixODBC-2.2.12.ebuild' from Gentoo, which is:
 #     Copyright 1999-2008 Gentoo Foundation
 
+require common-metadata
+
 SLOT="0"
 PLATFORMS="~amd64 ~x86 ~ia64"
 MYOPTIONS=""
