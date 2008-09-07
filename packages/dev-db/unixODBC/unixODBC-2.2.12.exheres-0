@@ -3,11 +3,6 @@
 # Based in part upon 'unixODBC-2.2.12.ebuild' from Gentoo, which is:
 #     Copyright 1999-2008 Gentoo Foundation
 
-SUMMARY="ODBC solution for UNIX/Linux"
-HOMEPAGE="http://www.unixodbc.org/"
-DOWNLOADS="http://www.unixodbc.org/${PNV}.tar.gz"
-
-LICENCES="|| ( GPL-2 LGPL-2 )"
 SLOT="0"
 PLATFORMS="~amd64 ~x86 ~ia64"
 MYOPTIONS=""
