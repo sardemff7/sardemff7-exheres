@@ -1,0 +1,12 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sardemff7-purple
+
+
+SUMMARY="Provides GnomeSession Presence status support to Pidgin"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib[>=2.26.0]
+"
