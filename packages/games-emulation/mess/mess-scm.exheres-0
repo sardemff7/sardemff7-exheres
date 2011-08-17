@@ -66,9 +66,9 @@ src_prepare() {
 src_compile() {
     local make_opts=(
         'OSD=sdl'
-        'TARGET=${PN}'
-        'NAME=${PN}'
-        'OPT_FLAGS=-DINI_PATH=\\"/etc/${PN}\\"'
+        'TARGET=mess'
+        'NAME='"${PN}"
+        'OPT_FLAGS=-DINI_PATH=\"/etc/'"${PN}"'\"'
     )
     option opengl || make_opts+=( 'NO_OPENGL=1' )
 
