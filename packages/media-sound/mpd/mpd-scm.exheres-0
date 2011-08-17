@@ -1,0 +1,225 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require musicpd
+
+
+SLOT="0"
+
+HOMEPAGE="http://www.musicpd.org"
+
+LICENCES="GPL-2"
+
+DESCRIPTION="The Music Player Daemon (mpd)"
+
+PLATFORMS="~amd64 ~x86"
+
+# Options are ordered as in the configure.ac to ease an update
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib:2[>=2.12]
+
+        tcpd? ( sys-apps/tcp-wrappers[ipv6?] )
+
+        id3? ( media-libs/libid3tag )
+
+        avahi? ( net-dns/avahi )
+
+        sqlite? ( dev-db/sqlite:3 )
+
+        libsamplerate? ( media-libs/libsamplerate[>=0.0.15] )
+
+        curl? ( net-misc/curl )
+        cdio? ( dev-libs/libcdio )
+        media-libs/libogg
+        mms? ( media-libs/libmms[>=0.4] )
+
+        app-arch/bzip2
+        zip? ( dev-libs/zziplib[>=0.13] )
+
+        audiofile? ( media-libs/audiofile[>=0.1.7] )
+        aac? ( media-libs/faad2 )
+        ffmpeg? ( || ( media/libav media/ffmpeg ) )
+        flac? ( media-libs/flac[>=1.1][ogg] )
+        fluidsynth? ( media-sound/fluidsynth )
+        mad? ( media-libs/libmad )
+        mpg123? ( media-sound/mpg123 )
+        mikmod? ( media-libs/libmikmod )
+        modplug? ( media-libs/libmodplug )
+        sndfile? ( media-libs/libsndfile )
+        musepack? ( media-libs/libmpcdec )
+        vorbis? ( media-libs/libvorbis )
+        wavpack? ( media-sound/wavpack )
+
+        lame? ( media-sound/lame )
+
+        alsa? ( sys-sound/alsa-lib[>=0.9.0] )
+        ffado? ( media-libs/libffado )
+        jack? ( media-sound/jack-audio-connection-kit[>=0.100] )
+        openal? ( media-libs/openal )
+        pulseaudio? ( media-sound/pulseaudio )
+        icecast? ( media-libs/libshout )
+
+    build:
+        dev-util/pkg-config
+
+        doc? (
+            app-text/docbook-xml-dtd:4.2
+            app-text/xmlto
+            app-doc/doxygen
+        )
+
+    suggestion:
+        media-sound/gmpc    [[ description = [ The GTK2 MPD client ] ]]
+        media-sound/mpc     [[ description = [ The basic CLI MPD client ] ]]
+        media-sound/ncmpcpp [[ description = [ The advanced ncurses MPD client ] ]]
+"
+
+MYOPTIONS="
+    ipv6
+
+    tcpd
+
+    id3           [[ description = [ ID3 tags support ] ]]
+
+    avahi
+
+    sqlite
+
+    libsamplerate
+
+    curl
+    lastfm        [[ description = [ last.fm radio support ] ]]
+    cdio          [[ description = [ CD support through libcdio ] ]]
+    mms           [[ description = [ Microsoft Media Server protocol support ] ]]
+
+    zip           [[ description = [ zip archive support ] ]]
+
+    audiofile
+    aac
+    ffmpeg
+    flac
+    fluidsynth    [[ description = [ MIDI support through FluidSynth ] ]]
+    mad
+    mpg123        [[ description = [ MP3 support through mpg123 ] ]]
+    mikmod
+    modplug       [[ description = [ SoundTracker-style music files support through modplug ] ]]
+    sndfile
+    musepack
+    vorbis
+    wavpack       [[ description = [ WavPack support ] ]]
+
+    lame
+
+    alsa
+    ffado         [[ description = [ Free FireWire Audio Drivers support ] ]]
+    jack
+    ao
+    openal
+    pulseaudio
+    icecast       [[ description = [ shoutcast support ] ]]
+
+    doc
+    debug
+
+
+    lastfm [[ requires = curl ]]
+
+    ( audiofile aac ffmpeg flac fluidsynth mad mpg123 mikmod modplug sndfile musepack vorbis wavpack ) [[
+        number-selected = at-least-one
+        description = [ You must select some file formats to make MPD useful ]
+    ]]
+    ( mad mpg123 ) [[ number-selected = at-most-one ]]
+"
+
+
+# These ones does not have exheres right now
+# cue despotify gme iso9660 roar sidplay wildmidi mvp
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--enable-tcp'
+    '--enable-un'
+
+    '--enable-inotify'
+
+    '--disable-cue'
+
+    '--disable-despotify'
+
+    '--disable-iso9660'
+    '--enable-bzip2'
+
+    '--disable-gme'
+    '--without-tremor'
+    '--disable-sidplay'
+    '--disable-wildmidi'
+
+    '--enable-wave-encoder'
+
+    '--disable-roar'
+    '--enable-fifo'
+    '--enable-httpd-output'
+    '--disable-mvp'
+    '--disable-oss'
+    '--enable-pipe-output'
+    '--enable-recorder-output'
+    '--disable-roap'
+
+    '--disable-test'
+    '--disable-werror'
+)
+
+
+SRC_CONFIGURE_OPTION_ENABLES=(
+    'ipv6'
+
+    'tcpd libwrap'
+
+    'id3'
+
+    'sqlite'
+
+    'libsamplerate lsr'
+
+    'curl'
+    'lastfm'
+    'cdio cdio-paranoia'
+    'mms'
+
+    'zip zzip'
+
+    'audiofile'
+    'aac'
+    'ffmpeg'
+    'flac'
+    'fluidsynth'
+    'mad'
+    'mpg123'
+    'mikmod'
+    'modplug'
+    'musepack mpc'
+    'sndfile'
+    'flac oggflac'
+    'vorbis'
+    'wavpack'
+
+    'vorbis vorbis-encoder'
+    'lame lame-encoder'
+
+    'alsa'
+    'ffado'
+    'jack'
+    'openal'
+    'pulseaudio pulse'
+    'icecast shout'
+
+    'doc documentation'
+    'debug'
+)
+
+SRC_CONFIGURE_OPTION_WITHS=(
+    'avahi zeroconf avahi'
+)
+
+pkg_setup() {
+    einfo This exheres does not support system-wide MPD
+}

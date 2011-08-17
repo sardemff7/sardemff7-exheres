@@ -1,0 +1,72 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require musicpd gtk-icon-cache
+
+
+SLOT="0"
+
+HOMEPAGE="http://gmpclient.org/"
+
+LICENCES="GPL-2"
+
+SUMMARY="A GTK2 frontend for Music Player Daemon"
+DESCRIPTION="
+GMPC is a GTK2 frontend for Music Player Daemon
+
+It is designed to be lightweight and easy to use, while providing full access to all of MPD's
+features. Users are presented with several different methods to browse through their music.
+
+It can be extended by plugins, of which many are available.
+
+GMPC is the oldest maintained Graphical client for MPD. The project was started in 2003 and
+been under constant development ever since.
+"
+
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        dev-util/gob2[>=2.0.17]
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+
+    build+run:
+        dev-db/sqlite:3
+        dev-lang/vala:0.12
+        dev-libs/glib:2[>=2.16]
+        gnome-desktop/libsoup:2.4
+        gnome-platform/libglade:2
+        media-libs/libmpd[~scm]
+        x11-libs/gtk+:2[>=2.12]
+
+        unique? ( dev-libs/libunique:1 )
+        xspf? ( media-libs/libxspf[>=1.2] )
+"
+
+MYOPTIONS="
+    unique  [[ description = [ Limit to a unique instance using libunique ] ]]
+    xspf    [[ description = [ XSPF playlists ] ]]
+"
+
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--enable-nls'
+    '--disable-libspiff'
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'unique'
+    'xspf libxspf'
+)
+
+DEFAULT_SRC_COMPILE_PARAMS=(
+    '-j1'
+)
+
+src_prepare() {
+    edo intltoolize --force --copy --automake
+    eautoreconf
+    default
+}
