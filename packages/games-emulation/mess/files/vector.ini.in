@@ -1,0 +1,8 @@
+#
+# Specific options file for vector games
+#
+
+#
+# VIDEO OPTIONS
+#
+video               @VIDEO@

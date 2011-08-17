@@ -1,0 +1,47 @@
+#
+# CORE CONFIGURATION OPTIONS
+#
+readconfig                1
+writeconfig               0
+
+#
+# CORE SEARCH PATH OPTIONS
+#
+rompath                   $HOME/.mess/roms;/usr/share/mess/roms
+hashpath                  $HOME/.mess/hash;/usr/share/mess/hash
+samplepath                $HOME/.mess/sample;/usr/share/mess/sample
+artpath                   $HOME/.mess/artwork;/usr/share/mess/artwork
+ctrlrpath                 $HOME/.mess/ctrlr;/etc/mess/ctrlr
+inipath                   $HOME/.mess;/etc/mess
+fontpath                  $HOME/.mess;/usr/share/mess
+cheatpath                 $HOME/.mess/cheat;/usr/share/mess/cheat
+crosshairpath             $HOME/.mess/crosshair;/usr/share/mess/crosshair
+
+#
+# CORE OUTPUT DIRECTORY OPTIONS
+#
+cfg_directory             $HOME/.mess/cfg
+nvram_directory           $HOME/.mess/nvram
+memcard_directory         $HOME/.mess/memcard
+input_directory           $HOME/.mess/inp
+state_directory           $HOME/.mess/sta
+snapshot_directory        $HOME/.mess/snap
+diff_directory            $HOME/.mess/diff
+comment_directory         $HOME/.mess/comments
+
+#
+# VIDEO OPTIONS
+#
+video                     @VIDEO@
+
+#
+# SDL KEYBOARD MAPPING
+#
+# If you are using one of the available non-us keyboard layouts
+# set keymap to 1 and uncomment the appropriate line below
+keymap                    0
+#keymap_file               /usr/share/mess/keymaps/km_be_LINUX.txt
+#keymap_file               /usr/share/mess/keymaps/km_ch_LINUX.txt
+#keymap_file               /usr/share/mess/keymaps/km_de_LINUX.txt
+#keymap_file               /usr/share/mess/keymaps/km_fr_LINUX.txt
+#keymap_file               /usr/share/mess/keymaps/km_it_LINUX.txt

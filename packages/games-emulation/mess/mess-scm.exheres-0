@@ -1,0 +1,126 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'sdlmess-9999.ebuild' from Gentoo overlay sardemff7, which is:
+#     Copyright 1999-2011 Gentoo Foundation
+
+SCM_REPOSITORY="svn://messdev.no-ip.org/mess/"
+SCM_SVN_RAW_URI=1
+SCM_METADATA_UNNEEDED=1
+
+require scm-svn
+
+
+SLOT="0"
+
+HOMEPAGE="http://www.mess.org/"
+
+LICENCES="MAME"
+
+SUMMARY="Multi Emulator Super System - will more or less faithfully reproduce computer and console systems on a PC"
+DESCRIPTION="
+MESS is an acronym that stands for Multi Emulator Super System. MESS will more or less faithfully reproduce computer and console systems on a PC. MESS can currently emulate over 250 systems from the last 5 decades.
+
+MESS emulates the hardware of the systems and sometimes utilizes ROM images to load programs and games. Therefore, these systems are NOT simulations, but the actual emulations of the hardware.
+
+The primary purpose of MESS is to preserve decades of computer and console history. As technology continues to rush forward, MESS prevents these important “vintage” systems from being lost and forgotten. MESS is based on MAME.
+"
+
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        app-arch/unzip
+        x11-proto/xineramaproto
+
+    build+run:
+        dev-libs/expat
+        media-libs/SDL[>=1.2.10][opengl(+)?]
+        media-libs/SDL_ttf[>=1.2.10]
+        sys-libs/zlib
+        x11-libs/libXinerama
+
+        debug? (
+            gnome-platform/GConf:2
+            x11-libs/gtk+:2
+        )
+"
+
+MYOPTIONS="
+    debug
+    opengl
+"
+
+src_prepare() {
+    sed -i \
+        -e '/^CCOMFLAGS += -O$(OPTIMIZE)=/s:^:# :' \
+        -e '/^CCOMFLAGS += -pipe$/s:^:# :' \
+        -e '/^LDFLAGS += -s/s:^:# :' \
+        -e '/^BUILD_EXPAT/s:^:# :' \
+        -e '/^BUILD_ZLIB/s:^:# :' \
+        -e '/^SUFFIX/s:^:# :' \
+        -e '/^SUFFIX64/s:^:# :' \
+        -e '/^CCOMFLAGS =$/s:$'":${CFLAGS}:" \
+        makefile
+}
+
+src_compile() {
+    local make_opts=(
+        'OSD=sdl'
+        'TARGET=${PN}'
+        'NAME=${PN}'
+        'OPT_FLAGS=-DINI_PATH=\\"/etc/${PN}\\"'
+    )
+    option opengl || make_opts+=( 'NO_OPENGL=1' )
+
+    if option debug; then
+        ewarn "Building with DEBUG support is not recommended for normal use"
+        make_opts+=(
+            'DEBUG=1'
+            'PROFILE=1'
+            'SYMBOL=1'
+            'DEBUGGER=1'
+        )
+    else
+        make_opts+=(
+            'NOWERROR=1'
+        )
+    fi
+
+
+    emake all ${make_opts[@]}
+}
+
+src_install() {
+    dobin ${PN}
+
+    exeinto /usr/${LIBDIR}/${PN}
+    local f
+    for f in chdman ldverify imgtool jedutil romcmp testkeys; do
+        doexe ${f}
+    done
+
+    keepdir /etc/${PN}/ctrlr
+
+    local video="soft"
+    option opengl && video="opengl"
+    sed \
+        -e 's:@VIDEO@'":${video}:" \
+        "${FILES}"/vector.ini.in > "${IMAGE}"/etc/${PN}/vector.ini
+
+    sed \
+        -e 's:@VIDEO@'":${video}:" \
+        "${FILES}"/${PN}.ini.in > "${IMAGE}"/etc/${PN}/${PN}.ini
+
+    insinto /usr/share/${PN}
+    doins -r artwork
+    doins -r hash
+    doins -r keymaps
+
+    keepdir /usr/share/${PN}/roms
+    keepdir /usr/share/${PN}/sample
+    keepdir /usr/share/${PN}/cheat
+    keepdir /usr/share/${PN}/crosshair
+
+    dodoc docs/{config,mame,newvideo}.txt *.txt
+    emagicdocs
+}
