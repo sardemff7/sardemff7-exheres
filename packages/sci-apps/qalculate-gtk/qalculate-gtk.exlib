@@ -1,0 +1,48 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'qalculate-gtk-0.9.7.ebuild' from Gentoo, which is:
+#     Copyright 1999-2011 Gentoo Foundation
+
+require sourceforge [ project=qalculate suffix=tar.gz ]
+
+
+SLOT="0"
+
+SUMMARY="The ultimate desktop calculator - GTK+ frontend"
+
+LICENCES="GPL-2"
+
+DEPENDENCIES="
+    build:
+        app-text/rarian
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+
+    build+run:
+        gnome-platform/libglade:2
+        sci-libs/libqalculate[~${PV}]
+        sci-libs/cln[>=1.2]
+        x11-libs/gtk+:2
+
+        gnome? (
+            gnome-platform/libgnome:2
+            gnome-desktop/yelp
+        )
+"
+
+MYOPTIONS="
+    gnome [[ description = [ GNOME support ] ]]
+"
+
+
+DEFAUL_SRC_CONFIGURE_ENALES=(
+    'gnome libgnome'
+)
+
+#src_prepare() {
+#   # Required by make check
+#   echo data/periodictable.glade > po/POTFILES.skip
+#   epatch "${FILESDIR}"/${P}-entry.patch
+#   gnome2_src_prepare
+#}
