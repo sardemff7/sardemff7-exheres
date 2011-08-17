@@ -1,0 +1,40 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon mozilla-scm.eclass from Gentoo sardemff7 overlay, which is:
+#     Copyright 1999-2011 Gentoo Foundation
+
+require mozilla-scm-fetch python
+
+
+DEPENDENCIES="
+    build:
+        meta-sync/mozilla-repositories
+
+        app-arch/zip
+        dev-lang/python:*[>=2.5&<3]
+        dev-util/pkg-config
+
+    build+run:
+        dev-db/sqlite:3[unlock-notify]
+"
+if [ "${PN}" != "nspr" ]; then
+    DEPENDENCIES+="
+        build+run:
+            dev-libs/nspr[~scm]
+    "
+fi
+
+
+# It is really quicker and we do not need a full repo here
+scm-hg_do_unpack() {
+    scm-hg_hg archive \
+        --rev=$(scm-hg_revision_spec) \
+        "$(scm_get_var UNPACK_TO)"
+}
+
+
+mozilla-scm_src_fetch_extra() {
+    einfo "Using repositories synced by meta-sync/mozilla-repositories"
+}
+
+export_exlib_phases src_fetch_extra

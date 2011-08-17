@@ -1,0 +1,20 @@
+include Makefile
+
+install_nspr.pc:: nspr.pc
+	$(NSINSTALL) -D $(DESTDIR)$(libdir)/pkgconfig
+	$(NSINSTALL) -t -m 0644 $< $(DESTDIR)$(libdir)/pkgconfig
+
+nspr.pc: nspr.pc.in
+	sed \
+		-e 's:@prefix@:$(prefix):' \
+		-e 's:@exec_prefix@:$(exec_prefix):' \
+		-e 's:@libdir@:$(libdir):' \
+		-e 's:@includedir@:$(includedir):' \
+		-e 's:@MOD_MAJOR_VERSION@:$(MOD_MAJOR_VERSION):' \
+		-e 's:@MOD_MINOR_VERSION@:$(MOD_MINOR_VERSION):' \
+		-e 's:@MOD_PATCH_VERSION@:$(MOD_PATCH_VERSION):' \
+		-e 's:@OS_LIBS@:$(OS_LIBS):' \
+		$< > $@
+
+echo-minor::
+	@echo -n $(MOD_MINOR_VERSION)

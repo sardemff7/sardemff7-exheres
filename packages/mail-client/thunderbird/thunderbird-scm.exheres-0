@@ -1,0 +1,76 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_SECONDARY_REPOSITORIES="moz_comm moz_ldap_sdks"
+# crypt? (  )"
+
+require mozilla-app
+
+
+HOMEPAGE="http://www.mozilla.com/en-US/thunderbird"
+
+SUMMARY="Thunderbird Mail and News client"
+
+PLATFORMS="~amd64 ~x86"
+
+MYOPTIONS="
+    lightning [[ description = [ Install the calendar extension "Lightning" ] ]]
+"
+
+
+WORK="${WORKBASE}"/moz_comm
+
+# Should be fixed upstream
+DEFAULT_SRC_COMPILE_PARAMS=(
+    'MKDIR=mkdir'
+)
+
+src_unpack() {
+    mozilla-app_src_unpack
+    edo mv "${WORKBASE}"/moz_xulrunner "${WORK}"/mozilla
+    edo mv "${WORKBASE}"/moz_ldap_sdks "${WORK}"/ldap/sdks
+}
+
+src_prepare() {
+    # Exherbo install dirs
+    edo sed -i \
+        -e 's:$(datadir)/idl/$(MOZ_APP_NAME)-$(MOZ_APP_VERSION):$(includedir)/idl:' \
+        -e 's:$(MOZ_APP_NAME)-$(MOZ_APP_VERSION):'${PN}':' \
+        -e 's:$(MOZ_APP_NAME)-devel-$(MOZ_APP_VERSION):'${PN}'-devel:' \
+        config/autoconf.mk.in
+
+    eautoconf
+
+    touch mail/config/mozconfig
+
+    cd "${WORK}"/mozilla
+    edo ln -sf ../.mozconfig .mozconfig
+    mozilla-app_src_prepare
+}
+
+src_configure() {
+    mozilla-app_src_configure \
+        $(option_enable lightning calendar)
+}
+
+src_install() {
+    mozilla-app_src_install
+
+    if option lightning; then
+        local emid
+        emid="{a62ef8ec-5fdc-40c2-873c-223b8a6925cc}"
+        dodir ${MOZILLA_FIVE_HOME}/extensions/${emid}
+        cd "${IMAGE}"/${MOZILLA_FIVE_HOME}/extensions/${emid}
+        unzip "${WORK}"/mozilla/dist/xpi-stage/gdata-provider.xpi
+
+        emid="calendar-timezones@mozilla.org"
+        dodir ${MOZILLA_FIVE_HOME}/extensions/${emid}
+        cd "${IMAGE}"${MOZILLA_FIVE_HOME}/extensions/${emid}
+        unzip "${WORK}"/mozilla/dist/xpi-stage/calendar-timezones.xpi
+
+        emid="{e2fda1a4-762b-4020-b5ad-a41df1933103}"
+        dodir ${MOZILLA_FIVE_HOME}/extensions/${emid}
+        cd "${IMAGE}"${MOZILLA_FIVE_HOME}/extensions/${emid}
+        unzip "${WORK}"/mozilla/dist/xpi-stage/lightning.xpi
+    fi
+}

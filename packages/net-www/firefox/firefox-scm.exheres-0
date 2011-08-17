@@ -1,0 +1,11 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require mozilla-app
+
+
+HOMEPAGE="http://www.mozilla.com/en-US/firefox"
+
+SUMMARY="Firefox Web Browser"
+
+PLATFORMS="~amd64 ~x86"
