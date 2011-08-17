@@ -1,0 +1,116 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+if ever is_scm; then
+    SCM_REPOSITORY="git://code.stapelberg.de/i3"
+    require scm-git
+fi
+
+
+SLOT="0"
+
+if ever is_scm; then
+    DOWNLOADS=""
+else
+    DOWNLOADS="http://i3wm.org/downloads/${PNV}.tar.bz2"
+fi
+
+HOMEPAGE="http://i3wm.org/"
+
+LICENCES="BSD"
+
+SUMMARY="A tiling window manager, completely written from scratch"
+DESCRIPTION="
+i3 was created because wmii, our favorite window manager at the time, didn’t provide some features
+we wanted (multi-monitor done right, for example), had some bugs, didn’t progress since quite
+some time and wasn’t easy to hack at all (source code comments/documentation completely lacking).
+Still, we think the wmii developers and contributors did a great job. Thank you for inspiring us
+to create i3.
+
+Please be aware that i3 is primarily targeted at advanced users and developers.
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/libev
+        dev-libs/yajl
+        x11-libs/libX11
+        x11-libs/libxcb[>=1.1.93]
+        || (
+            x11-utils/xcb-util[>=0.3.3&<0.3.8]
+            (
+                x11-utils/xcb-util[>=0.3.8]
+                x11-utils/xcb-util-keysyms[>=0.3.8]
+                x11-utils/xcb-util-wm[>=0.3.8]
+            )
+        )
+
+    build:
+        dev-util/pkg-config
+        sys-devel/bison
+        sys-devel/flex
+        x11-proto/xcb-proto[>=1.3]
+
+        doc? ( app-doc/asciidoc[>=8.3.0] )
+"
+if ever is_scm; then
+    DEPENDENCIES+="
+        build:
+            man-pages? (
+                app-doc/asciidoc[>=8.3.0]
+                app-text/xmlto
+            )
+    "
+fi
+
+MYOPTIONS="
+    debug
+    doc
+"
+if ever is_scm; then
+    MYOPTIONS+="
+        man-pages [[ description = [ Builds man pages ] ]]
+    "
+fi
+
+
+src_prepare() {
+    option debug || edo sed -i -e "s:DEBUG=1:DEBUG=0:" common.mk
+
+    # I think I won't support version before that, but if anyone needs it…
+    if ! ever at_least 4; then
+        edo sed -i \
+            -e "s:/usr/local/include:${ECONF_PREFIX}/include:" \
+            -e "s:/usr/local/lib:${ECONF_PREFIX}/${LIBDIR:-lib}:" \
+            common.mk
+    fi
+}
+
+src_compile() {
+    emake
+
+    local subs=( ${PN}-{input,msg} )
+
+    option doc && subs+=( docs )
+
+    ever is_scm && option man-pages && subs+=( man )
+
+    for sub in ${subs[@]}; do
+        emake -C ${sub}
+    done
+}
+
+
+src_install() {
+    default
+
+    if ever is_scm; then
+        option man-pages
+    else
+        true
+    fi && doman man/*.1
+    if option doc; then
+        dodoc -r docs/*.html
+        elog "Documentation in html is in /etc/share/doc/${PNV}"
+    fi
+}
