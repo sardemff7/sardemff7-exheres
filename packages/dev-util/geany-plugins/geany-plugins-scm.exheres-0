@@ -1,0 +1,125 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="http://geany.svn.sourceforge.net/svnroot/${PN}"
+SCM_SUBPATH="${PN}/"
+AT_M4DIR=( build )
+
+require gtk-icon-cache freedesktop-desktop scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+
+SLOT="0"
+
+HOMEPAGE="http://plugins.geany.org/"
+
+LICENCES="GPL-2 Scintilla"
+
+SUMMARY="A collection of different plugins for Geany"
+DESCRIPTION="
+What you will find here is a lot of plugin stuff for Geany.
+There is a Geany Plugins project containing a lot of plugins,
+which is developed by various developers on SourceForge.
+"
+
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        sys-devel/gettext
+
+    build+run:
+        dev-util/geany[~scm]
+
+        debugger? ( x11-libs/vte:0[>=0.24] )
+        devhelp? (
+            dev-libs/glib:2[>=2.16]
+            x11-libs/gtk+:2[>=2.16]
+            dev-util/devhelp[>=2&<2.32]
+            net-libs/webkit-gtk:2
+        )
+        enchant? ( app-spell/enchant )
+        gendoc? ( dev-libs/ctpl[>=0.3] )
+        gpg? ( app-crypt/gpgme )
+        lua? ( dev-lang/lua )
+        xml? ( dev-libs/libxml2 )
+        webkit? (
+            net-libs/webkit-gtk:2
+            x11-libs/gtk+:2[>=2.12]
+            x11-libs/gdk-pixbuf:2
+        )
+"
+
+MYOPTIONS="
+    debugger [[ description = [ Debugger plugin, gdb helper for Geany ] ]]
+    devhelp  [[ description = [ Integrate devhelp functionality with Geany ] ]]
+    enchant  [[ description = [ Enable spell chack using enchant ] ]]
+    gendoc   [[ description = [ Plugin to help documentation generation ] ]]
+    gpg      [[ description = [ GPG support via GeanyPG ] ]]
+    lua      [[ description = [ Allow to extend Geany using Lua ] ]]
+    xml      [[ description = [ XML Pretty-Print plugin ] ]]
+    webkit   [[ description = [ Web development helper using WeKit ] ]]
+"
+
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--enable-addons'
+    '--enable-codenav'
+    '--disable-geanycfp'
+    '--enable-geanyextrasel'
+    '--enable-geanygdb'
+    '--enable-geanyinsertnum'
+    '--enable-geanylatex'
+    '--enable-geanylipsum'
+    '--enable-geanymacro'
+    '--enable-geanynumberedbookmarks'
+    '--enable-geanyprj'
+    '--enable-geanysendmail'
+    '--enable-geanyvc'
+    '--enable-gproject'
+    '--enable-shiftcolumn'
+    '--enable-tableconvert'
+    '--enable-treebrowser'
+    '--disable-updatechecker'
+    '--enable-xmlsnippets'
+    '--enable-nls'
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'debugger'
+    'devhelp'
+    'gendoc geanygendoc'
+    'lua geanylua'
+    'gpg geanypg'
+    'xml pretty-printer'
+    'enchant spellcheck'
+    'webkit webhelper'
+)
+
+src_prepare() {
+    edo intltoolize --force --copy --automake
+    eautoreconf
+    default
+}
+
+src_install() {
+    default
+    option debugger || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/debugger
+    if ! option devhelp; then
+        edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/devhelp
+        edo rmdir "${IMAGE}"/usr/share/${PN}/devhelp
+    fi
+    edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/geanycfp
+    option gpg || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/geanypg
+    edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/updatechecker
+    option webkit || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/webhelper
+}
+
+pkg_postrm() {
+    gtk-icon-cache_pkg_postrm
+    freedesktop-desktop_pkg_postrm
+}
+
+pkg_postinst() {
+    gtk-icon-cache_pkg_postinst
+    freedesktop-desktop_pkg_postinst
+}

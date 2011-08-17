@@ -1,0 +1,35 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SLOT="0"
+
+DOWNLOADS="http://download.tuxfamily.org/${PN}/releases/${PNV}.tar.gz"
+
+HOMEPAGE="http://${PN}.tuxfamily.org/"
+
+LICENCES="GPL-3"
+
+SUMMARY="A template engine library written in C"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+
+        gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
+
+    build+run:
+        dev-libs/glib:2[>=2.24]
+"
+
+MYOPTIONS="
+    gtk-doc
+"
+
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-static'
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'gtk-doc'
+)

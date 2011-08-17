@@ -1,0 +1,73 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="http://geany.svn.sourceforge.net/svnroot/${PN}"
+
+require gtk-icon-cache freedesktop-desktop scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+
+SLOT="0"
+
+HOMEPAGE="http://www.geany.org/"
+
+LICENCES="GPL-2 Scintilla"
+
+SUMMARY="A small and lightweight Integrated Development Environment"
+DESCRIPTION="
+Geany is a small and lightweight Integrated Development Environment. It was developed to provide a
+small and fast IDE, which has only a few dependencies from other packages. Another goal was to be as
+independent as possible from a special Desktop Environment like KDE or GNOME - Geany only requires
+the GTK2 runtime libraries
+"
+
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+
+    build+run:
+        dev-libs/glib:2[>=2.16]
+        x11-libs/gtk+:2[>=2.12]
+
+    run:
+        vte? ( dev-libs/vte:0 )
+"
+
+MYOPTIONS="
+    vte [[ description = [ VTE support ( provides an embedded terminal ) ] ]]
+"
+
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--enable-plugins'
+    '--enable-socket'
+    '--disable-binreloc'
+    '--disable-gnu-regex'
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'vte'
+)
+
+src_prepare() {
+    edo sed -i \
+        -e 's/*.sh;/*.sh;*.exlib;*.exheres-0;/' \
+        data/filetype_extensions.conf
+
+    edo intltoolize --force --copy --automake
+    eautoreconf
+    default
+}
+
+pkg_postrm() {
+    gtk-icon-cache_pkg_postrm
+    freedesktop-desktop_pkg_postrm
+}
+
+pkg_postinst() {
+    gtk-icon-cache_pkg_postinst
+    freedesktop-desktop_pkg_postinst
+}
