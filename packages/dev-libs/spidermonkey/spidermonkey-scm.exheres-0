@@ -1,0 +1,31 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7.pub@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon spidermonkey-scm.exheres-0 from rbrown overlay, which is:
+#     Copyright 2009 Richard Brown
+
+require mozilla-scm autotools [ supported_autoconf=[ 2.1 ] supported_automake=[ none ] ]
+
+
+SLOT="0"
+
+HOMEPAGE="https://developer.mozilla.org/en/SpiderMonkey"
+
+SUMMARY="Mozilla's JavaScript engine written in C/C++"
+
+PLATFORMS="~amd64 ~x86"
+
+MYOPTIONS=""
+
+
+WORK="${WORK}/js/src"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--hates=docdir'
+    '--enable-threadsafe'
+    '--with-system-nspr'
+)
+
+src_prepare() {
+    default
+    eautoconf
+}
