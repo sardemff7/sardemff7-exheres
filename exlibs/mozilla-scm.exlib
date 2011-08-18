@@ -25,14 +25,6 @@ if [ "${PN}" != "nspr" ]; then
 fi
 
 
-# It is really quicker and we do not need a full repo here
-scm-hg_do_unpack() {
-    scm-hg_hg archive \
-        --rev=$(scm-hg_revision_spec) \
-        "$(scm_get_var UNPACK_TO)"
-}
-
-
 mozilla-scm_src_fetch_extra() {
     einfo "Using repositories synced by meta-sync/mozilla-repositories"
 }
