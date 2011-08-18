@@ -1,8 +1,8 @@
 include Makefile
 
-MAJOR_VERSION = $(shell sed -n -r -e 's|.*NSS_([0-9]+)_[0-9]+_[0-9]+.*|\1|p' TAG-INFO)
-VERSION = $(shell sed -n -r -e 's|.*NSS_([0-9]+)_([0-9]+)_([0-9]+).*|\1.\2.\3|p' TAG-INFO)
-NSPR_VERSION=$(shell sed -n -r -e 's|.*NSPR_([0-9]+)_([0-9]+)_([0-9]+).*|\1.\2.\3|p' $(CORE_DEPTH)/../nsprpub/TAG-INFO)
+MAJOR_VERSION = $(shell sed -n -r -e 's|.*NSS_([0-9]+)_[0-9]+(_[0-9])?+.*|\1|p' TAG-INFO)
+VERSION = $(shell sed -n -r -e 's|.*NSS_([0-9]+_[0-9]+(_[0-9]+)?).*|\1|' -e 's|_|.|gp' TAG-INFO)
+NSPR_VERSION=$(shell sed -n -r -e 's|.*NSPR_([0-9]+_[0-9]+(_[0-9]+)?).*|\1|' -e 's|_|.|gp'  $(CORE_DEPTH)/../nsprpub/TAG-INFO)
 
 install_nss.pc:: nss.pc
 	mkdir -p $(DESTDIR)/usr/$(LIBDIR)/pkgconfig
