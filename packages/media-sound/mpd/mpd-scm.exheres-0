@@ -30,6 +30,7 @@ DEPENDENCIES="
         libsamplerate? ( media-libs/libsamplerate[>=0.0.15] )
 
         curl? ( net-misc/curl )
+        soup? ( gnome-desktop/libsoup:2.4 )
         cdio? ( dev-libs/libcdio )
         media-libs/libogg
         mms? ( media-libs/libmms[>=0.4] )
@@ -89,6 +90,7 @@ MYOPTIONS="
     libsamplerate
 
     curl
+    soup          [[ description = [ HTTP streams supoort (input) through libsoup ] ]]
     lastfm        [[ description = [ last.fm radio support ] ]]
     cdio          [[ description = [ CD support through libcdio ] ]]
     mms           [[ description = [ Microsoft Media Server protocol support ] ]]
@@ -182,6 +184,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'libsamplerate lsr'
 
     'curl'
+    'soup'
     'lastfm'
     'cdio cdio-paranoia'
     'mms'
