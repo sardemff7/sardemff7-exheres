@@ -158,11 +158,11 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--disable-roar'
     '--enable-fifo'
     '--enable-httpd-output'
+    '--disable-ao'
     '--disable-mvp'
     '--disable-oss'
     '--enable-pipe-output'
     '--enable-recorder-output'
-    '--disable-roap'
 
     '--disable-test'
     '--disable-werror'
