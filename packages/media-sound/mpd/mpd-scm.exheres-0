@@ -110,6 +110,7 @@ MYOPTIONS="
     wavpack       [[ description = [ WavPack support ] ]]
 
     lame
+    twolame       [[ description = [ MPEG Audio Layer II encoding through twolame ] ]]
 
     alsa
     ffado         [[ description = [ Free FireWire Audio Drivers support ] ]]
@@ -204,6 +205,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
 
     'vorbis vorbis-encoder'
     'lame lame-encoder'
+    'twolame twolame-encoder'
 
     'alsa'
     'ffado'
