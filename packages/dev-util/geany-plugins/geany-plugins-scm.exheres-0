@@ -103,7 +103,10 @@ src_prepare() {
 
 src_install() {
     default
-    option debugger || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/debugger
+    if ! option debugger; then
+        edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/debugger
+        edo rmdir "${IMAGE}"/usr/share/${PN}/debugger
+    fi
     if ! option devhelp; then
         edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/devhelp
         edo rmdir "${IMAGE}"/usr/share/${PN}/devhelp
