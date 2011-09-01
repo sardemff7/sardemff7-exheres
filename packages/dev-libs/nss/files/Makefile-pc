@@ -4,6 +4,11 @@ MAJOR_VERSION = $(shell sed -n -r -e 's|.*NSS_([0-9]+)_[0-9]+(_[0-9])?+.*|\1|p' 
 VERSION = $(shell sed -n -r -e 's|.*NSS_([0-9]+_[0-9]+(_[0-9]+)?).*|\1|' -e 's|_|.|gp' TAG-INFO)
 NSPR_VERSION=$(shell sed -n -r -e 's|.*NSPR_([0-9]+_[0-9]+(_[0-9]+)?).*|\1|' -e 's|_|.|gp'  $(CORE_DEPTH)/../nsprpub/TAG-INFO)
 
+ifeq ($(word 3, $(subst ., ,$(VERSION))),)
+VERSION := $(VERSION).0
+endif
+
+
 install_nss.pc:: nss.pc
 	mkdir -p $(DESTDIR)/usr/$(LIBDIR)/pkgconfig
 	install -m 0644 $< $(DESTDIR)/usr/$(LIBDIR)/pkgconfig
