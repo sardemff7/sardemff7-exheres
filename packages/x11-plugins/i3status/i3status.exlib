@@ -17,7 +17,7 @@ fi
 
 HOMEPAGE="http://i3wm.org/i3status"
 
-LICENCES="BSD"
+LICENCES="BSD-3"
 
 SUMMARY="A small generator for status bars"
 DESCRIPTION="

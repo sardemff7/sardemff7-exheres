@@ -17,7 +17,7 @@ fi
 
 HOMEPAGE="http://i3wm.org/"
 
-LICENCES="BSD"
+LICENCES="BSD-3"
 
 SUMMARY="A tiling window manager, completely written from scratch"
 DESCRIPTION="
