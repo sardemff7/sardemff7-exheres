@@ -14,7 +14,7 @@ LICENCES="GPL-2"
 
 SUMMARY="An abstraction layer around libmpdclient that provides a high level access to mpd"
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build:

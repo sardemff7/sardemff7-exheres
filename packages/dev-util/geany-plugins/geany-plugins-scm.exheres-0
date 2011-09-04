@@ -21,7 +21,7 @@ There is a Geany Plugins project containing a lot of plugins,
 which is developed by various developers on SourceForge.
 "
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build:

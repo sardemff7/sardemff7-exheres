@@ -20,7 +20,7 @@ independent as possible from a special Desktop Environment like KDE or GNOME - G
 the GTK2 runtime libraries
 "
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build:

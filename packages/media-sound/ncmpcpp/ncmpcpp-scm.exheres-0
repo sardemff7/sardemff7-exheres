@@ -19,7 +19,7 @@ regular expressions in search engine, extended song format, items filtering, las
 ability to sort playlist, local filesystem browser and other minor functions.
 "
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:

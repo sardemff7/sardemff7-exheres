@@ -8,4 +8,4 @@ HOMEPAGE="http://www.mozilla.com/en-US/firefox"
 
 SUMMARY="Firefox Web Browser"
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"

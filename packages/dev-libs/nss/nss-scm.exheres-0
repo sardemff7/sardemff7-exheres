@@ -17,7 +17,7 @@ HOMEPAGE="http://www.mozilla.org/projects/security/pki/nss/"
 
 SUMMARY="Mozilla's Network Security Services library that implements PKI support"
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 MYOPTIONS="
     debug

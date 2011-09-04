@@ -3,4 +3,4 @@
 
 require mod_gnutls
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"

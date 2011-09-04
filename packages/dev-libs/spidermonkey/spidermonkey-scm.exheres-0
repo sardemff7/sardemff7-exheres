@@ -12,7 +12,7 @@ HOMEPAGE="https://developer.mozilla.org/en/SpiderMonkey"
 
 SUMMARY="Mozilla's JavaScript engine written in C/C++"
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 MYOPTIONS=""
 

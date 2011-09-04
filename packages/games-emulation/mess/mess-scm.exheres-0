@@ -25,7 +25,7 @@ MESS emulates the hardware of the systems and sometimes utilizes ROM images to l
 The primary purpose of MESS is to preserve decades of computer and console history. As technology continues to rush forward, MESS prevents these important “vintage” systems from being lost and forgotten. MESS is based on MAME.
 "
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build:

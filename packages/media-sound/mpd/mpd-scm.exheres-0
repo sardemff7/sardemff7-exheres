@@ -12,7 +12,7 @@ LICENCES="GPL-2"
 
 DESCRIPTION="The Music Player Daemon (mpd)"
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 # Options are ordered as in the configure.ac to ease an update
 DEPENDENCIES="

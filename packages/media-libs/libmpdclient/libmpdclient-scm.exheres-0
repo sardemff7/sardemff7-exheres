@@ -10,7 +10,7 @@ LICENCES="BSD"
 
 SUMMARY="A stable, documented, asynchronous API library for interfacing MPD in the C, C++ & Objective C languages"
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 DEPENDENCIES=""
 

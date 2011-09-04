@@ -23,7 +23,7 @@ GMPC is the oldest maintained Graphical client for MPD. The project was started 
 been under constant development ever since.
 "
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build:

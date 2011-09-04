@@ -3,4 +3,4 @@
 
 require purple-presence
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"

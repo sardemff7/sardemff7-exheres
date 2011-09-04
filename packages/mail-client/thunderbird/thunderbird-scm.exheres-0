@@ -11,7 +11,7 @@ HOMEPAGE="http://www.mozilla.com/en-US/thunderbird"
 
 SUMMARY="Thunderbird Mail and News client"
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 MYOPTIONS="
     lightning [[ description = [ Install the calendar extension "Lightning" ] ]]

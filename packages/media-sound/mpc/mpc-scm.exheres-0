@@ -10,7 +10,7 @@ LICENCES="GPL-2"
 
 SUMMARY="A minimalist command line interface to MPD, not to be confused with musepack"
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build+run:
