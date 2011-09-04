@@ -55,7 +55,7 @@ MYOPTIONS="
     enchant  [[ description = [ Enable spell chack using enchant ] ]]
     gendoc   [[ description = [ Plugin to help documentation generation ] ]]
     gpg      [[ description = [ GPG support via GeanyPG ] ]]
-    lua      [[ description = [ Allow to extend Geany using Lua ] ]]
+    lua      [[ description = [ Extend Geany using Lua ] ]]
     xml      [[ description = [ XML Pretty-Print plugin ] ]]
     webkit   [[ description = [ Web development helper using WeKit ] ]]
 "

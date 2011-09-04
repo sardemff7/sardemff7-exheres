@@ -76,8 +76,8 @@ src_install() {
     default
 
     if ever is_scm; then
-        option man-pages
+        option man-pages && doman man/*.1
     else
-        true
-    fi && doman man/*.1
+        doman man/*.1
+    fi
 }

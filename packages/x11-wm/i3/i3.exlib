@@ -76,14 +76,6 @@ fi
 
 src_prepare() {
     option debug || edo sed -i -e "s:DEBUG=1:DEBUG=0:" common.mk
-
-    # I think I won't support version before that, but if anyone needs it…
-    if ! ever at_least 4; then
-        edo sed -i \
-            -e "s:/usr/local/include:${ECONF_PREFIX}/include:" \
-            -e "s:/usr/local/lib:${ECONF_PREFIX}/${LIBDIR:-lib}:" \
-            common.mk
-    fi
 }
 
 src_compile() {
@@ -105,12 +97,11 @@ src_install() {
     default
 
     if ever is_scm; then
-        option man-pages
+        option man-pages && doman man/*.1
     else
-        true
-    fi && doman man/*.1
+        doman man/*.1
+    fi
     if option doc; then
         dodoc -r docs/*.html
-        elog "Documentation in html is in /etc/share/doc/${PNV}"
     fi
 }

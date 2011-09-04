@@ -24,25 +24,6 @@ DEPENDENCIES="
         sci-libs/libqalculate[~${PV}]
         sci-libs/cln[>=1.2]
         x11-libs/gtk+:2
-
-        gnome? (
-            gnome-platform/libgnome:2
-            gnome-desktop/yelp
-        )
 "
 
-MYOPTIONS="
-    gnome [[ description = [ GNOME support ] ]]
-"
-
-
-DEFAUL_SRC_CONFIGURE_ENALES=(
-    'gnome libgnome'
-)
-
-#src_prepare() {
-#   # Required by make check
-#   echo data/periodictable.glade > po/POTFILES.skip
-#   epatch "${FILESDIR}"/${P}-entry.patch
-#   gnome2_src_prepare
-#}
+MYOPTIONS=""

@@ -18,11 +18,16 @@ LICENCES="MAME"
 
 SUMMARY="Multi Emulator Super System - will more or less faithfully reproduce computer and console systems on a PC"
 DESCRIPTION="
-MESS is an acronym that stands for Multi Emulator Super System. MESS will more or less faithfully reproduce computer and console systems on a PC. MESS can currently emulate over 250 systems from the last 5 decades.
+MESS is an acronym that stands for Multi Emulator Super System. MESS will more or less faithfully
+reproduce computer and console systems on a PC. MESS can currently emulate over 250 systems from
+the last 5 decades.
 
-MESS emulates the hardware of the systems and sometimes utilizes ROM images to load programs and games. Therefore, these systems are NOT simulations, but the actual emulations of the hardware.
+MESS emulates the hardware of the systems and sometimes utilizes ROM images to load programs and
+games. Therefore, these systems are NOT simulations, but the actual emulations of the hardware.
 
-The primary purpose of MESS is to preserve decades of computer and console history. As technology continues to rush forward, MESS prevents these important “vintage” systems from being lost and forgotten. MESS is based on MAME.
+The primary purpose of MESS is to preserve decades of computer and console history. As technology
+continues to rush forward, MESS prevents these important “vintage” systems from being lost and
+forgotten. MESS is based on MAME.
 "
 
 PLATFORMS="~amd64"
@@ -73,7 +78,6 @@ src_compile() {
     option opengl || make_opts+=( 'NO_OPENGL=1' )
 
     if option debug; then
-        ewarn "Building with DEBUG support is not recommended for normal use"
         make_opts+=(
             'DEBUG=1'
             'PROFILE=1'

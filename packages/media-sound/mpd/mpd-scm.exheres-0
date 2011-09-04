@@ -10,7 +10,7 @@ HOMEPAGE="http://www.musicpd.org"
 
 LICENCES="GPL-2"
 
-DESCRIPTION="The Music Player Daemon (mpd)"
+SUMMARY="The Music Player Daemon (mpd)"
 
 PLATFORMS="~amd64"
 
