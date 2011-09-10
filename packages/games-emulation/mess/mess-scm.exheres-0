@@ -14,7 +14,7 @@ SLOT="0"
 
 HOMEPAGE="http://www.mess.org/"
 
-LICENCES="MAME"
+LICENCES="mame"
 
 SUMMARY="Multi Emulator Super System - will more or less faithfully reproduce computer and console systems on a PC"
 DESCRIPTION="

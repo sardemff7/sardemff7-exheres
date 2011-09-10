@@ -6,7 +6,7 @@ require musicpd
 
 SLOT="0"
 
-LICENCES="BSD"
+LICENCES="BSD-3"
 
 SUMMARY="A stable, documented, asynchronous API library for interfacing MPD in the C, C++ & Objective C languages"
 
