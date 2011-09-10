@@ -139,92 +139,87 @@ MYOPTIONS="
 # These ones does not have exheres right now
 # cue despotify gme iso9660 roar sidplay wildmidi mvp
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--enable-tcp'
-    '--enable-un'
+    --enable-tcp
+    --enable-un
 
-    '--enable-inotify'
+    --enable-inotify
 
-    '--disable-cue'
+    --disable-cue
 
-    '--disable-despotify'
+    --disable-despotify
 
-    '--disable-iso9660'
-    '--enable-bzip2'
+    --disable-iso9660
+    --enable-bzip2
 
-    '--disable-gme'
-    '--without-tremor'
-    '--disable-sidplay'
-    '--disable-wildmidi'
+    --disable-gme
+    --without-tremor
+    --disable-sidplay
+    --disable-wildmidi
 
-    '--enable-wave-encoder'
+    --enable-wave-encoder
 
-    '--disable-roar'
-    '--enable-fifo'
-    '--enable-httpd-output'
-    '--disable-ao'
-    '--disable-mvp'
-    '--disable-oss'
-    '--enable-pipe-output'
-    '--enable-recorder-output'
+    --disable-roar
+    --enable-fifo
+    --enable-httpd-output
+    --disable-ao
+    --disable-mvp
+    --disable-oss
+    --enable-pipe-output
+    --enable-recorder-output
 
-    '--disable-test'
-    '--disable-werror'
+    --disable-test
+    --disable-werror
 )
 
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'ipv6'
+    ipv6
 
     'tcpd libwrap'
 
-    'id3'
+    id3
 
-    'sqlite'
+    sqlite
 
     'libsamplerate lsr'
 
-    'curl'
-    'soup'
-    'lastfm'
+    curl
+    soup
+    lastfm
     'cdio cdio-paranoia'
-    'mms'
+    mms
 
     'zip zzip'
 
-    'audiofile'
-    'aac'
-    'ffmpeg'
-    'flac'
-    'fluidsynth'
-    'mad'
-    'mpg123'
-    'mikmod'
-    'modplug'
+    audiofile
+    aac
+    ffmpeg
+    flac
+    fluidsynth
+    mad
+    mpg123
+    mikmod
+    modplug
     'musepack mpc'
-    'sndfile'
-    'flac oggflac'
-    'vorbis'
-    'wavpack'
+    sndfile
+    vorbis
+    wavpack
 
     'vorbis vorbis-encoder'
     'lame lame-encoder'
     'twolame twolame-encoder'
 
-    'alsa'
-    'ffado'
-    'jack'
-    'openal'
+    alsa
+    ffado
+    jack
+    openal
     'pulseaudio pulse'
-    'icecast shout'
+    shout
 
     'doc documentation'
-    'debug'
+    debug
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
     'avahi zeroconf avahi'
 )
-
-pkg_setup() {
-    einfo This exheres does not support system-wide MPD
-}

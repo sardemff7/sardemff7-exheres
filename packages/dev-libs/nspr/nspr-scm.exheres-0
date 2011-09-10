@@ -29,8 +29,8 @@ ECONF_SOURCE="${WORK}/nsprpub/"
 WORK="${WORKBASE}/build"
 
 DEFAULT_SRC_COMPILE_PARAMS=(
-    'CC='"${CC}"
-    'CXX='"${CXX}"
+    CC="${CC}"
+    CXX="${CXX}"
 )
 
 src_unpack() {
@@ -48,7 +48,6 @@ src_prepare() {
 
     #epatch "${FILESDIR}"/${PN}-4.7.0-prtime.patch
     #epatch "${FILESDIR}"/libs.patch
-    #epatch "${FILESDIR}"/pkgconfig.patch
 
     edo sed -i -e 's/perl5//g' configure
 
@@ -75,7 +74,7 @@ src_compile() {
 }
 
 src_test() {
-    edo perl "${ECONF_SOURCE}/pr/tests/runtests.pl"
+    edo perl "${ECONF_SOURCE}"/pr/tests/runtests.pl
 }
 
 src_install() {

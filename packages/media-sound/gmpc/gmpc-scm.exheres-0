@@ -52,17 +52,17 @@ MYOPTIONS="
 
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--enable-nls'
-    '--disable-libspiff'
+    --enable-nls
+    --disable-libspiff
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'unique'
+    unique
     'xspf libxspf'
 )
 
 DEFAULT_SRC_COMPILE_PARAMS=(
-    '-j1'
+    -j1
 )
 
 src_prepare() {

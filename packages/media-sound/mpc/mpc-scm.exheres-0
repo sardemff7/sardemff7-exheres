@@ -24,11 +24,11 @@ MYOPTIONS=""
 
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--disable-iconv'
+    --disable-iconv
 )
 
 BASH_COMPLETIONS=(
-    'doc/mpc-completion.bash'
+    doc/mpc-completion.bash
 )
 
 src_install() {

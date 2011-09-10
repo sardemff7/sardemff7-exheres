@@ -20,9 +20,9 @@ MYOPTIONS=""
 WORK="${WORK}/js/src"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--hates=docdir'
-    '--enable-threadsafe'
-    '--with-system-nspr'
+    --hates=docdir
+    --enable-threadsafe
+    --with-system-nspr
 )
 
 src_prepare() {

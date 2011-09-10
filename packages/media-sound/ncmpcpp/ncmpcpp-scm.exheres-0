@@ -39,16 +39,16 @@ MYOPTIONS="
 
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--enable-clock'
-    '--enable-outputs'
-    '--enable-unicode'
-    '--enable-visualizer'
-    '--without-iconv'
-    '--without-pdcurses'
+    --enable-clock
+    --enable-outputs
+    --enable-unicode
+    --enable-visualizer
+    --without-iconv
+    --without-pdcurses
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
-    'curl'
-    'fftw'
-    'taglib'
+    curl
+    fftw
+    taglib
 )

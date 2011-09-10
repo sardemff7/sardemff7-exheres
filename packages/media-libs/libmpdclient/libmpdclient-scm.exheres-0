@@ -21,11 +21,11 @@ MYOPTIONS="
 
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--disable-static-libs'
+    --disable-static-libs
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'debug'
+    debug
 )
 
 src_install() {

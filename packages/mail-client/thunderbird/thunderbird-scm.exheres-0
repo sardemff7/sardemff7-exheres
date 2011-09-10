@@ -22,7 +22,7 @@ WORK="${WORKBASE}"/moz_comm
 
 # Should be fixed upstream
 DEFAULT_SRC_COMPILE_PARAMS=(
-    'MKDIR=mkdir'
+    MKDIR=mkdir
 )
 
 src_unpack() {

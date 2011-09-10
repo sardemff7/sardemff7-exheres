@@ -62,31 +62,31 @@ MYOPTIONS="
 
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--enable-addons'
-    '--enable-codenav'
-    '--disable-geanycfp'
-    '--enable-geanyextrasel'
-    '--enable-geanygdb'
-    '--enable-geanyinsertnum'
-    '--enable-geanylatex'
-    '--enable-geanylipsum'
-    '--enable-geanymacro'
-    '--enable-geanynumberedbookmarks'
-    '--enable-geanyprj'
-    '--enable-geanysendmail'
-    '--enable-geanyvc'
-    '--enable-gproject'
-    '--enable-shiftcolumn'
-    '--enable-tableconvert'
-    '--enable-treebrowser'
-    '--disable-updatechecker'
-    '--enable-xmlsnippets'
-    '--enable-nls'
+    --enable-addons
+    --enable-codenav
+    --disable-geanycfp
+    --enable-geanyextrasel
+    --enable-geanygdb
+    --enable-geanyinsertnum
+    --enable-geanylatex
+    --enable-geanylipsum
+    --enable-geanymacro
+    --enable-geanynumberedbookmarks
+    --enable-geanyprj
+    --enable-geanysendmail
+    --enable-geanyvc
+    --enable-gproject
+    --enable-shiftcolumn
+    --enable-tableconvert
+    --enable-treebrowser
+    --disable-updatechecker
+    --enable-xmlsnippets
+    --enable-nls
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'debugger'
-    'devhelp'
+    debugger
+    devhelp
     'gendoc geanygendoc'
     'lua geanylua'
     'gpg geanypg'

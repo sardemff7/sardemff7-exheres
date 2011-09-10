@@ -17,6 +17,7 @@ MYOPTIONS=""
 
 
 src_prepare() {
+    # Fix log path
     edo sed -i \
         -e 's|/var/adm/|/var/log/|g' \
         chklastlog.c

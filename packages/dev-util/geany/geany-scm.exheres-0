@@ -42,17 +42,18 @@ MYOPTIONS="
 
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--enable-plugins'
-    '--enable-socket'
-    '--disable-binreloc'
-    '--disable-gnu-regex'
+    --enable-plugins
+    --enable-socket
+    --disable-binreloc
+    --disable-gnu-regex
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'vte'
+    vte
 )
 
 src_prepare() {
+    # Add exlibs to the shell type
     edo sed -i \
         -e 's/*.sh;/*.sh;*.exlib;*.exheres-0;/' \
         data/filetype_extensions.conf

@@ -33,12 +33,12 @@ MYOPTIONS="
 
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--enable-nls'
-    '--disable-static'
+    --enable-nls
+    --disable-static
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'debug'
+    debug
 )
 
 src_install() {
