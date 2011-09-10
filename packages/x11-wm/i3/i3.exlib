@@ -36,14 +36,7 @@ DEPENDENCIES="
         dev-libs/yajl
         x11-libs/libX11
         x11-libs/libxcb[>=1.1.93]
-        || (
-            x11-utils/xcb-util[>=0.3.3&<0.3.8]
-            (
-                x11-utils/xcb-util[>=0.3.8]
-                x11-utils/xcb-util-keysyms[>=0.3.8]
-                x11-utils/xcb-util-wm[>=0.3.8]
-            )
-        )
+        x11-utils/xcb-util[>=0.3.3]
 
     build:
         dev-util/pkg-config
