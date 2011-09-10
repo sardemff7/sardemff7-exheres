@@ -59,7 +59,7 @@ DEPENDENCIES="
         jack? ( media-sound/jack-audio-connection-kit[>=0.100] )
         openal? ( media-libs/openal )
         pulseaudio? ( media-sound/pulseaudio )
-        icecast? ( media-libs/libshout )
+        shout? ( media-libs/libshout )
 
     build:
         dev-util/pkg-config
@@ -120,7 +120,7 @@ MYOPTIONS="
     ao
     openal
     pulseaudio
-    icecast       [[ description = [ shoutcast support ] ]]
+    shout         [[ description = [ shoutcast support ] ]]
 
     doc
     debug
