@@ -48,6 +48,8 @@ DEPENDENCIES="
             gnome-platform/GConf:2
             x11-libs/gtk+:2
         )
+
+        !games-emulation/mame [[ description = [ If you want either MAME and MESS install mame[mess] ] ]]
 "
 
 MYOPTIONS="
@@ -56,37 +58,38 @@ MYOPTIONS="
 "
 
 src_prepare() {
-    sed -i \
+    # Use system flags and libs
+    # Also remove suffixes
+    edo sed -i \
         -e '/^CCOMFLAGS += -O$(OPTIMIZE)=/s:^:# :' \
         -e '/^CCOMFLAGS += -pipe$/s:^:# :' \
+        -e '/^CCOMFLAGS =$/s:$'":${CFLAGS}:" \
         -e '/^LDFLAGS += -s/s:^:# :' \
         -e '/^BUILD_EXPAT/s:^:# :' \
         -e '/^BUILD_ZLIB/s:^:# :' \
         -e '/^SUFFIX/s:^:# :' \
-        -e '/^SUFFIX64/s:^:# :' \
-        -e '/^CCOMFLAGS =$/s:$'":${CFLAGS}:" \
         makefile
 }
 
 src_compile() {
     local make_opts=(
-        'OSD=sdl'
-        'TARGET=mess'
-        'NAME='"${PN}"
+        OSD=sdl
+        TARGET=mess
+        NAME="${PN}"
         'OPT_FLAGS=-DINI_PATH=\"/etc/'"${PN}"'\"'
     )
-    option opengl || make_opts+=( 'NO_OPENGL=1' )
+    option opengl || make_opts+=( NO_OPENGL=1 )
 
     if option debug; then
         make_opts+=(
-            'DEBUG=1'
-            'PROFILE=1'
-            'SYMBOL=1'
-            'DEBUGGER=1'
+            DEBUG=1
+            PROFILE=1
+            SYMBOL=1
+            DEBUGGER=1
         )
     else
         make_opts+=(
-            'NOWERROR=1'
+            NOWERROR=1
         )
     fi
 
@@ -107,11 +110,11 @@ src_install() {
 
     local video="soft"
     option opengl && video="opengl"
-    sed \
+    edo sed \
         -e 's:@VIDEO@'":${video}:" \
         "${FILES}"/vector.ini.in > "${IMAGE}"/etc/${PN}/vector.ini
 
-    sed \
+    edo sed \
         -e 's:@VIDEO@'":${video}:" \
         "${FILES}"/${PN}.ini.in > "${IMAGE}"/etc/${PN}/${PN}.ini
 
