@@ -21,6 +21,7 @@ LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="
+    glyr   [[ description = [ Metadata multi-provider library ] ]]
     unique [[ description = [ Limit to a unique instance using libunique ] ]]
     xspf   [[ description = [ XSPF playlists ] ]]
 "
@@ -39,6 +40,7 @@ DEPENDENCIES="
         gnome-platform/libglade:2
         media-libs/libmpd[>=11.8.17]
         x11-libs/gtk+:2[>=2.12]
+        glyr? ( media-libs/libglyr )
         unique? ( dev-libs/libunique:1 )
         xspf? ( media-libs/libxspf )
 "
@@ -52,6 +54,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    glyr
     unique
     'xspf libxspf'
 )
