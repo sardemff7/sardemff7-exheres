@@ -22,9 +22,13 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS="
     glyr   [[ description = [ Metadata multi-provider library ] ]]
-    unique [[ description = [ Limit to a unique instance using libunique ] ]]
     xspf   [[ description = [ XSPF playlists ] ]]
 "
+
+# Release 11.8.16 - 2011-09-24
+# build time error:
+#     "undefined reference to `preferences_window_update'"
+RESTRICT="test"
 
 DEPENDENCIES="
     build:
@@ -41,23 +45,10 @@ DEPENDENCIES="
         media-libs/libmpd[>=11.8.17]
         x11-libs/gtk+:2[>=2.12]
         glyr? ( media-libs/libglyr )
-        unique? ( dev-libs/libunique:1 )
         xspf? ( media-libs/libxspf )
 "
 
 AT_M4DIR=( m4 )
-
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    VALAC="$(type -P valac-0.12)"
-    '--enable-nls'
-    '--disable-libspiff'
-)
-
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    glyr
-    unique
-    'xspf libxspf'
-)
 
 DEFAULT_SRC_COMPILE_PARAMS=(
     -j1
@@ -66,4 +57,16 @@ DEFAULT_SRC_COMPILE_PARAMS=(
 src_prepare() {
     edo intltoolize --force --copy --automake
     autotools_src_prepare
+}
+
+src_configure() {
+    export VALAC="$(type -P valac-0.12)"
+
+    # The only encountered problem while running multiple instances are key bindings, this issue
+    # affects other programs too so we disable unique support
+    econf '--disable-libspiff' \
+        '--disable-unique' \
+        $(expecting_tests && echo '--enable-test' || echo '--disable-test' ) \
+        $(option_enable glyr)
+        $(option_enable xspf libxspf)
 }
