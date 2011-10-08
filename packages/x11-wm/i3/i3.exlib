@@ -78,7 +78,7 @@ src_compile() {
 
     option doc && subs+=( docs )
 
-    ever is_scm && option man-pages && subs+=( man )
+    ever is_scm && option man-pages && subs+=( man i3bar/doc )
 
     for sub in ${subs[@]}; do
         emake -C ${sub}
@@ -90,9 +90,9 @@ src_install() {
     default
 
     if ever is_scm; then
-        option man-pages && doman man/*.1
+        option man-pages && doman man/*.1 i3bar/doc/*.1
     else
-        doman man/*.1
+        doman man/*.1 i3bar/doc/*.1
     fi
     if option doc; then
         dodoc -r docs/*.html
