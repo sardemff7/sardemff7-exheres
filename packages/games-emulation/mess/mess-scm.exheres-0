@@ -9,13 +9,6 @@ SCM_METADATA_UNNEEDED=1
 
 require scm-svn
 
-
-SLOT="0"
-
-HOMEPAGE="http://www.mess.org/"
-
-LICENCES="mame"
-
 SUMMARY="Multi Emulator Super System - will more or less faithfully reproduce computer and console systems on a PC"
 DESCRIPTION="
 MESS is an acronym that stands for Multi Emulator Super System. MESS will more or less faithfully
@@ -29,32 +22,35 @@ The primary purpose of MESS is to preserve decades of computer and console histo
 continues to rush forward, MESS prevents these important “vintage” systems from being lost and
 forgotten. MESS is based on MAME.
 "
+HOMEPAGE="http://www.mess.org/"
 
+LICENCES="mame"
+SLOT="0"
 PLATFORMS="~amd64"
+
+MYOPTIONS="
+    debug
+    opengl
+"
 
 DEPENDENCIES="
     build:
         app-arch/unzip
         x11-proto/xineramaproto
-
     build+run:
         dev-libs/expat
         media-libs/SDL[>=1.2.10][opengl(+)?]
         media-libs/SDL_ttf[>=1.2.10]
         sys-libs/zlib
         x11-libs/libXinerama
-
         debug? (
             gnome-platform/GConf:2
             x11-libs/gtk+:2
         )
-
-        !games-emulation/mame [[ description = [ If you want either MAME and MESS install mame[mess] ] ]]
-"
-
-MYOPTIONS="
-    debug
-    opengl
+        !games-emulation/mame [[
+            description = [ If you want both MAME and MESS install mame[mess] ]
+            resolution = uninstall-blocked-after
+        ]]
 "
 
 src_prepare() {

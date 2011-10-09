@@ -3,7 +3,6 @@
 
 require sardemff7-purple
 
-
 SUMMARY="Provides GnomeSession Presence status support to Pidgin"
 
 DEPENDENCIES="

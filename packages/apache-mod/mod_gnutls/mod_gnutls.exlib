@@ -3,14 +3,12 @@
 
 require sourceforge [ project=${PN/_/} suffix=tar.bz2 ]
 
-
+LICENCES="Apache-2.0"
 SLOT="0"
 
-DOWNLOADS="http://${PN/_/}.sourceforge.net/downloads/${PNV}.tar.bz2"
-
-LICENCES="Apache-2.0"
-
 SUMMARY="Apache HTTPD module similar to mod_ssl in purpose, but does not use OpenSSL"
+
+MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:

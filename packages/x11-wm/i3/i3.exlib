@@ -4,20 +4,9 @@
 if ever is_scm; then
     SCM_REPOSITORY="git://code.stapelberg.de/i3"
     require scm-git
-fi
-
-
-SLOT="0"
-
-if ever is_scm; then
-    DOWNLOADS=""
 else
     DOWNLOADS="http://i3wm.org/downloads/${PNV}.tar.bz2"
 fi
-
-HOMEPAGE="http://i3wm.org/"
-
-LICENCES="BSD-3"
 
 SUMMARY="A tiling window manager, completely written from scratch"
 DESCRIPTION="
@@ -29,6 +18,15 @@ to create i3.
 
 Please be aware that i3 is primarily targeted at advanced users and developers.
 "
+HOMEPAGE="http://i3wm.org/"
+
+LICENCES="BSD-3"
+SLOT="0"
+
+MYOPTIONS="
+    debug
+    doc
+"
 
 DEPENDENCIES="
     build+run:
@@ -37,16 +35,19 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libxcb[>=1.1.93]
         x11-utils/xcb-util[>=0.3.3]
-
     build:
         dev-util/pkg-config
         sys-devel/bison
         sys-devel/flex
         x11-proto/xcb-proto[>=1.3]
-
         doc? ( app-doc/asciidoc[>=8.3.0] )
 "
+
 if ever is_scm; then
+    MYOPTIONS+="
+        man-pages [[ description = [ Builds man pages ] ]]
+    "
+
     DEPENDENCIES+="
         build:
             man-pages? (
@@ -56,23 +57,12 @@ if ever is_scm; then
     "
 fi
 
-MYOPTIONS="
-    debug
-    doc
-"
-if ever is_scm; then
-    MYOPTIONS+="
-        man-pages [[ description = [ Builds man pages ] ]]
-    "
-fi
-
-
 src_prepare() {
     option debug || edo sed -i -e "s:DEBUG=1:DEBUG=0:" common.mk
 }
 
 src_compile() {
-    emake
+    emake i3
 
     local subs=( ${PN}-{input,msg} )
 
@@ -84,7 +74,6 @@ src_compile() {
         emake -C ${sub}
     done
 }
-
 
 src_install() {
     default

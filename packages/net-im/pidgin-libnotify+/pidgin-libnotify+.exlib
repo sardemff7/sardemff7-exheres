@@ -3,7 +3,6 @@
 
 require sardemff7-purple [ project_name=${PN%+}-plus pidgin=true ]
 
-
 SUMMARY="Provides libnotify popups to Pidgin"
 
 DEPENDENCIES="

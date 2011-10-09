@@ -13,11 +13,6 @@ if ever is_scm; then
     SCM_REPOSITORY="git://github.com/sardemff7/${MY_PN}.git"
 
     require scm-git autotools [ supported_autoconf=[ $(exparam supported_autoconf[@]) ] supported_automake=[ $(exparam supported_automake[@]) ] ]
-fi
-
-
-if ever is_scm; then
-    DOWNLOADS=""
 else
     DOWNLOADS="https://github.com/downloads/sardemff7/${MY_PN}/${MY_PN}-${PV}.tar.xz -> ${PNV}.tar.xz"
 fi
@@ -27,6 +22,7 @@ HOMEPAGE="http://sardemff7.github.com/${MY_PN}/"
 LICENCES="GPL-3"
 
 DEPENDENCIES=""
+
 if exparam -b intltoolize; then
     DEPENDENCIES+="
         build:
@@ -36,11 +32,12 @@ if exparam -b intltoolize; then
 fi
 
 if ever is_scm; then
+    AT_M4DIR=( m4 )
+
     sardemff7-github_src_prepare() {
-        default
         edo mkdir -p "${WORK}"/m4
         exparam -b intltoolize && edo intltoolize --force --copy --automake
-        eautoreconf
+        autotools_src_prepare
     }
 
     export_exlib_phases src_prepare

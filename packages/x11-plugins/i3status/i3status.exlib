@@ -4,20 +4,9 @@
 if ever is_scm; then
     SCM_REPOSITORY="git://code.stapelberg.de/i3status"
     require scm-git
-fi
-
-
-SLOT="0"
-
-if ever is_scm; then
-    DOWNLOADS=""
 else
     DOWNLOADS="http://i3wm.org/i3status/${PNV}.tar.bz2"
 fi
-
-HOMEPAGE="http://i3wm.org/i3status"
-
-LICENCES="BSD-3"
 
 SUMMARY="A small generator for status bars"
 DESCRIPTION="
@@ -27,6 +16,12 @@ calls, as one generally wants to update such a status line every second. This en
 under high load, your status bar is updated correctly. Also, it saves a bit of energy by not
 hogging your CPU as much as spawning the corresponding amount of shell commands would.
 "
+HOMEPAGE="http://i3wm.org/i3status"
+
+LICENCES="BSD-3"
+SLOT="0"
+
+MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
@@ -34,7 +29,12 @@ DEPENDENCIES="
         net-wireless/wireless_tools
         sys-sound/alsa-lib
 "
+
 if ever is_scm; then
+    MYOPTIONS+="
+        man-pages [[ description = [ Builds man pages ] ]]
+    "
+
     DEPENDENCIES+="
     build:
         man-pages? (
@@ -43,14 +43,6 @@ if ever is_scm; then
         )
     "
 fi
-
-MYOPTIONS=""
-if ever is_scm; then
-    MYOPTIONS+="
-        man-pages [[ description = [ Builds man pages ] ]]
-    "
-fi
-
 
 src_prepare() {
     # Remove the automatic install of man pages

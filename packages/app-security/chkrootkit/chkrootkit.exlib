@@ -1,20 +1,17 @@
 # Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-SLOT="0"
-
 DOWNLOADS="ftp://ftp.pangeia.com.br/pub/seg/pac/${PNV}.tar.gz"
 
+SUMMARY="A shell script that checks system binaries for rootkit modification"
 HOMEPAGE="http://www.chkrootkit.org/"
 
 LICENCES="BSD-2"
-
-SUMMARY="A shell script that checks system binaries for rootkit modification"
-
-DEPENDENCIES=""
+SLOT="0"
 
 MYOPTIONS=""
 
+DEPENDENCIES=""
 
 src_prepare() {
     # Fix log path

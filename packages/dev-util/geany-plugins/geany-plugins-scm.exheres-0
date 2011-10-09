@@ -3,16 +3,8 @@
 
 SCM_REPOSITORY="http://geany.svn.sourceforge.net/svnroot/${PN}"
 SCM_SUBPATH="${PN}/"
-AT_M4DIR=( build )
 
 require gtk-icon-cache freedesktop-desktop scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
-
-
-SLOT="0"
-
-HOMEPAGE="http://plugins.geany.org/"
-
-LICENCES="GPL-2 Scintilla"
 
 SUMMARY="A collection of different plugins for Geany"
 DESCRIPTION="
@@ -20,16 +12,28 @@ What you will find here is a lot of plugin stuff for Geany.
 There is a Geany Plugins project containing a lot of plugins,
 which is developed by various developers on SourceForge.
 "
+HOMEPAGE="http://plugins.geany.org/"
 
+LICENCES="GPL-2 Scintilla"
+SLOT="0"
 PLATFORMS="~amd64"
+
+MYOPTIONS="
+    debugger [[ description = [ Debugger plugin, gdb helper for Geany ] ]]
+    devhelp  [[ description = [ Integrate devhelp functionality with Geany ] ]]
+    enchant  [[ description = [ Enable spell chack using enchant ] ]]
+    gendoc   [[ description = [ Plugin to help documentation generation ] ]]
+    gpg      [[ description = [ GPG support via GeanyPG ] ]]
+    lua      [[ description = [ Extend Geany using Lua ] ]]
+    xml      [[ description = [ XML Pretty-Print plugin ] ]]
+    webkit   [[ description = [ Web development helper using WeKit ] ]]
+"
 
 DEPENDENCIES="
     build:
         sys-devel/gettext
-
     build+run:
         dev-util/geany[~scm]
-
         debugger? ( x11-libs/vte:0[>=0.24] )
         devhelp? (
             dev-libs/glib:2[>=2.16]
@@ -48,18 +52,6 @@ DEPENDENCIES="
             x11-libs/gdk-pixbuf:2
         )
 "
-
-MYOPTIONS="
-    debugger [[ description = [ Debugger plugin, gdb helper for Geany ] ]]
-    devhelp  [[ description = [ Integrate devhelp functionality with Geany ] ]]
-    enchant  [[ description = [ Enable spell chack using enchant ] ]]
-    gendoc   [[ description = [ Plugin to help documentation generation ] ]]
-    gpg      [[ description = [ GPG support via GeanyPG ] ]]
-    lua      [[ description = [ Extend Geany using Lua ] ]]
-    xml      [[ description = [ XML Pretty-Print plugin ] ]]
-    webkit   [[ description = [ Web development helper using WeKit ] ]]
-"
-
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-addons
@@ -95,10 +87,11 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'webkit webhelper'
 )
 
+AT_M4DIR=( build )
+
 src_prepare() {
     edo intltoolize --force --copy --automake
-    eautoreconf
-    default
+    autotools_src_prepare
 }
 
 src_install() {

@@ -5,13 +5,6 @@ SCM_REPOSITORY="http://geany.svn.sourceforge.net/svnroot/${PN}"
 
 require gtk-icon-cache freedesktop-desktop scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
-
-SLOT="0"
-
-HOMEPAGE="http://www.geany.org/"
-
-LICENCES="GPL-2 Scintilla"
-
 SUMMARY="A small and lightweight Integrated Development Environment"
 DESCRIPTION="
 Geany is a small and lightweight Integrated Development Environment. It was developed to provide a
@@ -19,27 +12,27 @@ small and fast IDE, which has only a few dependencies from other packages. Anoth
 independent as possible from a special Desktop Environment like KDE or GNOME - Geany only requires
 the GTK2 runtime libraries
 "
+HOMEPAGE="http://www.geany.org/"
 
+LICENCES="GPL-2 Scintilla"
+SLOT="0"
 PLATFORMS="~amd64"
+
+MYOPTIONS="
+    vte [[ description = [ VTE support ( provides an embedded terminal ) ] ]]
+"
 
 DEPENDENCIES="
     build:
         dev-util/intltool
         dev-util/pkg-config
         sys-devel/gettext
-
     build+run:
         dev-libs/glib:2[>=2.16]
         x11-libs/gtk+:2[>=2.12]
-
     run:
         vte? ( dev-libs/vte:0 )
 "
-
-MYOPTIONS="
-    vte [[ description = [ VTE support ( provides an embedded terminal ) ] ]]
-"
-
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-plugins
@@ -52,6 +45,8 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     vte
 )
 
+AT_M4DIR=( m4 )
+
 src_prepare() {
     # Add exlibs to the shell type
     edo sed -i \
@@ -59,8 +54,7 @@ src_prepare() {
         data/filetype_extensions.conf
 
     edo intltoolize --force --copy --automake
-    eautoreconf
-    default
+    autotools_src_prepare
 }
 
 pkg_postrm() {

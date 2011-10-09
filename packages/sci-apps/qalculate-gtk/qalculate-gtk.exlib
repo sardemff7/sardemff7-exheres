@@ -5,12 +5,12 @@
 
 require sourceforge [ project=qalculate suffix=tar.gz ]
 
-
-SLOT="0"
-
 SUMMARY="The ultimate desktop calculator - GTK+ frontend"
 
 LICENCES="GPL-2"
+SLOT="0"
+
+MYOPTIONS=""
 
 DEPENDENCIES="
     build:
@@ -18,12 +18,9 @@ DEPENDENCIES="
         dev-util/intltool
         dev-util/pkg-config
         sys-devel/gettext
-
     build+run:
         gnome-platform/libglade:2
         sci-libs/libqalculate[~${PV}]
         sci-libs/cln[>=1.2]
         x11-libs/gtk+:2
 "
-
-MYOPTIONS=""
