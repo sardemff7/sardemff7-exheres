@@ -12,8 +12,8 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        www-servers/apache
         dev-libs/gnutls[>=2.12.0]
+        www-servers/apache
 "
 
 

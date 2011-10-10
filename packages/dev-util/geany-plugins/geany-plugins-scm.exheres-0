@@ -45,12 +45,12 @@ DEPENDENCIES="
         gendoc? ( dev-libs/ctpl[>=0.3] )
         gpg? ( app-crypt/gpgme )
         lua? ( dev-lang/lua )
-        xml? ( dev-libs/libxml2 )
         webkit? (
             net-libs/webkit-gtk:2
             x11-libs/gtk+:2[>=2.12]
             x11-libs/gdk-pixbuf:2
         )
+        xml? ( dev-libs/libxml2 )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(

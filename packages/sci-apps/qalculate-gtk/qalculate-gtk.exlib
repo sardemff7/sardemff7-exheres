@@ -20,7 +20,7 @@ DEPENDENCIES="
         sys-devel/gettext
     build+run:
         gnome-platform/libglade:2
-        sci-libs/libqalculate[~${PV}]
         sci-libs/cln[>=1.2]
+        sci-libs/libqalculate[~${PV}]
         x11-libs/gtk+:2
 "
