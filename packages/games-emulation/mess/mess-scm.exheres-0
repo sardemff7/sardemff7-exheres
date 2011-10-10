@@ -72,7 +72,7 @@ src_compile() {
         OSD=sdl
         TARGET=mess
         NAME="${PN}"
-        'OPT_FLAGS=-DINI_PATH=\"/etc/'"${PN}"'\"'
+        OPT_FLAGS=-DINI_PATH=\\\"/etc/${PN}\\\"
     )
     option opengl || make_opts+=( NO_OPENGL=1 )
 
@@ -97,10 +97,7 @@ src_install() {
     dobin ${PN}
 
     exeinto /usr/${LIBDIR}/${PN}
-    local f
-    for f in chdman ldverify imgtool jedutil romcmp testkeys; do
-        doexe ${f}
-    done
+    doexe chdman ldverify imgtool jedutil romcmp testkeys
 
     keepdir /etc/${PN}/ctrlr
 
@@ -119,10 +116,7 @@ src_install() {
     doins -r hash
     doins -r keymaps
 
-    keepdir /usr/share/${PN}/roms
-    keepdir /usr/share/${PN}/sample
-    keepdir /usr/share/${PN}/cheat
-    keepdir /usr/share/${PN}/crosshair
+    keepdir /usr/share/${PN}/{roms,sample,cheat,crosshair}
 
     dodoc docs/{config,mame,newvideo}.txt *.txt
     emagicdocs

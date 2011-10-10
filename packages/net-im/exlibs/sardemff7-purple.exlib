@@ -31,8 +31,3 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     debug
 )
-
-src_install() {
-    default
-    edo find "${IMAGE}" -name '*.la' -exec rm -f '{}' +
-}
