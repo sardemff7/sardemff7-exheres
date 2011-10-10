@@ -3,6 +3,7 @@
 
 if ever is_scm; then
     SCM_REPOSITORY="git://code.stapelberg.de/i3"
+    : ${SCM_BRANCH:=next}
     require scm-git
 else
     DOWNLOADS="http://i3wm.org/downloads/${PNV}.tar.bz2"
