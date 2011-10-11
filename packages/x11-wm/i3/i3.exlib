@@ -45,16 +45,10 @@ DEPENDENCIES="
 "
 
 if ever is_scm; then
-    MYOPTIONS+="
-        man-pages [[ description = [ Builds man pages ] ]]
-    "
-
     DEPENDENCIES+="
         build:
-            man-pages? (
-                app-doc/asciidoc[>=8.3.0]
-                app-text/xmlto
-            )
+            app-doc/asciidoc[>=8.3.0]
+            app-text/xmlto
     "
 fi
 
@@ -69,7 +63,7 @@ src_compile() {
 
     option doc && subs+=( docs )
 
-    ever is_scm && option man-pages && subs+=( man i3bar/doc )
+    ever is_scm && subs+=( man i3bar/doc )
 
     for sub in ${subs[@]}; do
         emake -C ${sub}
@@ -79,11 +73,7 @@ src_compile() {
 src_install() {
     default
 
-    if ever is_scm; then
-        option man-pages && doman man/*.1 i3bar/doc/*.1
-    else
-        doman man/*.1 i3bar/doc/*.1
-    fi
+    doman man/*.1 i3bar/doc/*.1
     if option doc; then
         dodoc -r docs/*.html
     fi
