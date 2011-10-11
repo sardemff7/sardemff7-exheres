@@ -35,6 +35,7 @@ DEPENDENCIES="
         dev-libs/yajl
         x11-libs/libX11
         x11-libs/libxcb[>=1.1.93]
+        x11-libs/startup-notification
         x11-utils/xcb-util[>=0.3.3]
     build:
         dev-util/pkg-config
