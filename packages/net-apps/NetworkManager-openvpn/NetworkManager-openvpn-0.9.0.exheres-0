@@ -1,0 +1,35 @@
+# Copyright 2011 Hong Hao <oahong@oahong.me>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org
+
+SUMMARY="OpenVPN plugin for NetworkManager"
+HOMEPAGE="http://projects.gnome.org/NetworkManager"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="gnome"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-libs/dbus-glib:1[>=0.74]
+        dev-libs/glib:2
+        net-apps/NetworkManager[>=0.8.998]
+        gnome? (
+            x11-libs/gtk+:3[>=2.91.4]
+            gnome-desktop/gnome-keyring
+        )
+    run:
+        net-misc/openvpn
+"
+
+BUGS_TO="oahong@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --with-tests --with-gtkver=3 )
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=( gnome )
+
