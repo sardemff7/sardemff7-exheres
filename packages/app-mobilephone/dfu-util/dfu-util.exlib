@@ -25,7 +25,7 @@ HOMEPAGE="http://wiki.openmoko.org/wiki/Dfu-util"
 LICENCES="GPL-2"
 SLOT="0"
 
-MYOPTION=""
+MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
