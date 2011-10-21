@@ -35,6 +35,5 @@ src_install() {
     default
     edo mv "${IMAGE}"/usr/share/doc/${PNVR} "${IMAGE}"/${DEST}/doc
     edo rm -r "${IMAGE}"/usr
-    edo rm "${IMAGE}"/${DEST}/lib32
 }
 
