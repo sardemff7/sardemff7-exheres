@@ -1,0 +1,40 @@
+# Copyright 2011 Dimitry Ishenko <dimitry.ishenko@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=tar.gz ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="Library for JPEG image compression using MMX, SSE, and SSE2 SIMD instructions"
+DESCRIPTION="libjpeg-turbo is a version of libjpeg which uses MMX, SSE, and SSE2 SIMD instructions
+to accelerate baseline JPEG compression/decompression by about 2-4x on x86 and x86-64 platforms. It
+is based on libjpeg/SIMD but has numerous enhancements."
+HOMEPAGE="http://libjpeg-turbo.virtualgl.org/"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-lang/nasm
+"
+
+DEST=/opt/${PN}
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+        --prefix=${DEST}
+        --mandir=${DEST}/man
+        --with-jpeg8
+)
+
+pkg_setup() {
+    default
+    exdirectory --allow /opt
+}
+
+src_install() {
+    default
+    edo mv "${IMAGE}"/usr/share/doc/${PNVR} "${IMAGE}"/${DEST}/doc
+    edo rm -r "${IMAGE}"/usr
+    edo rm "${IMAGE}"/${DEST}/lib32
+}
+
