@@ -56,7 +56,6 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-addons
     --enable-codenav
-    --disable-geanycfp
     --enable-geanyextrasel
     --enable-geanygdb
     --enable-geanyinsertnum
@@ -104,7 +103,6 @@ src_install() {
         edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/devhelp
         edo rmdir "${IMAGE}"/usr/share/${PN}/devhelp
     fi
-    edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/geanycfp
     option gpg || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/geanypg
     edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/updatechecker
     option webkit || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/webhelper
