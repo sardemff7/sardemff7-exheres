@@ -25,8 +25,8 @@ MYOPTIONS="
     gendoc   [[ description = [ Plugin to help documentation generation ] ]]
     gpg      [[ description = [ GPG support via GeanyPG ] ]]
     lua      [[ description = [ Extend Geany using Lua ] ]]
+    webkit   [[ description = [ Web development helper using WebKit ] ]]
     xml      [[ description = [ XML Pretty-Print plugin ] ]]
-    webkit   [[ description = [ Web development helper using WeKit ] ]]
 "
 
 DEPENDENCIES="
@@ -34,12 +34,12 @@ DEPENDENCIES="
         sys-devel/gettext
     build+run:
         dev-util/geany[~scm]
-        debugger? ( x11-libs/vte:0[>=0.24] )
+        debugger? ( dev-libs/vte:0[>=0.24] )
         devhelp? (
             dev-libs/glib:2[>=2.16]
-            x11-libs/gtk+:2[>=2.16]
             dev-util/devhelp[>=2&<2.32]
             net-libs/webkit-gtk:2
+            x11-libs/gtk+:2[>=2.16]
         )
         enchant? ( app-spell/enchant )
         gendoc? ( dev-libs/ctpl[>=0.3] )
@@ -78,12 +78,12 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     debugger
     devhelp
-    'gendoc geanygendoc'
-    'lua geanylua'
-    'gpg geanypg'
-    'xml pretty-printer'
     'enchant spellcheck'
+    'gendoc geanygendoc'
+    'gpg geanypg'
+    'lua geanylua'
     'webkit webhelper'
+    'xml pretty-printer'
 )
 
 AT_M4DIR=( build )
