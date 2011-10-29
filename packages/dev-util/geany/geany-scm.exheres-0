@@ -28,8 +28,8 @@ DEPENDENCIES="
         dev-util/pkg-config
         sys-devel/gettext
     build+run:
-        dev-libs/glib:2[>=2.16]
-        x11-libs/gtk+:2[>=2.12]
+        dev-libs/glib:2[>=2.20]
+        x11-libs/gtk+:2[>=2.16]
     run:
         vte? ( dev-libs/vte:0 )
 "
