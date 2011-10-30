@@ -31,7 +31,7 @@ if exparam -b intltoolize; then
     "
 fi
 
-WORK="${WORKBASE}"/${MY_PN}-${PV}
+ever is_scm || WORK="${WORKBASE}"/${MY_PN}-${PV}
 
 if ever is_scm; then
     AT_M4DIR=( m4 )
