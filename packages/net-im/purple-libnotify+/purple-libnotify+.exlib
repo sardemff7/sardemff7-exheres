@@ -7,5 +7,5 @@ SUMMARY="Provides libnotify popups to Pidgin and Finch"
 
 DEPENDENCIES="
     build+run:
-        x11-libs/libnotify[>=0.4.5]
+        x11-libs/libnotify[>=0.5.0]
 "

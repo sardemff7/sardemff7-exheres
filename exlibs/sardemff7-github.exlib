@@ -14,7 +14,7 @@ if ever is_scm; then
 
     require scm-git autotools [ supported_autoconf=[ $(exparam supported_autoconf[@]) ] supported_automake=[ $(exparam supported_automake[@]) ] ]
 else
-    DOWNLOADS="https://github.com/downloads/sardemff7/${MY_PN}/${MY_PN}-${PV}.tar.xz -> ${PNV}.tar.xz"
+    DOWNLOADS="https://github.com/downloads/sardemff7/${MY_PN}/${MY_PN}-${PV}.tar.xz"
 fi
 
 HOMEPAGE="http://sardemff7.github.com/${MY_PN}/"
@@ -30,6 +30,8 @@ if exparam -b intltoolize; then
             sys-devel/gettext
     "
 fi
+
+WORK="${WORKBASE}"/${MY_PN}-${PV}
 
 if ever is_scm; then
     AT_M4DIR=( m4 )
