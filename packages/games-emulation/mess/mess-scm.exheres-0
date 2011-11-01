@@ -29,7 +29,6 @@ SLOT="0"
 PLATFORMS="~amd64"
 
 MYOPTIONS="
-    debug
     opengl
 "
 
@@ -43,10 +42,6 @@ DEPENDENCIES="
         media-libs/SDL_ttf[>=1.2.10]
         sys-libs/zlib
         x11-libs/libXinerama
-        debug? (
-            gnome-platform/GConf:2
-            x11-libs/gtk+:2
-        )
         !games-emulation/mame [[
             description = [ If you want both MAME and MESS install mame[mess] ]
             resolution = uninstall-blocked-after
@@ -73,22 +68,9 @@ src_compile() {
         TARGET=mess
         NAME="${PN}"
         OPT_FLAGS=-DINI_PATH=\\\"/etc/${PN}\\\"
+        NOWERROR=1
     )
     option opengl || make_opts+=( NO_OPENGL=1 )
-
-    if option debug; then
-        make_opts+=(
-            DEBUG=1
-            PROFILE=1
-            SYMBOL=1
-            DEBUGGER=1
-        )
-    else
-        make_opts+=(
-            NOWERROR=1
-        )
-    fi
-
 
     emake all ${make_opts[@]}
 }
