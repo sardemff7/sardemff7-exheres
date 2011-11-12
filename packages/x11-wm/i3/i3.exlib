@@ -26,7 +26,6 @@ SLOT="0"
 
 MYOPTIONS="
     debug
-    doc
 "
 
 DEPENDENCIES="
@@ -35,7 +34,6 @@ DEPENDENCIES="
         sys-devel/bison
         sys-devel/flex
         x11-proto/xcb-proto[>=1.3]
-        doc? ( app-doc/asciidoc[>=8.3.0] )
     build+run:
         dev-libs/libev
         dev-libs/yajl
@@ -70,8 +68,6 @@ src_compile() {
 
     local subs=( ${PN}-{input,msg} )
 
-    option doc && subs+=( docs )
-
     ever is_scm && subs+=( man i3bar/doc )
 
     for sub in ${subs[@]}; do
@@ -83,7 +79,4 @@ src_install() {
     default
 
     doman man/*.1 i3bar/doc/*.1
-    if option doc; then
-        dodoc -r docs/*.html
-    fi
 }
