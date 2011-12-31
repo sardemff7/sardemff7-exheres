@@ -1,0 +1,47 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+export_exlib_phases src_compile src_install
+
+if ever is_scm; then
+    SCM_REPOSITORY="git://code.stapelberg.de/${PN}"
+    require scm-git
+else
+    DOWNLOADS="http://i3wm.org/${PN}/${PNV}.tar.bz2"
+fi
+
+SUMMARY="A simple screen locker like slock"
+DESCRIPTION="
+i3lock is a simple screen locker like slock. After starting it, you will see a white screen (you
+can configure the color/an image). You can return to your screen by entering your password. 
+"
+HOMEPAGE="http://i3wm.org/${PN}"
+
+LICENCES="BSD-3"
+SLOT="0"
+
+MYOPTIONS="cairo"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        dev-libs/libevent
+        sys-libs/pam
+        x11-libs/libxcb
+        x11-utils/xcb-util
+        x11-utils/xcb-util-keysyms
+        x11-utils/xcb-util-image
+        cairo? ( x11-libs/cairo )
+"
+
+i3lock_src_compile() {
+    emake \
+        $(option cairo || echo NOLIBCAIRO=y)
+}
+
+i3lock_src_install() {
+    default
+
+    doman ${PN}.1
+}
