@@ -42,14 +42,9 @@ DEPENDENCIES="
         x11-libs/libX11
         x11-libs/libxcb[>=1.1.93]
         x11-libs/startup-notification
-        || (
-            x11-utils/xcb-util[>=0.3.3&<0.3.8]
-            (
-                x11-utils/xcb-util[>=0.3.8]
-                x11-utils/xcb-util-keysyms[>=0.3.8]
-                x11-utils/xcb-util-wm[>=0.3.8]
-            )
-        )
+        x11-utils/xcb-util
+        x11-utils/xcb-util-keysyms
+        x11-utils/xcb-util-wm
 
 "
 
@@ -68,7 +63,10 @@ i3_src_prepare() {
 i3_src_compile() {
     emake i3
 
-    local subs=( ${PN}-{input,msg} )
+    local subs=( i3-config-wizard i3-input i3-msg i3-nagbar i3bar )
+
+    # i3 'next' branch features
+    ever is_scm && subs+=( i3-dump-log )
 
     ever is_scm && subs+=( man i3bar/doc )
 
