@@ -1,6 +1,8 @@
 # Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
+export_exlib_phases src_prepare src_compile src_install
+
 if ever is_scm; then
     SCM_REPOSITORY="git://code.stapelberg.de/i3"
     : ${SCM_BRANCH:=next}
@@ -59,11 +61,11 @@ if ever is_scm; then
     "
 fi
 
-src_prepare() {
+i3_src_prepare() {
     option debug || edo sed -i -e "s:DEBUG=1:DEBUG=0:" common.mk
 }
 
-src_compile() {
+i3_src_compile() {
     emake i3
 
     local subs=( ${PN}-{input,msg} )
@@ -75,7 +77,7 @@ src_compile() {
     done
 }
 
-src_install() {
+i3_src_install() {
     default
 
     doman man/*.1 i3bar/doc/*.1

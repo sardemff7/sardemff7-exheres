@@ -1,6 +1,8 @@
 # Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
+export_exlib_phases src_prepare src_compile src_install
+
 if ever is_scm; then
     SCM_REPOSITORY="git://code.stapelberg.de/i3status"
     require scm-git
@@ -38,7 +40,7 @@ if ever is_scm; then
     "
 fi
 
-src_prepare() {
+i3status_src_prepare() {
     # Remove the automatic install of man pages
     edo sed -i \
         -e '\|/usr/share/man/|d' \
@@ -46,7 +48,7 @@ src_prepare() {
         Makefile
 }
 
-src_compile() {
+i3status_src_compile() {
     emake
 
     local subs=()
@@ -58,8 +60,7 @@ src_compile() {
     done
 }
 
-
-src_install() {
+i3status_src_install() {
     default
 
     doman man/*.1
