@@ -1,0 +1,26 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+export_exlib_phases src_install
+
+SUMMARY="A Linux user-space application to modify the Intel Extensible Firmware Interface (EFI) Boot Manager"
+HOMEPAGE="http://developer.intel.com"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+DEFAULT_SRC_COMPILE_PARAMS=(
+    EXTRA_CFLAGS="${CFLAGS}"
+)
+
+efibootmgr_src_install() {
+    dosbin src/${PN}/${PN}
+    doman src/man/man8/${PN}.8
+
+    emagicdocs
+    dodoc doc/ChangeLog
+}
