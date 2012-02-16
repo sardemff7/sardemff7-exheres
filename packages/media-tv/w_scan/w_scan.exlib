@@ -1,8 +1,6 @@
 # Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-export_exlib_phases src_install
-
 DOWNLOADS="http://wirbel.htpc-forum.de/${PN}/${PNV}.tar.bz2"
 
 SUMMARY="Scan for DVB-C/DVB-T/DVB-S channels without prior knowledge of frequencies and modulations"
@@ -26,9 +24,3 @@ DEPENDENCIES="
     build:
         sys-kernel/linux-headers[>=2.6.29]
 "
-
-w_scan_src_install() {
-    default
-    insinto /usr/share/${PN}
-    doins pci.ids pci.classes usb.ids usb.classes
-}
