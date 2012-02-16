@@ -1,0 +1,57 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+myexparam vala_slot
+exparam -v VALA_SLOT vala_slot
+
+require gnome.org [ suffix=.tar.xz ] gsettings game
+
+SUMMARY="A collection of fifteen small 'five-minute' games in a variety of styles and genres"
+HOMEPAGE="http://live.gnome.org/GnomeGames"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-lang/vala:${VALA_SLOT}
+        dev-libs/libxml2
+        dev-util/intltool[>=0.35.0]
+        dev-util/itstool
+        dev-util/pkg-config
+    build+run:
+        dev-libs/glib:2[>=2.29.14]
+        gnome-desktop/gsettings-desktop-schemas
+        gnome-desktop/librsvg
+        media-libs/libcanberra[>=0.26][gtk3]
+        x11-libs/cairo
+        x11-libs/gtk+:3[>=3.0.0]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    VALAC="$(type -P valac-${VALA_SLOT})"
+    --with-scores-user=wizard
+    --enable-games=glines,gnect,gnobots2,gnomine,gnotravex,gnotski,gtali,iagno,mahjongg
+    --enable-compile-warnings=minimum
+    --enable-cxx-warnings=minimum
+    --disable-introspection
+    --disable-schemas-compile
+)
+
+src_install() {
+    default
+
+    edo rmdir "${IMAGE}"/usr/${LIBDIR}{/${PN},}
+
+    dovarlibgames -R
+    preserve_scores /var/lib/games/{glines,gnobots2,gnomine,gnotravex,gnotski,gtali,mahjongg}*.scores
+    keepdir /var/lib/games
+}
+
+
+pkg_postinst() {
+    game_pkg_postinst
+    gsettings_exlib_compile_gsettings_schemas
+}
