@@ -7,7 +7,6 @@ After=iptables.service
 After=syslog.target
 
 [Service]
-Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ExecStartPre=-/sbin/iptables -N sshguard
 ExecStartPre=-/sbin/ip6tables -N sshguard
 ExecStartPre=-/sbin/iptables -A INPUT -j sshguard
