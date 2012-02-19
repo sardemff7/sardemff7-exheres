@@ -11,7 +11,7 @@ HOMEPAGE="http://libjpeg-turbo.virtualgl.org/"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
