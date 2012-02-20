@@ -107,6 +107,7 @@ src_install() {
         edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/devhelp
         edo rmdir "${IMAGE}"/usr/share/${PN}/devhelp
     fi
+    option gendoc || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/geanygendoc
     option gpg || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/geanypg
     option multiterm || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/multiterm
     edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/updatechecker
