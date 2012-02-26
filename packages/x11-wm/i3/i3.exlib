@@ -45,7 +45,10 @@ DEPENDENCIES="
         x11-utils/xcb-util
         x11-utils/xcb-util-keysyms
         x11-utils/xcb-util-wm
-
+    recommendation:
+        x11-plugins/i3status [[
+            description = [ Default source for i3bar ]
+        ]]
 "
 
 if ever is_scm; then
