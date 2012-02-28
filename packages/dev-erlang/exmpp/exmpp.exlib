@@ -1,0 +1,37 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+export_exlib_phases src_prepare
+
+SUMMARY="A fast and scalable library for the XMPP written in Erlang/OTP"
+HOMEPAGE="https://support.process-one.net/doc/display/EXMPP/exmpp+home"
+
+LICENCES="EPL-1.1"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/erlang
+        dev-libs/expat
+        dev-libs/libxml2
+        dev-libs/openssl
+        sys-libs/zlib
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --hates=prefix
+    --with-erlang=/usr/${LIBDIR}/erlang
+)
+
+AT_M4DIR=( m4 )
+
+exmpp_src_prepare() {
+    edo sed -i \
+        -e '\|^COLORED_ECHO|d' \
+        configure.ac
+    autotools_src_prepare
+}
