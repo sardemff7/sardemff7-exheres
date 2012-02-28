@@ -1,0 +1,50 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require systemd-service
+
+export_exlib_phases src_install
+
+SUMMARY="A scalable and reliable platform for instant messaging"
+DESCRIPTION="
+ejabberd is a distributed, fault-tolerant technology that allows the creation of large-scale
+instant messaging applications. The server can reliably support thousands of simultaneous users
+on a single node and has been designed to provide exceptional standards of fault tolerance. As
+an open source technology, based on industry-standards, ejabberd can be used to build bespoke
+solutions very cost effectively
+"
+HOMEPAGE="http://www.process-one.net/en/ejabberd/"
+
+LICENCES="EPL-1.1"
+SLOT="0"
+
+MYOPTIONS="postgresql"
+
+DEPENDENCIES="
+    build+run:
+        dev-erlang/exmpp
+        dev-lang/erlang
+        dev-libs/openssl
+    run:
+        user/ejabberd
+        group/ejabberd
+        postgresql? ( dev-erlang/pgsql )
+"
+
+WORK="${WORK}"/src
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --localstatedir=/var
+    --enable-user=ejabberd
+    --enable-odbc
+)
+
+ejabberd_src_install() {
+    default
+
+    keepdir /var/lib/ejabberd
+    keepdir /var/log/ejabberd
+    edo rmdir "${IMAGE}"/var/lock/{ejabberdctl,}
+
+    install_systemd_files
+}
