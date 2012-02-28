@@ -14,6 +14,8 @@ SLOT="0"
 MYOPTIONS=""
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config
     build+run:
         dev-lang/erlang
         dev-libs/expat
