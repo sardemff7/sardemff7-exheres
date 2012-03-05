@@ -1,20 +1,7 @@
 # Copyright 2008 Richard Brown
 # Distributed under the terms of the GNU General Public License v2
-# Based in part upon 'unixODBC-2.2.12.ebuild' from Gentoo, which is:
-#     Copyright 1999-2008 Gentoo Foundation
 
-require common-metadata
+require unixODBC
 
-SLOT="0"
 PLATFORMS="~amd64 ~x86 ~ia64"
-MYOPTIONS=""
 
-DEPENDENCIES=""
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( --sysconfdir=/etc/${PN} --enable-fdb )
-
-src_install() {
-    default
-
-    keepdir /etc/unixODBC/ODBCDataSources
-}
