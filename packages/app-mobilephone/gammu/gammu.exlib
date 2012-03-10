@@ -1,0 +1,41 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=tar.xz ] cmake
+
+SUMMARY="A cellular manager for mobile phones/modems"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+MYOPTIONS="bluetooth curl odbc usb"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        dev-libs/glib:2
+        sys-fs/udev[glib] [[ note = [ automagic ] ]]
+        bluetooth? ( net-wireless/bluez )
+        curl? ( net-misc/curl )
+        odbc? ( dev-db/unixODBC )
+        usb? ( dev-libs/libusb:1 )
+"
+
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DBUILD_PYTHON:FILEPATH=
+    -DWITH_Doxygen:BOOL=OFF
+    -DWITH_Glib:BOOL=ON
+    -DWITH_Gobject:BOOL=ON
+    -DWITH_IRDA:BOOL=OFF
+    -DWITH_LibDBI:BOOL=OFF
+    -DWITH_MySQL:BOOL=OFF
+    -DWITH_Postgres:BOOL=OFF
+)
+
+CMAKE_SRC_CONFIGURE_OPTION_WITHS=(
+    'bluetooth BLUETOOTH'
+    'curl CURL'
+    'odbc ODBC'
+    'usb USB'
+)
