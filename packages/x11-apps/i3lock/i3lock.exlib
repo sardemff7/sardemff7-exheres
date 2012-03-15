@@ -21,6 +21,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/libevent
         sys-libs/pam
+        x11-libs/libX11
         x11-libs/libxcb
         x11-utils/xcb-util
         x11-utils/xcb-util-keysyms
