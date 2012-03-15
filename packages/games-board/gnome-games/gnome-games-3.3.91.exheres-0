@@ -18,5 +18,5 @@ DEPENDENCIES="
         gnome-desktop/librsvg
         media-libs/libcanberra[>=0.26][gtk3]
         x11-libs/cairo
-        x11-libs/gtk+:3[>=3.0.0]
+        x11-libs/gtk+:3[>=3.3.11]
 "
