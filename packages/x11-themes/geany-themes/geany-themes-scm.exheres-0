@@ -38,7 +38,14 @@ DEPENDENCIES="
         dev-util/geany
 "
 
-src_install() {
-    insinto /usr/share/geany/colorschemes/
-    doins *.conf
+DEFAULT_SRC_INSTALL_PARAMS=(
+    COLORSCHEME_DIR="${IMAGE}"/usr/share/geany/colorschemes/
+)
+
+src_compile() {
+    :
+}
+
+src_test() {
+    :
 }
