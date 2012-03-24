@@ -1,0 +1,39 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require alternatives
+
+export_exlib_phases src_install
+
+SUMMARY="A locate/updatedb implementation"
+HOMEPAGE="https://fedorahosted.org/${PN}/"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        group/${PN}
+"
+
+mlocate_src_install() {
+    default
+
+    local alternatives=(
+        locate ${PN} 10
+
+        /usr/bin/locate                     ${PN}.locate
+        /usr/bin/updatedb                   ${PN}.updatedb
+        /usr/share/man/man1/locate.1        /usr/share/man/man1/${PN}.locate.1
+        /usr/share/man/man5/mlocate.db.5    /usr/share/man/man5/${PN}.mlocate.db.5
+        /usr/share/man/man5/updatedb.conf.5 /usr/share/man/man5/${PN}.updatedb.conf.5
+        /usr/share/man/man8/updatedb.8      /usr/share/man/man8/${PN}.updatedb.8
+    )
+
+    alternatives_for "${alternatives[@]}"
+
+    keepdir /var/lib/${PN}
+}
+
