@@ -34,6 +34,8 @@ DEPENDENCIES="
 
 if ever is_scm; then
     DEPENDENCIES+="
+    build+run:
+        dev-libs/yajl
     build:
         app-doc/asciidoc[>=8.3]
         app-text/xmlto
