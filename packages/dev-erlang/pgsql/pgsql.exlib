@@ -11,6 +11,9 @@ SLOT="0"
 
 MYOPTIONS=""
 
+# Tests requires networking and fail in sandbox
+RESTRICT="test"
+
 DEPENDENCIES="
     build+run:
         dev-lang/erlang
