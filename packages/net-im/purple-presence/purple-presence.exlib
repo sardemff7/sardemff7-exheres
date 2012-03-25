@@ -1,11 +1,29 @@
-# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2011-2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-require sardemff7-purple
+require github [ user=sardemff7 suffix=tar.xz ]
 
 SUMMARY="Provides GnomeSession Presence status support to Pidgin"
+HOMEPAGE="http://sardemff7.github.com/${PN}/"
+
+LICENCES="GPL-3"
+SLOT="0"
+
+MYOPTIONS="
+    debug
+"
 
 DEPENDENCIES="
+    build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
     build+run:
         dev-libs/glib[>=2.26.0]
+        net-im/pidgin[>=2.4.0]
 "
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    debug
+)
+
