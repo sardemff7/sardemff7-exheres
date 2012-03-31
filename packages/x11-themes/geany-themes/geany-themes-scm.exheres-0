@@ -49,3 +49,4 @@ src_compile() {
 src_test() {
     :
 }
+

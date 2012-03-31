@@ -39,3 +39,4 @@ i3lock_src_install() {
 
     doman ${PN}.1
 }
+

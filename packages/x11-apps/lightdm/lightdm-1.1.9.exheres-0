@@ -4,3 +4,4 @@
 require lightdm [ branch=1.2 ]
 
 PLATFORMS="~amd64"
+

@@ -39,3 +39,4 @@ CMAKE_SRC_CONFIGURE_OPTION_WITHS=(
     'odbc ODBC'
     'usb USB'
 )
+

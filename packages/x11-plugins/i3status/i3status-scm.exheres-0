@@ -4,3 +4,4 @@
 require i3status
 
 PLATFORMS="~amd64"
+

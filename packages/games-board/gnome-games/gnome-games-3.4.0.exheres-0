@@ -20,3 +20,4 @@ DEPENDENCIES="
         x11-libs/cairo
         x11-libs/gtk+:3[>=3.3.11]
 "
+

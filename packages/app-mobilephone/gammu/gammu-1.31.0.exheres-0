@@ -4,3 +4,4 @@
 require gammu
 
 PLATFORMS="~amd64"
+

@@ -6,3 +6,4 @@ SCM_REPOSITORY="git://code.stapelberg.de/${PN}"
 require i3lock scm-git
 
 PLATFORMS="~amd64"
+

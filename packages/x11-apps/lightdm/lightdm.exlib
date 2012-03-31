@@ -102,3 +102,4 @@ lightdm_src_install() {
 
     pamd_mimic_system lightdm auth account password session
 }
+

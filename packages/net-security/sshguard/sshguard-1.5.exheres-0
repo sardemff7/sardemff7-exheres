@@ -4,3 +4,4 @@
 require sshguard
 
 PLATFORMS="~amd64"
+

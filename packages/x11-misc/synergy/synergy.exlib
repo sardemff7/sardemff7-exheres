@@ -52,3 +52,4 @@ synergy_src_install() {
 
     dodoc doc/synergy.conf.example*
 }
+

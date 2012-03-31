@@ -6,3 +6,4 @@ SCM_REPOSITORY="git://git.process-one.net/${PN}/mainline.git"
 require exmpp scm-git
 
 PLATFORMS="~amd64"
+

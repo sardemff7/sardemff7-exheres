@@ -6,3 +6,4 @@ require exmpp
 DOWNLOADS="http://download.process-one.net/${PN}/${PNV}.tar.gz"
 
 PLATFORMS="~amd64"
+

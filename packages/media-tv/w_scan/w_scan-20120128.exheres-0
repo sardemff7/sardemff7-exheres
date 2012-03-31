@@ -4,3 +4,4 @@
 require w_scan
 
 PLATFORMS="~amd64"
+

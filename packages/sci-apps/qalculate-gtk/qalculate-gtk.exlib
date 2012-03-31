@@ -24,3 +24,4 @@ DEPENDENCIES="
         sci-libs/libqalculate[~${PV}]
         x11-libs/gtk+:2
 "
+

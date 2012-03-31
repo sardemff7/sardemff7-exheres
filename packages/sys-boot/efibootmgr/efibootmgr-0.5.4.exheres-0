@@ -6,3 +6,4 @@ require efibootmgr
 DOWNLOADS="http://linux.dell.com/efibootmgr/${PNV}.tar.gz"
 
 PLATFORMS="~amd64"
+

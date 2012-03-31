@@ -4,3 +4,4 @@
 require purple-libnotify+
 
 PLATFORMS="~amd64"
+

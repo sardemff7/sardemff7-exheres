@@ -35,3 +35,4 @@ pkg_postinst() {
     game_pkg_postinst
     gsettings_exlib_compile_gsettings_schemas
 }
+

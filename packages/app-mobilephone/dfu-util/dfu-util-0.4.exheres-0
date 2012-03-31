@@ -4,3 +4,4 @@
 require dfu-util
 
 PLATFORMS="~amd64"
+

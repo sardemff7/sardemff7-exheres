@@ -48,3 +48,4 @@ ejabberd_src_install() {
 
     install_systemd_files
 }
+

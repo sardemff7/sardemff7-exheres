@@ -36,3 +36,4 @@ chkrootkit_src_install() {
 
     emagicdocs
 }
+

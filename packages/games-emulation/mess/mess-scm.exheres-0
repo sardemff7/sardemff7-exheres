@@ -103,3 +103,4 @@ src_install() {
     dodoc docs/{config,mame,newvideo}.txt *.txt
     emagicdocs
 }
+

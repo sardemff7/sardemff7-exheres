@@ -6,3 +6,4 @@ SCM_REPOSITORY="git://github.com/noss/pgsql.git"
 require pgsql scm-git
 
 PLATFORMS="~amd64"
+

@@ -31,3 +31,4 @@ DEPENDENCIES="
     build+run:
         dev-libs/libusb:1
 "
+

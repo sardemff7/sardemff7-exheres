@@ -40,3 +40,4 @@ exmpp_src_prepare() {
         configure.ac
     autotools_src_prepare
 }
+
