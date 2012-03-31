@@ -1,0 +1,49 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ] gtk-icon-cache freedesktop-desktop gsettings
+
+export_exlib_phases pkg_postinst pkg_postrm
+
+SUMMARY="An image viewer and browser for the GNOME Desktop"
+HOMEPAGE="http://live.gnome.org/gthumb"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+MYOPTIONS="
+    clutter [[ description = [ Transitions for the slideshow plugin ] ]]
+    exif
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --enable-compile-warnings=minimum
+    --enable-cxx-warnings=minimum
+    --enable-gseal
+    --enable-test-suite
+    --disable-deprecated
+    --disable-gnome-keyring
+    --disable-gstreamer
+    --disable-libbrasero
+    --disable-libsoup
+    --disable-schemas-compile
+    --disable-scrollkeeper
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    clutter
+    'exif exiv2'
+)
+
+gthumb_pkg_postinst() {
+    gsettings_exlib_compile_gsettings_schemas
+    gtk-icon-cache_pkg_postinst
+    freedesktop-desktop_pkg_postinst
+}
+
+gthumb_pkg_postrm() {
+    gsettings_exlib_compile_gsettings_schemas
+    gtk-icon-cache_pkg_postrm
+    freedesktop-desktop_pkg_postrm
+}
+
