@@ -7,7 +7,7 @@
 #  'synergy-1.4.3.ebuild' from Gentoo, which is:
 #     Copyright 1999-2011 Gentoo Foundation
 
-require cmake
+require cmake [ api=2 ]
 
 export_exlib_phases src_install
 
@@ -42,6 +42,8 @@ DEPENDENCIES="
 "
 
 synergy_src_install() {
+    edo pushd "${CMAKE_SOURCE}"
+
     for b in ${PN}{c,s}; do
         dobin bin/${b}
         edo mv doc/${b}.man doc/${b}.1
@@ -51,5 +53,7 @@ synergy_src_install() {
     emagicdocs
 
     dodoc doc/synergy.conf.example*
+
+    edo popd
 }
 

@@ -7,5 +7,5 @@ DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}-Source.tar.gz"
 
 PLATFORMS="~amd64"
 
-WORK="${WORKBASE}"/${PNV}-Source
+CMAKE_SOURCE="${WORKBASE}"/${PNV}-Source
 
