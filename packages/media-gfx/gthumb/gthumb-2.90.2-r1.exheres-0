@@ -21,6 +21,6 @@ DEPENDENCIES="
             x11-libs/clutter:1
             x11-libs/clutter-gtk:1.0
         )
-        exiv2? ( graphics/exiv2 )
+        exif? ( graphics/exiv2 )
 "
 
