@@ -6,7 +6,7 @@ export_exlib_phases src_compile src_install
 SUMMARY="A simple screen locker like slock"
 DESCRIPTION="
 i3lock is a simple screen locker like slock. After starting it, you will see a white screen (you
-can configure the color/an image). You can return to your screen by entering your password. 
+can configure the color/an image). You can return to your screen by entering your password.
 "
 HOMEPAGE="http://i3wm.org/${PN}"
 
@@ -19,7 +19,7 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config
     build+run:
-        dev-libs/libevent
+        dev-libs/libev
         sys-libs/pam
         x11-libs/libX11
         x11-libs/libxcb
