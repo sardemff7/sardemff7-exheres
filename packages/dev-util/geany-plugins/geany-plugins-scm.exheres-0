@@ -29,6 +29,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
+        sys-devel/automake:1.11[>=1.11.5]
         sys-devel/gettext
         multiterm? ( dev-lang/vala )
     build+run:
@@ -93,24 +94,6 @@ src_prepare() {
     edo mkdir -p build/cache
     edo intltoolize --force --copy --automake
     autotools_src_prepare
-}
-
-src_install() {
-    default
-    if ! option debugger; then
-        edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/debugger
-        edo rmdir "${IMAGE}"/usr/share/${PN}/debugger
-    fi
-    if ! option devhelp; then
-        edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/devhelp
-        edo rmdir "${IMAGE}"/usr/share/${PN}/devhelp
-    fi
-    option enchant || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/spellcheck
-    option gendoc || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/geanygendoc
-    option gpg || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/geanypg
-    option multiterm || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/multiterm
-    edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/updatechecker
-    option webkit || edo rmdir "${IMAGE}"/usr/share/doc/${PNV}/webhelper
 }
 
 pkg_postrm() {
