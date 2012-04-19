@@ -14,7 +14,7 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.29.14]
         gnome-desktop/gsettings-desktop-schemas
-        gnome-desktop/librsvg
+        gnome-desktop/librsvg:2
         media-libs/libcanberra[>=0.26][gtk3]
         x11-libs/cairo
         x11-libs/gtk+:3[>=3.3.11]
