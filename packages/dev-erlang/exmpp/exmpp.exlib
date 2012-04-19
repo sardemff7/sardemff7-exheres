@@ -22,7 +22,7 @@ DEPENDENCIES="
     build+run:
         dev-lang/erlang
         dev-libs/expat
-        dev-libs/libxml2
+        dev-libs/libxml2:2.0
         dev-libs/openssl
         sys-libs/zlib
 "
