@@ -51,7 +51,7 @@ DEPENDENCIES="
             x11-libs/gtk+:2[>=2.12]
             x11-libs/gdk-pixbuf:2
         )
-        xml? ( dev-libs/libxml2 )
+        xml? ( dev-libs/libxml2:2.0 )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
