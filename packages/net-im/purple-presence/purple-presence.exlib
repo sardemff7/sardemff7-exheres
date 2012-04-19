@@ -19,7 +19,7 @@ DEPENDENCIES="
         dev-util/pkg-config
         sys-devel/gettext
     build+run:
-        dev-libs/glib[>=2.26.0]
+        dev-libs/glib:2[>=2.26.0]
         net-im/pidgin[>=2.4.0]
 "
 
