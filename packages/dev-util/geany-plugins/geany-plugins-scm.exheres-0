@@ -29,7 +29,6 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        sys-devel/automake:1.11[>=1.11.5]
         sys-devel/gettext
         multiterm? ( dev-lang/vala )
     build+run:
