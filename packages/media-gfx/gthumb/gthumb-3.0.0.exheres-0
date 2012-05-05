@@ -12,6 +12,7 @@ DEPENDENCIES="
         gnome-desktop/gnome-doc-utils
     build+run:
         dev-libs/glib:2[>=2.28.0]
+        gnome-desktop/gsettings-desktop-schemas
         media-libs/jpeg
         media-libs/libpng
         media-libs/tiff
