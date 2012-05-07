@@ -26,6 +26,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
+        dev-lang/perl:*
         dev-util/pkg-config
         sys-devel/bison
         sys-devel/flex
