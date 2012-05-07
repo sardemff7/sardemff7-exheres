@@ -1,15 +1,9 @@
-# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2011-2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-export_exlib_phases src_prepare src_compile src_install
+require freedesktop-desktop
 
-if ever is_scm; then
-    SCM_REPOSITORY="git://code.stapelberg.de/i3"
-    : ${SCM_BRANCH:=next}
-    require scm-git
-else
-    DOWNLOADS="http://i3wm.org/downloads/${PNV}.tar.bz2"
-fi
+export_exlib_phases src_prepare src_install
 
 SUMMARY="A tiling window manager, completely written from scratch"
 DESCRIPTION="
@@ -52,31 +46,8 @@ DEPENDENCIES="
         ]]
 "
 
-if ever is_scm; then
-    DEPENDENCIES+="
-        build:
-            app-doc/asciidoc[>=8.3.0]
-            app-text/xmlto
-    "
-fi
-
 i3_src_prepare() {
     option debug || edo sed -i -e "s:DEBUG=1:DEBUG=0:" common.mk
-}
-
-i3_src_compile() {
-    emake i3
-
-    local subs=( i3-config-wizard i3-input i3-msg i3-nagbar i3bar )
-
-    # i3 'next' branch features
-    ever is_scm && subs+=( i3-dump-log )
-
-    ever is_scm && subs+=( man i3bar/doc )
-
-    for sub in ${subs[@]}; do
-        emake -C ${sub}
-    done
 }
 
 i3_src_install() {

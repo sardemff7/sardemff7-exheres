@@ -1,7 +1,25 @@
-# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2011-2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-require i3
+SCM_REPOSITORY="git://code.stapelberg.de/i3"
+: ${SCM_BRANCH:=next}
+
+require i3 scm-git
 
 PLATFORMS="~amd64"
 
+DEPENDENCIES="
+    build:
+        app-doc/asciidoc[>=8.3.0]
+        app-text/xmlto
+"
+
+src_compile() {
+    default
+
+    local subs=( man i3bar/doc )
+
+    for sub in ${subs[@]}; do
+        emake -C ${sub}
+    done
+}
