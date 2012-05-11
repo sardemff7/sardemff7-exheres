@@ -11,8 +11,6 @@ DEPENDENCIES="
     build:
         app-doc/asciidoc[>=8.3.0]
         app-text/xmlto
-    build+run:
-        dev-libs/yajl
 "
 
 src_compile() {

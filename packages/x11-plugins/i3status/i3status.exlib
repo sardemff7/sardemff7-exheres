@@ -19,6 +19,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
         dev-libs/confuse
+        dev-libs/yajl
         net-wireless/wireless_tools
         sys-sound/alsa-lib
 "
