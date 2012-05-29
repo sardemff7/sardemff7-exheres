@@ -3,6 +3,7 @@
 
 require sourceforge [ project=synce suffix=tar.gz ]
 
+LICENCES="MIT"
 SLOT="0"
 
 MYOPTIONS=""
