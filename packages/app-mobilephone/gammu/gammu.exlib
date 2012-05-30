@@ -15,7 +15,7 @@ DEPENDENCIES="
         dev-util/pkg-config
     build+run:
         dev-libs/glib:2
-        sys-fs/udev[glib] [[ note = [ automagic ] ]]
+        || ( sys-apps/systemd sys-fs/udev ) [[ note = [ automagic ] ]]
         bluetooth? ( net-wireless/bluez )
         curl? ( net-misc/curl )
         odbc? ( dev-db/unixODBC )
