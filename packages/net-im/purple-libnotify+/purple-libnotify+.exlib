@@ -21,7 +21,8 @@ DEPENDENCIES="
         dev-util/pkg-config
         sys-devel/gettext
     build+run:
-        net-im/pidgin[>=2.4.0]
+        net-im/pidgin[>=2.6.0]
+        x11-libs/gdk-pixbuf:2.0
         x11-libs/libnotify[>=0.5.0]
 "
 
