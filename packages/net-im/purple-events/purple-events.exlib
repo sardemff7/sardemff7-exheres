@@ -1,0 +1,21 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=sardemff7 suffix=tar.xz ]
+
+SUMMARY="libpurple events handling plugin and library"
+
+LICENCES="GPL-3"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        net-im/pidgin[>=2.6.0]
+"
+
