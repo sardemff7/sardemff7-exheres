@@ -1,0 +1,20 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=sardemff7 suffix=tar.xz ]
+
+SUMMARY="Library to integrate XCB nicely with GLib"
+
+LICENCES="GPL-3"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        dev-libs/glib:2[>=2.28.0]
+        x11-libs/libxcb
+"
+
