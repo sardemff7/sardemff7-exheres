@@ -20,8 +20,6 @@ DEPENDENCIES="
         net-directory/openldap[>=2.4.11]
 "
 
-BUGS_TO="djc@djc.id.au"
-
 src_configure() {
     edo sed -i \
             -e '/^library_dirs =/c library_dirs = ' \
