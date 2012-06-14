@@ -5,5 +5,5 @@ require mlocate
 
 DOWNLOADS="https://fedorahosted.org/releases/${PN:0:1}/${PN:1:1}/${PN}/${PNV}.tar.xz"
 
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 
