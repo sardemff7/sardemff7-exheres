@@ -6,6 +6,11 @@ require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 ] ]
 
 PLATFORMS="~amd64"
 
+DEPENDENCIES="
+    build:
+        dev-lang/vala:*
+"
+
 AT_M4DIR=( m4 )
 
 src_prepare() {
