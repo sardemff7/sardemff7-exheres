@@ -30,11 +30,11 @@ DEPENDENCIES="
         espeak? ( app-speech/espeak )
         fbcon? (
             x11-libs/cairo
-            x11-libs/gdk-pixbuf
+            x11-libs/gdk-pixbuf:2.0
             x11-libs/pango
         )
         libnotify? (
-            x11-libs/gdk-pixbuf
+            x11-libs/gdk-pixbuf:2.0
             x11-libs/libnotify[>=0.6.5]
         )
         sndfile? (
@@ -44,7 +44,7 @@ DEPENDENCIES="
         systemd? ( sys-apps/systemd[>=36] )
         xcb? (
             x11-libs/cairo
-            x11-libs/gdk-pixbuf
+            x11-libs/gdk-pixbuf:2.0
             x11-libs/libxcb
             x11-libs/libxcb-glib
             x11-libs/pango
