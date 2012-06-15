@@ -1,0 +1,17 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+
+SUMMARY="The GNU oSIP library"
+HOMEPAGE="http://www.gnu.org/software/osip/"
+
+MYOPTIONS=""
+
+DEPENDENCIES=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --disable-debug
+)
+
