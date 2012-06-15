@@ -1,0 +1,63 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnu [ suffix=gz ]
+
+export_exlib_phases src_install
+
+LICENCES="GPL-2"
+SLOT="0"
+
+SUMMARY="Open source video SIP phone for desktop & mobile"
+HOMEPAGE="http://www.linphone.org/"
+
+MYOPTIONS="doc gtk ipv6 libnotify ssl X
+    video [[ description = [ Video stream support ] ]]
+
+    gtk [[ requires = [ X ] ]]
+    X   [[ requires = [ video ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+        doc? ( app-text/sgmltools-lite )
+    build+run:
+        dev-libs/openssl
+        gnome-desktop/libsoup:2.4
+        media-libs/mediastreamer[speex][video?][X?]
+        media-libs/speex
+        net-libs/libeXosip2
+        net-libs/libosip2
+        net-libs/ortp
+        sys-libs/ncurses
+        sys-libs/readline
+        gtk? ( x11-libs/gtk+:2 )
+        libnotify? ( x11-libs/libnotify )
+        X? ( x11-libs/libX11 )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --enable-external-mediastreamer
+    --enable-external-ortp
+    --enable-ssl
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'doc manual'
+    'gtk gtk_ui'
+    ipv6
+    'libnotify notify'
+    video
+    'X x11'
+)
+
+linphone_src_install() {
+    default
+
+    edo rmdir "${IMAGE}"/usr/share/tutorials{/${PN},}
+    edo find "${IMAGE}"/usr/share/gnome -type d -empty -delete
+}
+
