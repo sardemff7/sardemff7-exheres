@@ -68,26 +68,15 @@ eventd_src_test() {
         9988
         9989
     )
-    local tcp_sockets=(
-        9876
-        9877
-        9878
-    )
 
     for s in ${unix_sockets[@]}; do
         esandbox allow_net unix:"${WORK}"/${s}
-    done
-    for s in ${tcp_sockets[@]}; do
-        esandbox allow_net LOOPBACK@${s}
     done
 
     default
 
     for s in ${unix_sockets[@]}; do
         esandbox disallow_net unix:"${WORK}"/${s}
-    done
-    for s in ${tcp_sockets[@]}; do
-        esandbox disallow_net LOOPBACK@${s}
     done
 }
 
