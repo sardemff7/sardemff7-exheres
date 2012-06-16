@@ -16,15 +16,16 @@ SLOT="0"
 PLATFORMS="~amd64"
 
 MYOPTIONS="
-    debugger  [[ description = [ Debugger plugin, gdb helper for Geany ] ]]
-    devhelp   [[ description = [ Integrate devhelp functionality with Geany ] ]]
-    enchant   [[ description = [ Enable spell chack using enchant ] ]]
-    gendoc    [[ description = [ Plugin to help documentation generation ] ]]
-    gpg       [[ description = [ GPG support via GeanyPG ] ]]
-    lua       [[ description = [ Extend Geany using Lua ] ]]
-    multiterm [[ description = [ Mulitple VTE-based terminals plugin ] ]]
-    webkit    [[ description = [ Web development helper using WebKit ] ]]
-    xml       [[ description = [ XML Pretty-Print plugin ] ]]
+    debugger    [[ description = [ Debugger plugin, gdb helper for Geany ] ]]
+    devhelp     [[ description = [ Integrate devhelp functionality with Geany ] ]]
+    enchant     [[ description = [ Enable spell chack using enchant ] ]]
+    gendoc      [[ description = [ Plugin to help documentation generation ] ]]
+    geniuspaste [[ description = [ Pastebins client plugin ] ]]
+    gpg         [[ description = [ GPG support via GeanyPG ] ]]
+    lua         [[ description = [ Extend Geany using Lua ] ]]
+    multiterm   [[ description = [ Mulitple VTE-based terminals plugin ] ]]
+    webkit      [[ description = [ Web development helper using WebKit ] ]]
+    xml         [[ description = [ XML Pretty-Print plugin ] ]]
 "
 
 DEPENDENCIES="
@@ -42,6 +43,10 @@ DEPENDENCIES="
         )
         enchant? ( app-spell/enchant )
         gendoc? ( dev-libs/ctpl[>=0.3] )
+        geniuspaste? (
+            gnome-desktop/libsoup:2.4
+            x11-libs/gtk+:2
+        )
         gpg? ( app-crypt/gpgme )
         lua? ( dev-lang/lua )
         multiterm? ( dev-libs/vte:0[>=0.24] )
@@ -80,6 +85,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     devhelp
     'enchant spellcheck'
     'gendoc geanygendoc'
+    geniuspaste
     'gpg geanypg'
     'lua geanylua'
     multiterm
