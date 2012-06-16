@@ -16,6 +16,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 
 MYOPTIONS="
+    spell
     debugger    [[ description = [ Debugger plugin, gdb helper for Geany ] ]]
     devhelp     [[ description = [ Integrate devhelp functionality with Geany ] ]]
     enchant     [[ description = [ Enable spell chack using enchant ] ]]
@@ -52,6 +53,7 @@ DEPENDENCIES="
         gpg? ( app-crypt/gpgme )
         lua? ( dev-lang/lua )
         multiterm? ( dev-libs/vte:0[>=0.24] )
+        spell? ( app-spell/gtkspell:2 )
         webkit? (
             net-libs/webkit-gtk:1
             x11-libs/gtk+:2[>=2.12]
@@ -93,6 +95,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gpg geanypg'
     'lua geanylua'
     multiterm
+    'spell gtkspell'
     'webkit webhelper'
     'xml pretty-printer'
 )
