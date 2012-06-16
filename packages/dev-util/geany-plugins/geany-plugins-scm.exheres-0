@@ -31,31 +31,35 @@ MYOPTIONS="
 DEPENDENCIES="
     build:
         sys-devel/gettext
-        multiterm? ( dev-lang/vala )
+        multiterm? ( dev-lang/vala:* )
     build+run:
         dev-util/geany[~scm]
         debugger? ( dev-libs/vte:0[>=0.24] )
         devhelp? (
-            dev-libs/glib:2[>=2.16]
-            dev-util/devhelp[>=2&<2.32]
-            net-libs/webkit-gtk:2
-            x11-libs/gtk+:2[>=2.16]
+            dev-libs/glib:2
+            gnome-desktop/libwnck:1
+            gnome-platform/GConf:2
+            net-libs/webkit-gtk:1
+            x11-libs/gtk+:2
+            sys-libs/zlib
         )
         enchant? ( app-spell/enchant )
-        gendoc? ( dev-libs/ctpl[>=0.3] )
-        geniuspaste? (
-            gnome-desktop/libsoup:2.4
+        gendoc? (
+            dev-libs/ctpl
             x11-libs/gtk+:2
         )
+        geniuspaste? ( gnome-desktop/libsoup:2.4 )
         gpg? ( app-crypt/gpgme )
         lua? ( dev-lang/lua )
         multiterm? ( dev-libs/vte:0[>=0.24] )
         webkit? (
-            net-libs/webkit-gtk:2
+            net-libs/webkit-gtk:1
             x11-libs/gtk+:2[>=2.12]
-            x11-libs/gdk-pixbuf:2
+            x11-libs/gdk-pixbuf:2.0
         )
         xml? ( dev-libs/libxml2:2.0 )
+    test:
+        dev-util/cppcheck
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
