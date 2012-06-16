@@ -34,10 +34,10 @@ DEPENDENCIES="
         sys-devel/gettext
         multiterm? ( dev-lang/vala:* )
     build+run:
+        dev-libs/glib:2
         dev-util/geany[~scm]
         debugger? ( dev-libs/vte:0[>=0.24] )
         devhelp? (
-            dev-libs/glib:2
             gnome-desktop/libwnck:1
             gnome-platform/GConf:2
             net-libs/webkit-gtk:1
