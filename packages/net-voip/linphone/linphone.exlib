@@ -11,7 +11,7 @@ SLOT="0"
 SUMMARY="Open source video SIP phone for desktop & mobile"
 HOMEPAGE="http://www.linphone.org/"
 
-MYOPTIONS="doc gtk ipv6 libnotify ssl X
+MYOPTIONS="doc gtk ipv6 libnotify X
     video [[ description = [ Video stream support ] ]]
 
     gtk [[ requires = [ X ] ]]
