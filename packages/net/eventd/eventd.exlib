@@ -52,6 +52,13 @@ DEPENDENCIES="
             x11-libs/libxcb-glib
             x11-libs/pango
         )
+    recommendation:
+        fbcon? (
+            gnome-desktop/librsvg:2 [[ description = [ SVG support for the nd plugin ] ]]
+        )
+        xcb? (
+            gnome-desktop/librsvg:2 [[ description = [ SVG support for the nd plugin ] ]]
+        )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
