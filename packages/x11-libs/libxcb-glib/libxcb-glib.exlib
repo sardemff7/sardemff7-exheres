@@ -4,6 +4,7 @@
 require github [ user=sardemff7 suffix=tar.xz ]
 
 SUMMARY="Library to integrate XCB nicely with GLib"
+HOMEPAGE="http://libxcb-glib.sardemff7.net/"
 
 LICENCES="GPL-3"
 SLOT="0"
