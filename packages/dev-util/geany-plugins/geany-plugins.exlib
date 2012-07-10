@@ -36,7 +36,7 @@ DEPENDENCIES="
         multiterm? ( dev-lang/vala:* )
     build+run:
         dev-libs/glib:2
-        dev-util/geany[~>${PV}]
+        dev-util/geany[~$(ever is_scm || echo '>' )${PV}]
         debugger? ( dev-libs/vte:0[>=0.24] )
         devhelp? (
             gnome-desktop/libwnck:1
