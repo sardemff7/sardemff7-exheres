@@ -1,104 +1,10 @@
-# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2011-2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-require gtk-icon-cache freedesktop-desktop github [ user=geany ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 1.11 ] ]
+require geany-plugins
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 1.11 ] ]
 
-SUMMARY="A collection of different plugins for Geany"
-DESCRIPTION="
-What you will find here is a lot of plugin stuff for Geany.
-There is a Geany Plugins project containing a lot of plugins,
-which is developed by various developers on SourceForge.
-"
-HOMEPAGE="http://plugins.geany.org/"
-
-LICENCES="GPL-2 Scintilla"
-SLOT="0"
 PLATFORMS="~amd64"
-
-MYOPTIONS="
-    spell
-    debugger    [[ description = [ Debugger plugin, gdb helper for Geany ] ]]
-    devhelp     [[ description = [ Integrate devhelp functionality with Geany ] ]]
-    enchant     [[ description = [ Enable spell chack using enchant ] ]]
-    gendoc      [[ description = [ Plugin to help documentation generation ] ]]
-    geniuspaste [[ description = [ Pastebins client plugin ] ]]
-    gpg         [[ description = [ GPG support via GeanyPG ] ]]
-    lua         [[ description = [ Extend Geany using Lua ] ]]
-    multiterm   [[ description = [ Mulitple VTE-based terminals plugin ] ]]
-    webkit      [[ description = [ Web development helper using WebKit ] ]]
-    xml         [[ description = [ XML Pretty-Print plugin ] ]]
-"
-
-DEPENDENCIES="
-    build:
-        sys-devel/gettext
-        multiterm? ( dev-lang/vala:* )
-    build+run:
-        dev-libs/glib:2
-        dev-util/geany[~scm]
-        debugger? ( dev-libs/vte:0[>=0.24] )
-        devhelp? (
-            gnome-desktop/libwnck:1
-            gnome-platform/GConf:2
-            net-libs/webkit-gtk:1
-            x11-libs/gtk+:2
-            sys-libs/zlib
-        )
-        enchant? ( app-spell/enchant )
-        gendoc? (
-            dev-libs/ctpl
-            x11-libs/gtk+:2
-        )
-        geniuspaste? ( gnome-desktop/libsoup:2.4 )
-        gpg? ( app-crypt/gpgme )
-        lua? ( dev-lang/lua )
-        multiterm? ( dev-libs/vte:0[>=0.24] )
-        spell? ( app-spell/gtkspell:2 )
-        webkit? (
-            net-libs/webkit-gtk:1
-            x11-libs/gtk+:2[>=2.12]
-            x11-libs/gdk-pixbuf:2.0
-        )
-        xml? ( dev-libs/libxml2:2.0 )
-    test:
-        dev-util/cppcheck
-"
-
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --enable-addons
-    --enable-codenav
-    --enable-geanyextrasel
-    --enable-geanygdb
-    --enable-geanyinsertnum
-    --enable-geanylatex
-    --enable-geanylipsum
-    --enable-geanymacro
-    --enable-geanynumberedbookmarks
-    --enable-geanyprj
-    --enable-geanysendmail
-    --enable-geanyvc
-    --enable-gproject
-    --enable-shiftcolumn
-    --enable-tableconvert
-    --enable-treebrowser
-    --disable-updatechecker
-    --enable-xmlsnippets
-    --enable-nls
-)
-
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    debugger
-    devhelp
-    'enchant spellcheck'
-    'gendoc geanygendoc'
-    geniuspaste
-    'gpg geanypg'
-    'lua geanylua'
-    multiterm
-    'spell gtkspell'
-    'webkit webhelper'
-    'xml pretty-printer'
-)
 
 AT_M4DIR=( build build/cache )
 
@@ -106,15 +12,5 @@ src_prepare() {
     edo mkdir -p build/cache
     edo intltoolize --force --copy --automake
     autotools_src_prepare
-}
-
-pkg_postrm() {
-    gtk-icon-cache_pkg_postrm
-    freedesktop-desktop_pkg_postrm
-}
-
-pkg_postinst() {
-    gtk-icon-cache_pkg_postinst
-    freedesktop-desktop_pkg_postinst
 }
 
