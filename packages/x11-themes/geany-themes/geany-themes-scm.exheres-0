@@ -1,52 +1,15 @@
 # Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_REPOSITORY="git://github.com/codebrainz/${PN}.git"
+require geany-themes
 
-require scm-git
-
-SUMMARY="A collection of color schemes for Geany"
-DESCRIPTION="
-geany-themes is a set of color schemes containing some really nice themes. I have ported almost
-all of the existing Geany themes I could find.
-
-Some of the new themes were ported from the gedit-themes and I plan to eventually port the rest
-of them. There is also a bunch of available themes for vim and TextMate that would also be nice
-to port.
-
-You can create your own theme by using one of the existing themes as a starting point and there
-is more information in the Geany Manual. No programming skills are required at all to create
-your own theme.
+LICENCES+="
+    GPL-2 [[ note = [ For mc.conf ] ]]
 "
-HOMEPAGE="http://codebrainz.github.com/${PN}/"
-
-LICENCES="
-    as-is    [[ note = [ For fluffy.conf, railcasts2.conf, tango-dark.conf, zenburn.conf ] ]]
-    BSD-2    [[ note = [ For kugel.conf ] ]]
-    GPL-2    [[ note = [ For alt.conf, dark-fruit-salad.conf, dark.conf, oblivion2.conf, retro.conf, tango-light.conf, vibrant-ink.conf ] ]]
-    LGPL-2   [[ note = [ For bespin.conf, github.conf, slushpoppies.conf, tinge.conf ] ]]
-    LGPL-2.1 [[ note = [ For gedit.conf ] ]]
-    MIT      [[ note = [ For solarized-dark.conf, solarized-light.conf ] ]]
-"
-SLOT="0"
 PLATFORMS="~amd64"
 
-MYOPTIONS=""
-
-DEPENDENCIES="
-    run:
-        dev-util/geany
-"
-
-DEFAULT_SRC_INSTALL_PARAMS=(
-    COLORSCHEME_DIR="${IMAGE}"/usr/share/geany/colorschemes/
-)
-
-src_compile() {
-    :
-}
-
-src_test() {
-    :
+src_prepare() {
+    default
+    edo rm Makefile
 }
 
