@@ -3,7 +3,7 @@
 
 require ejabberd
 
-DOWNLOADS="http://www.process-one.net/downloads/${PN}/${PV}/${PNV}.tar.gz"
+DOWNLOADS="http://www.process-one.net/downloads/${PN}/${PV}/${PNV}.tgz"
 
 PLATFORMS="~amd64"
 
