@@ -5,10 +5,11 @@ require github [ user=sardemff7 suffix=tar.xz ] systemd-service
 
 export_exlib_phases src_test
 
+SUMMARY="Small daemon to act on remote or local events"
+HOMEPAGE="http://www.eventd.org"
+
 LICENCES="GPL-3"
 SLOT="0"
-
-SUMMARY="Small daemon to act on remote or local events"
 
 MYOPTIONS="
     dbus       [[ description = [ DBus org.freedesktop.Notifications interface ] ]]
