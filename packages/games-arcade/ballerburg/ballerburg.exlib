@@ -1,0 +1,19 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require cmake [ api=2 ]
+
+SUMMARY="A Ballerburg remake"
+HOMEPAGE="http://baller.tuxfamily.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        media-libs/SDL
+        media-libs/SDL_gfx
+"
+
