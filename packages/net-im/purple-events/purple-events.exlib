@@ -4,6 +4,7 @@
 require github [ user=sardemff7 suffix=tar.xz ]
 
 SUMMARY="libpurple events handling plugin and library"
+HOMEPAGE="http://purple-events.sardemff7.net/"
 
 LICENCES="GPL-3"
 SLOT="0"
