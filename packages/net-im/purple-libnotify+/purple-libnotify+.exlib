@@ -6,7 +6,7 @@ MY_PN=${PN%+}-plus
 require github [ user=sardemff7 suffix=tar.xz ]
 
 SUMMARY="Provides libnotify popups to Pidgin and Finch"
-HOMEPAGE="http://sardemff7.github.com/${MY_PN}/"
+HOMEPAGE="http://purple-libnotify-plus.sardemff7.net/"
 
 LICENCES="GPL-3"
 SLOT="0"
