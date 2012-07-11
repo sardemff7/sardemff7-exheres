@@ -69,6 +69,7 @@ src_compile() {
         NAME="${PN}"
         OPT_FLAGS=-DINI_PATH=\\\"/etc/${PN}\\\"
         NOWERROR=1
+        NO_X11=1
     )
     option opengl || make_opts+=( NO_OPENGL=1 )
 
