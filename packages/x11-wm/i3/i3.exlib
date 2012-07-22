@@ -54,6 +54,7 @@ i3_src_prepare() {
 i3_src_install() {
     default
 
-    doman man/*.1 i3bar/doc/*.1
+    doman man/*.1
+    ever is_scm || doman i3bar/doc/*.1
 }
 

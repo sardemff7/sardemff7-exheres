@@ -17,10 +17,6 @@ DEPENDENCIES="
 src_compile() {
     default
 
-    local subs=( man i3bar/doc )
-
-    for sub in ${subs[@]}; do
-        emake -C ${sub}
-    done
+    emake mans
 }
 
