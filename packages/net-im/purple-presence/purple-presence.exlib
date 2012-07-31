@@ -4,7 +4,7 @@
 require github [ user=sardemff7 suffix=tar.xz ]
 
 SUMMARY="Provides GnomeSession Presence status support to Pidgin"
-HOMEPAGE="http://sardemff7.github.com/${PN}/"
+HOMEPAGE="http://purple-presence.sardemff7.net/"
 
 LICENCES="GPL-3"
 SLOT="0"
