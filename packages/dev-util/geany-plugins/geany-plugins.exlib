@@ -101,6 +101,10 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'xml pretty-printer'
 )
 
+DEFAULT_SRC_CONFIGURE_TESTS=(
+    '--enable-cppcheck --disable-cppcheck'
+)
+
 geany-plugins_pkg_postrm() {
     gtk-icon-cache_pkg_postrm
     freedesktop-desktop_pkg_postrm
