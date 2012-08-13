@@ -3,7 +3,7 @@
 
 require freedesktop-desktop
 
-export_exlib_phases src_prepare src_install
+export_exlib_phases src_install
 
 SUMMARY="A tiling window manager, completely written from scratch"
 DESCRIPTION="
@@ -20,9 +20,8 @@ HOMEPAGE="http://i3wm.org/"
 LICENCES="BSD-3"
 SLOT="0"
 
-MYOPTIONS="
-    debug
-"
+MYOPTIONS=""
+
 
 DEPENDENCIES="
     build:
@@ -46,10 +45,6 @@ DEPENDENCIES="
             description = [ Default source for i3bar ]
         ]]
 "
-
-i3_src_prepare() {
-    option debug || edo sed -i -e "s:DEBUG=1:DEBUG=0:" common.mk
-}
 
 i3_src_install() {
     default
