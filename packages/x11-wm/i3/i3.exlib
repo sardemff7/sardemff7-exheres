@@ -46,6 +46,10 @@ DEPENDENCIES="
         ]]
 "
 
+DEFAULT_SRC_COMPILE_PARAMS=(
+    V=1
+)
+
 i3_src_install() {
     default
 
