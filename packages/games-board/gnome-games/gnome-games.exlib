@@ -13,7 +13,7 @@ MYOPTIONS=""
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --with-scores-user=wizard
-    --enable-games=glines,gnect,gnobots2,gnomine,gnotravex,gnotski,gtali,iagno,mahjongg
+    --enable-games=glines,gnect,gnobots2,gnomine,gnotravex,gnotski,gtali,iagno,$(ever at_least 3.5.5 && echo 'gnome-')mahjongg
     --enable-compile-warnings=minimum
     --enable-cxx-warnings=minimum
     --disable-introspection
@@ -23,13 +23,12 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 src_install() {
     default
 
-    edo rmdir "${IMAGE}"/usr/${LIBDIR}{/${PN},}
+    ever at_least 3.5.5 || edo rmdir "${IMAGE}"/usr/${LIBDIR}{/${PN},}
 
     dovarlibgames -R
-    preserve_scores /var/lib/games/{glines,gnobots2,gnomine,gnotravex,gnotski,gtali,mahjongg}*.scores
+    preserve_scores "${IMAGE}"/var/lib/games/*.scores
     keepdir /var/lib/games
 }
-
 
 pkg_postinst() {
     game_pkg_postinst
