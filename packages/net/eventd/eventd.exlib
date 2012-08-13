@@ -12,6 +12,7 @@ LICENCES="GPL-3"
 SLOT="0"
 
 MYOPTIONS="
+    avahi
     dbus                [[ description = [ DBus org.freedesktop.Notifications interface ] ]]
     debug               [[ description = [ Extra debug output ] ]]
     espeak              [[ description = [ Text-to-Speech plugin ] ]]
@@ -33,6 +34,7 @@ DEPENDENCIES="
         dev-util/pkg-config
     build+run:
         dev-libs/glib:2[>=2.28.0]
+        avahi? ( net-dns/avahi )
         espeak? ( app-speech/espeak )
         libnotify? (
             x11-libs/gdk-pixbuf:2.0
@@ -59,6 +61,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    avahi
     dbus
     debug
     espeak
