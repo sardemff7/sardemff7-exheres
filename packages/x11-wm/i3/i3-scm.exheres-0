@@ -16,9 +16,7 @@ DEPENDENCIES="
         x11-libs/pango
 "
 
-src_compile() {
-    default
-
-    emake mans
-}
+DEFAULT_SRC_COMPILE_PARAMS+=(
+    all mans
+)
 
