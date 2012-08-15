@@ -7,27 +7,27 @@ writeconfig               0
 #
 # CORE SEARCH PATH OPTIONS
 #
-rompath                   $HOME/.mess/roms;/usr/share/mess/roms
-hashpath                  $HOME/.mess/hash;/usr/share/mess/hash
-samplepath                $HOME/.mess/sample;/usr/share/mess/sample
-artpath                   $HOME/.mess/artwork;/usr/share/mess/artwork
-ctrlrpath                 $HOME/.mess/ctrlr;/usr/share/mess/ctrlr
-inipath                   $HOME/.mess;/etc/mess
-fontpath                  $HOME/.mess;/usr/share/mess
-cheatpath                 $HOME/.mess/cheat;/usr/share/mess/cheat
-crosshairpath             $HOME/.mess/crosshair;/usr/share/mess/crosshair
+rompath                   $HOME/.@PN@/roms;/usr/share/@PN@/roms
+hashpath                  $HOME/.@PN@/hash;/usr/share/@PN@/hash
+samplepath                $HOME/.@PN@/sample;/usr/share/@PN@/sample
+artpath                   $HOME/.@PN@/artwork;/usr/share/@PN@/artwork
+ctrlrpath                 $HOME/.@PN@/ctrlr;/usr/share/@PN@/ctrlr
+inipath                   $HOME/.@PN@;/etc/@PN@
+fontpath                  $HOME/.@PN@;/usr/share/@PN@
+cheatpath                 $HOME/.@PN@/cheat;/usr/share/@PN@/cheat
+crosshairpath             $HOME/.@PN@/crosshair;/usr/share/@PN@/crosshair
 
 #
 # CORE OUTPUT DIRECTORY OPTIONS
 #
-cfg_directory             $HOME/.mess/cfg
-nvram_directory           $HOME/.mess/nvram
-memcard_directory         $HOME/.mess/memcard
-input_directory           $HOME/.mess/inp
-state_directory           $HOME/.mess/sta
-snapshot_directory        $HOME/.mess/snap
-diff_directory            $HOME/.mess/diff
-comment_directory         $HOME/.mess/comments
+cfg_directory             $HOME/.@PN@/cfg
+nvram_directory           $HOME/.@PN@/nvram
+memcard_directory         $HOME/.@PN@/memcard
+input_directory           $HOME/.@PN@/inp
+state_directory           $HOME/.@PN@/sta
+snapshot_directory        $HOME/.@PN@/snap
+diff_directory            $HOME/.@PN@/diff
+comment_directory         $HOME/.@PN@/comments
 
 #
 # VIDEO OPTIONS
@@ -40,8 +40,8 @@ video                     @VIDEO@
 # If you are using one of the available non-us keyboard layouts
 # set keymap to 1 and uncomment the appropriate line below
 keymap                    0
-#keymap_file               /usr/share/mess/keymaps/km_be_LINUX.txt
-#keymap_file               /usr/share/mess/keymaps/km_ch_LINUX.txt
-#keymap_file               /usr/share/mess/keymaps/km_de_LINUX.txt
-#keymap_file               /usr/share/mess/keymaps/km_fr_LINUX.txt
-#keymap_file               /usr/share/mess/keymaps/km_it_LINUX.txt
+#keymap_file               /usr/share/@PN@/keymaps/km_be_LINUX.txt
+#keymap_file               /usr/share/@PN@/keymaps/km_ch_LINUX.txt
+#keymap_file               /usr/share/@PN@/keymaps/km_de_LINUX.txt
+#keymap_file               /usr/share/@PN@/keymaps/km_fr_LINUX.txt
+#keymap_file               /usr/share/@PN@/keymaps/km_it_LINUX.txt

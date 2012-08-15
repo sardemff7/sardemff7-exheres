@@ -95,6 +95,7 @@ src_install() {
         "${FILES}"/vector.ini.in > "${IMAGE}"/etc/${PN}/vector.ini
 
     edo sed \
+        -e 's:@PN@'":${PN}:" \
         -e 's:@VIDEO@'":${video}:" \
         "${FILES}"/${PN}.ini.in > "${IMAGE}"/etc/${PN}/${PN}.ini
 
