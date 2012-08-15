@@ -1,0 +1,37 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+export_exlib_phases src_prepare src_install
+
+LICENCES=""
+SLOT="0"
+
+SUMMARY="Virtual MIDI keyboard"
+HOMEPAGE=""
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/tcl[=8.5*]
+        dev-lang/tk[=8.5*]
+        sys-sound/alsa-lib
+        x11-libs/libX11
+"
+
+WORK="${WORKBASE}"/${PN}
+
+vkeybd_src_prepare() {
+    edo sed -i \
+        -e '/PREFIX =/s:/usr/local:/usr:' \
+        -e '/TCL_VERSION */s:8.4:8.5:' \
+        Makefile
+}
+
+vkeybd_src_install() {
+    default
+
+    insinto /usr/share/${PN}
+    doins "${FILES}"/vkeybdmap-bepo
+}
+
