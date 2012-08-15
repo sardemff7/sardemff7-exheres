@@ -11,7 +11,7 @@ rompath                   $HOME/.mess/roms;/usr/share/mess/roms
 hashpath                  $HOME/.mess/hash;/usr/share/mess/hash
 samplepath                $HOME/.mess/sample;/usr/share/mess/sample
 artpath                   $HOME/.mess/artwork;/usr/share/mess/artwork
-ctrlrpath                 $HOME/.mess/ctrlr;/etc/mess/ctrlr
+ctrlrpath                 $HOME/.mess/ctrlr;/usr/share/mess/ctrlr
 inipath                   $HOME/.mess;/etc/mess
 fontpath                  $HOME/.mess;/usr/share/mess
 cheatpath                 $HOME/.mess/cheat;/usr/share/mess/cheat

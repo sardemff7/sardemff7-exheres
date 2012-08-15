@@ -88,8 +88,6 @@ src_install() {
     exeinto /usr/${LIBDIR}/${PN}
     doexe chdman ldverify imgtool jedutil romcmp testkeys
 
-    keepdir /etc/${PN}/ctrlr
-
     local video="soft"
     option opengl && video="opengl"
     edo sed \
@@ -101,11 +99,9 @@ src_install() {
         "${FILES}"/${PN}.ini.in > "${IMAGE}"/etc/${PN}/${PN}.ini
 
     insinto /usr/share/${PN}
-    doins -r artwork
-    doins -r hash
-    doins -r keymaps
+    doins -r hash artwork keymaps
 
-    keepdir /usr/share/${PN}/{roms,sample,cheat,crosshair}
+    keepdir /usr/share/${PN}/{roms,sample,ctrlr,cheat,crosshair}
 
     dodoc docs/{config,mame,newvideo}.txt *.txt
     emagicdocs
