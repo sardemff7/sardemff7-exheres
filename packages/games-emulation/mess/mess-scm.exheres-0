@@ -60,6 +60,12 @@ src_prepare() {
         -e '/^BUILD_ZLIB/s:^:# :' \
         -e '/^SUFFIX/s:^:# :' \
         makefile
+
+    # Remove gconf-2.0 pkgconfig checks
+    # Only used for the debugger
+    edo sed -i \
+        -e '/gconf-2.0/d' \
+        src/osd/sdl/sdl.mak
 }
 
 src_compile() {
@@ -69,7 +75,7 @@ src_compile() {
         NAME="${PN}"
         OPT_FLAGS=-DINI_PATH=\\\"/etc/${PN}\\\"
         NOWERROR=1
-        NO_X11=1
+        NO_DEBUGGER=1
     )
     option opengl || make_opts+=( NO_OPENGL=1 )
 
