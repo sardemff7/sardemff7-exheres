@@ -41,6 +41,7 @@ DEPENDENCIES="
         media-libs/SDL[>=1.2.10][opengl(+)?]
         media-libs/SDL_ttf[>=1.2.10]
         sys-libs/zlib
+        x11-libs/libX11
         x11-libs/libXinerama
         !games-emulation/mame [[
             description = [ If you want both MAME and MESS install mame[mess] ]
