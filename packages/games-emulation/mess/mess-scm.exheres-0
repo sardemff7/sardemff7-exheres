@@ -103,7 +103,7 @@ src_install() {
 
     keepdir /usr/share/${PN}/{roms,sample,ctrlr,cheat,crosshair}
 
-    dodoc docs/{config,mame,newvideo}.txt *.txt
+    dodoc docs/{config,imgtool,mame,messnew,newvideo}.txt whatsnew.txt
     emagicdocs
 }
 
