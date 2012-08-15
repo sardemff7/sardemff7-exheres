@@ -73,7 +73,7 @@ src_compile() {
         OSD=sdl
         TARGET=mess
         NAME="${PN}"
-        OPT_FLAGS=-DINI_PATH=\\\"/etc/${PN}\\\"
+        OPT_FLAGS=-DINI_PATH=\\\"/usr/share/${PN}/ini\\\"
         NOWERROR=1
         NO_DEBUGGER=1
     )
@@ -88,16 +88,16 @@ src_install() {
     exeinto /usr/${LIBDIR}/${PN}
     doexe chdman ldverify imgtool jedutil romcmp testkeys
 
+    insinto /usr/share/${PN}/ini
+    doins "${FILES}"/{${PN},vector}.ini
+
     local video="soft"
     option opengl && video="opengl"
-    edo sed \
-        -e 's:@VIDEO@'":${video}:" \
-        "${FILES}"/vector.ini.in > "${IMAGE}"/etc/${PN}/vector.ini
-
-    edo sed \
+    edo sed -i \
         -e 's:@PN@'":${PN}:" \
         -e 's:@VIDEO@'":${video}:" \
-        "${FILES}"/${PN}.ini.in > "${IMAGE}"/etc/${PN}/${PN}.ini
+        "${IMAGE}"/usr/share/${PN}/ini/vector.ini \
+        "${IMAGE}"/usr/share/${PN}/ini/${PN}.ini
 
     insinto /usr/share/${PN}
     doins -r hash artwork keymaps
