@@ -3,5 +3,7 @@
 
 require dfu-util
 
+DOWNLOADS="http://dfu-util.gnumonks.org/releases/${PNV}.tar.gz"
+
 PLATFORMS="~amd64"
 
