@@ -13,6 +13,8 @@ MYOPTIONS="
     gnome [[ description = [ Add support for an GNOME authentication dialog and the GNOME keyring ] ]]
 "
 
+RESTRICT="test" # requires dbus
+
 DEPENDENCIES="
     build:
         dev-util/intltool
@@ -32,7 +34,7 @@ DEPENDENCIES="
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --with-gtkver=3
-    --with-tests
+    --without-tests
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
