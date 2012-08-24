@@ -1,0 +1,18 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=MSTPLBG ]
+
+SUMMARY="Communicate with the i3 window manager"
+
+SLOT="0"
+PLATFORMS="~amd64"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/AnyEvent
+        dev-perl/JSON-XS
+"
+
