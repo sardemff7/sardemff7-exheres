@@ -4,6 +4,7 @@
 require sourceforge [ suffix=tar.xz ] cmake [ api=2 ]
 
 SUMMARY="A cellular manager for mobile phones/modems"
+HOMEPAGE="http://wammu.eu/${PN}/"
 
 LICENCES="GPL-2"
 SLOT="0"
