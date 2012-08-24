@@ -4,7 +4,7 @@
 SCM_REPOSITORY="git://git.openezx.org/dfu-util.git"
 
 require dfu-util
-require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 1.11 ] ]
 
 PLATFORMS="~amd64"
 
