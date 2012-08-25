@@ -3,8 +3,7 @@
 # Based in part upon 'sdlmess-9999.ebuild' from Gentoo overlay sardemff7, which is:
 #     Copyright 1999-2011 Gentoo Foundation
 
-SCM_REPOSITORY="svn://messdev.no-ip.org/mess/"
-SCM_SVN_RAW_URI=1
+SCM_REPOSITORY="svn://dspnet.fr/mame"
 SCM_METADATA_UNNEEDED=1
 
 require scm-svn
@@ -87,7 +86,21 @@ src_install() {
     dobin ${PN}
 
     exeinto /usr/${LIBDIR}/${PN}
-    doexe chdman ldverify imgtool jedutil romcmp testkeys
+    doexe \
+        castool \
+        chdman \
+        floptool \
+        imgtool \
+        jedutil \
+        ldresample \
+        ldverify \
+        regrep \
+        romcmp \
+        split \
+        src2html \
+        srcclean \
+        testkeys \
+        unidasm
 
     insinto /usr/share/${PN}/ini
     doins "${FILES}"/{${PN},vector}.ini
@@ -105,7 +118,7 @@ src_install() {
 
     keepdir /usr/share/${PN}/{roms,sample,ctrlr,cheat,crosshair}
 
-    dodoc docs/{config,imgtool,mame,messnew,newvideo}.txt whatsnew.txt
+    dodoc docs/{config,imgtool,mame,newvideo,nscsi}.txt
     emagicdocs
 }
 
