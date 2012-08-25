@@ -3,7 +3,7 @@
 
 require sourceforge [ suffix=tar.bz2 ] systemd-service
 
-export_exlib_phases src_prepare src_install
+export_exlib_phases src_prepare src_configure src_install
 
 SUMMARY="Protects networked hosts from brute force attacks"
 HOMEPAGE="http://www.sshguard.net/"
@@ -15,27 +15,42 @@ LICENCES="
 "
 SLOT="0"
 
-MYOPTIONS=""
+MYOPTIONS="
+    (
+        hosts    [[ description = [ Use the hosts.allow/TCP wrappers backend ] ]]
+        iptables [[ description = [ Use the iptables/netfilter backend ] ]]
+    ) [[ number-selected = exactly-one ]]
+"
 
 DEPENDENCIES="
     build:
         sys-devel/bison
         sys-devel/flex
     build+run:
-        net-firewall/iptables
+        iptables? ( net-firewall/iptables )
     run:
         virtual/syslog
 "
-
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --with-firewall=iptables
-    --with-iptables=/sbin/iptables
-)
 
 sshguard_src_prepare() {
     edo sed -i \
         -e '/OPTIMIZER_CFLAGS=/d' \
         configure
+}
+
+sshguard_src_configure() {
+    local myconf=()
+
+    if option hosts; then
+        myconf+=( --with-firewall=hosts )
+    elif option iptables; then
+        myconf+=(
+            --with-firewall=iptables
+            --with-iptables=/sbin/iptables
+        )
+    fi
+
+    econf "${myconf[@]}"
 }
 
 sshguard_src_install() {
