@@ -10,7 +10,7 @@ AT_M4DIR=( build build/cache )
 
 src_prepare() {
     edo mkdir -p build/cache
-    edo intltoolize --force --copy --automake
     autotools_src_prepare
+    edo intltoolize --force --copy --automake
 }
 
