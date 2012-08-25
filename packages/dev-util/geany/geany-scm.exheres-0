@@ -9,7 +9,7 @@ PLATFORMS="~amd64"
 AT_M4DIR=( m4 )
 
 src_prepare() {
-    edo intltoolize --force --copy --automake
     autotools_src_prepare
+    edo intltoolize --force --copy --automake
 }
 
