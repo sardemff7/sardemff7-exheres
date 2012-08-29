@@ -1,0 +1,28 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Distributed under the terms of the GNU General Public License v2
+
+require perl-module [ module_author=MSTPLBG ]
+
+SUMMARY="Perl bindings for libxcb"
+
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+# Tests requires an X server
+RESTRICT="test"
+
+DEPENDENCIES="
+    build:
+        dev-lang/python:*[>=2.6]
+        dev-perl/ExtUtils-Depends
+        dev-perl/ExtUtils-PkgConfig
+    build+run:
+        dev-perl/Mouse
+        dev-perl/MouseX-NativeTraits
+        dev-perl/Try-Tiny
+        dev-perl/XS-Object-Magic
+"
+
+DEFAULT_SRC_COMPILE_PARAMS=( -j1 )
+
