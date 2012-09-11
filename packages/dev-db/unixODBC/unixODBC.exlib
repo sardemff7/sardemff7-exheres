@@ -16,7 +16,7 @@ MYOPTIONS=""
 
 DEPENDENCIES=""
 
-REMOTE_IDS="freshmeat:unixodbc"
+REMOTE_IDS="freecode:unixodbc"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --sysconfdir=/etc/${PN}
