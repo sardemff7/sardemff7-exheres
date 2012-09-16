@@ -1,0 +1,26 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require setuptools pypi
+
+SUMMARY="CEF extensions to metrics logging"
+DESCRIPTION="
+metlog-cef is a plugin extension for Metlog. metlog-cef provides an extension to log send CEF
+messages to a logstash server.
+"
+HOMEPAGE="https://github.com/mozilla-services/metlog-cef"
+
+LICENCES="MPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-python/cef
+        dev-python/metlog-py[>=0.9.4]
+    test:
+        dev-python/mock
+        dev-python/nose
+"
+
