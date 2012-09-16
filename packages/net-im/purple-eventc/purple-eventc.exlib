@@ -1,0 +1,25 @@
+# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=sardemff7 suffix=tar.xz ]
+
+SUMMARY="libpurple plugin client for eventd"
+HOMEPAGE="http://purple-eventc.eventd.org/"
+
+LICENCES="GPL-3"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-lang/vala:*[>=0.12]
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-libs/glib[>=2.26.0]
+        net/eventd
+        net-im/pidgin[>=2.6.0]
+        net-im/purple-events
+"
+
