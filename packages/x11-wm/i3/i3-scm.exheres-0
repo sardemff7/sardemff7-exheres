@@ -12,8 +12,6 @@ DEPENDENCIES="
     build:
         app-doc/asciidoc[>=8.3.0]
         app-text/xmlto
-    build+run:
-        x11-libs/pango
 "
 
 DEFAULT_SRC_COMPILE_PARAMS+=(
