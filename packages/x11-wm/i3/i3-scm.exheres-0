@@ -6,6 +6,14 @@ SCM_REPOSITORY="git://code.stapelberg.de/i3"
 
 require i3 scm-git
 
+UPSTREAM_CHANGELOG="http://code.stapelberg.de/git/i3/log/"
+UPSTREAM_DOCUMENTATION="
+    (
+        http://build.i3wm.org/docs/               [[ description = [ Development version documentation list ] ]]
+        http://build.i3wm.org/docs/userguide.html [[ description = [ Development version user’s guide ] ]]
+    ) [[ *lang = en ]]
+"
+
 PLATFORMS="~amd64"
 
 DEPENDENCIES="
