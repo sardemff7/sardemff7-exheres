@@ -14,6 +14,28 @@ SLOT="0"
 MYOPTIONS="
     clutter [[ description = [ Transitions for the slideshow plugin ] ]]
     exif
+    webp    [[ description = [ WebP format support ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        dev-util/pkg-config
+        gnome-desktop/gnome-doc-utils
+    build+run:
+        dev-libs/glib:2[>=2.32.0]
+        gnome-desktop/gsettings-desktop-schemas
+        media-libs/jpeg
+        media-libs/libpng
+        media-libs/tiff
+        sys-libs/zlib
+        x11-libs/gtk+:3[>=3.4.0]
+        clutter? (
+            x11-libs/clutter:1
+            x11-libs/clutter-gtk:1.0
+        )
+        exif? ( graphics/exiv2 )
+        webp? ( media-libs/libwebp[>=0.2.0] )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
@@ -33,6 +55,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     clutter
     'exif exiv2'
+    'webp libwebp'
 )
 
 gthumb_pkg_postinst() {
