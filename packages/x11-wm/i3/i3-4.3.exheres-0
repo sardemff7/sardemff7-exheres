@@ -4,7 +4,7 @@
 require i3
 
 DOWNLOADS="http://i3wm.org/downloads/${PNV}.tar.bz2"
-UPSTREAM_RELEASE_NOTES="http://i3wm.org/RELEASE-NOTES-${PV}.txt [[ lang = en ]]"
+UPSTREAM_RELEASE_NOTES="http://i3wm.org/downloads/RELEASE-NOTES-${PV}.txt [[ lang = en ]]"
 UPSTREAM_DOCUMENTATION="
     (
         http://i3wm.org/docs/               [[ description = [ Documentation list ] ]]
