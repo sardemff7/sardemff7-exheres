@@ -78,6 +78,8 @@ eventd_src_test() {
         9987
         9988
         9989
+        18031
+        18032
     )
 
     for s in ${unix_sockets[@]}; do
