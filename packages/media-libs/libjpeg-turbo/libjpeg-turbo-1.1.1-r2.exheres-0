@@ -1,8 +1,7 @@
 # Copyright 2011 Dimitry Ishenko <dimitry.ishenko@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ suffix=tar.gz ] easy-multibuild \
-    autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+require sourceforge [ suffix=tar.gz ] easy-multibuild
 
 SUMMARY="Library for JPEG image compression using MMX, SSE, and SSE2 SIMD instructions"
 DESCRIPTION="libjpeg-turbo is a version of libjpeg which uses MMX, SSE, and SSE2 SIMD instructions
@@ -24,10 +23,11 @@ DEPENDENCIES="
 
 DEST=/opt/${PN}
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-        --prefix=${DEST}
-        --mandir=${DEST}/man
-        --with-jpeg8
-        --with-pic
+    --hates=docdir
+    --prefix=${DEST}
+    --mandir=${DEST}/man
+    --with-jpeg8
+    --with-pic
 )
 
 pkg_setup() {
