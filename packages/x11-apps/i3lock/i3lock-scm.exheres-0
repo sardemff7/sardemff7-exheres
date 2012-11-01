@@ -7,3 +7,8 @@ require i3lock scm-git
 
 PLATFORMS="~amd64"
 
+DEPENDENCIES="
+    build+run:
+        x11-libs/libxkbcommon
+"
+
