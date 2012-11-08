@@ -1,7 +1,7 @@
 # Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=.tar.xz ] gsettings game
+require gnome.org [ suffix=.tar.xz ] gsettings game vala [ vala_slots=[ 0.18 0.16 ] ]
 
 SUMMARY="A collection of fifteen small 'five-minute' games in a variety of styles and genres"
 HOMEPAGE="http://live.gnome.org/GnomeGames"
