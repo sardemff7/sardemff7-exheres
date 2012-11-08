@@ -18,8 +18,8 @@ RESTRICT="test" # requires dbus
 DEPENDENCIES="
     build:
         dev-util/intltool
-        dev-util/pkg-config
         sys-devel/gettext
+        virtual/pkg-config
     build+run:
         dev-libs/dbus-glib:1[>=0.74]
         dev-libs/glib:2

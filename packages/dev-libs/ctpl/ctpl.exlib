@@ -15,7 +15,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        virtual/pkg-config
         gtk-doc? ( dev-doc/gtk-doc[>=1.9] )
     build+run:
         dev-libs/glib:2[>=2.24]

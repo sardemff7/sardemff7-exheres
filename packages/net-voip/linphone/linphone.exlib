@@ -21,8 +21,8 @@ MYOPTIONS="doc gtk ipv6 libnotify X
 DEPENDENCIES="
     build:
         dev-util/intltool
-        dev-util/pkg-config
         sys-devel/gettext
+        virtual/pkg-config
         doc? ( app-text/sgmltools-lite )
     build+run:
         dev-libs/openssl

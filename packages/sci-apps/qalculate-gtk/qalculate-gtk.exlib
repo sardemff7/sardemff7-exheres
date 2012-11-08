@@ -16,7 +16,7 @@ DEPENDENCIES="
     build:
         app-text/rarian
         dev-util/intltool
-        dev-util/pkg-config
+        virtual/pkg-config
         sys-devel/gettext
     build+run:
         gnome-platform/libglade:2

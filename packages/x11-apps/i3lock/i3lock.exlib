@@ -17,7 +17,7 @@ MYOPTIONS="cairo"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        virtual/pkg-config
     build+run:
         dev-libs/libev
         sys-libs/pam

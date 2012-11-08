@@ -20,8 +20,8 @@ MYOPTIONS="
 DEPENDENCIES="
     build:
         dev-util/intltool
-        dev-util/pkg-config
         gnome-desktop/gnome-doc-utils
+        virtual/pkg-config
     build+run:
         dev-libs/glib:2[>=2.32.0]
         gnome-desktop/gsettings-desktop-schemas

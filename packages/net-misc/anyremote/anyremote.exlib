@@ -12,8 +12,8 @@ MYOPTIONS="bluetooth dbus"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
         sys-devel/gettext
+        virtual/pkg-config
     build+run:
         dev-libs/glib:2
         bluetooth? ( net-wireless/bluez )

@@ -31,7 +31,7 @@ DEPENDENCIES="
         app-text/docbook-xml-dtd:4.5
         app-text/docbook-xsl-stylesheets
         dev-libs/libxslt
-        dev-util/pkg-config
+        virtual/pkg-config
     build+run:
         dev-libs/glib:2[>=2.28.0]
         avahi? ( net-dns/avahi )

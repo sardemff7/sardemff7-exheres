@@ -26,9 +26,9 @@ MYOPTIONS=""
 DEPENDENCIES="
     build:
         dev-lang/perl:*
-        dev-util/pkg-config
         sys-devel/bison
         sys-devel/flex
+        virtual/pkg-config
         x11-proto/xcb-proto[>=1.3]
     build+run:
         dev-libs/libev

@@ -13,7 +13,7 @@ MYOPTIONS="bluetooth curl odbc usb"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        virtual/pkg-config
     build+run:
         dev-libs/glib:2
         sys-apps/systemd [[ note = [ automagic ] ]]

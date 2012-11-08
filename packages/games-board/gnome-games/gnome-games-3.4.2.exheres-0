@@ -10,7 +10,7 @@ DEPENDENCIES="
         dev-lang/vala:*[>=0.15.1]
         dev-util/intltool[>=0.35.0]
         dev-util/itstool
-        dev-util/pkg-config
+        virtual/pkg-config
     build+run:
         dev-libs/glib:2[>=2.29.14]
         gnome-desktop/gsettings-desktop-schemas
