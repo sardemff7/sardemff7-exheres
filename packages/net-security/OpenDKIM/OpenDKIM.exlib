@@ -1,0 +1,38 @@
+# Copyright 2011-2012 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ project=${PN,,} pn=${PN,,} suffix=tar.gz ]
+
+export_exlib_phases src_install
+
+SUMMARY="An open source implementation of the DKIM (Domain Keys Identified Mail) sender authentication system"
+HOMEPAGE="http://www.opendkim.org/"
+
+LICENCES="BSD-3"
+SLOT="0"
+MYOPTIONS="
+    cyrus [[ description = [ Use Cyrus SASL ] ]]
+    gnutls
+"
+
+DEPENDENCIES="
+    build+run:
+        mail-mta/sendmail
+        sys-libs/db:=
+        cyrus? ( net-libs/cyrus-sasl )
+        gnutls? ( dev-libs/gnutls[>=2.11.7] )
+        !gnutls? ( dev-libs/openssl )
+"
+
+WORK="${WORKBASE}"/${PNV,,}
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+    'cyrus sasl'
+    'gnutls gnutls /usr'
+)
+
+OpenDKIM_src_install() {
+     default
+     edo rmdir "${IMAGE}"/usr/share/man/man1
+}
+
