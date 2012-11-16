@@ -4,7 +4,7 @@
 require github [ user=sardemff7 suffix=tar.xz ]
 
 SUMMARY="Status line generator"
-HOMEPAGE="http://purple-events.sardemff7.net/"
+HOMEPAGE="http://j4status.j4tools.org/"
 
 LICENCES="GPL-3"
 SLOT="0"
