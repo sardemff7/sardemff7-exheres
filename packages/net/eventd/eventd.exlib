@@ -73,6 +73,10 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     systemd
 )
 
+DEFAULT_SRC_TEST_PARAMS=(
+    EVENTD_TESTS_TMP_DIR="${TEMP}"
+)
+
 eventd_src_test() {
     local unix_sockets=(
         9987
