@@ -53,6 +53,7 @@ DEPENDENCIES="
         xcb? (
             x11-libs/libxcb
             x11-libs/libxcb-glib
+            x11-utils/xcb-util
         )
     recommendation:
         notification-daemon? (
