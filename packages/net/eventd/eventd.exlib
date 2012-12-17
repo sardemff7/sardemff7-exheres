@@ -24,7 +24,7 @@ MYOPTIONS="
     xcb                 [[ description = [ XCB backend for notification plugin ] ]]
 
     ( dbus libnotify )  [[ number-selected = at-most-one ]]
-    notification-daemon [[ *requires = gdk-pixbuf ]]
+    notification-daemon [[ requires = gdk-pixbuf ]]
     ( fbcon xcb )       [[ *requires = notification-daemon ]]
 "
 
