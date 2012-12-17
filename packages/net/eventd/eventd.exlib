@@ -17,13 +17,15 @@ MYOPTIONS="
     debug               [[ description = [ Extra debug output ] ]]
     espeak              [[ description = [ Text-to-Speech plugin ] ]]
     fbcon
+    gdk-pixbuf          [[ description = [ Icon support for notification plugin ] ]]
     libnotify
     notification-daemon [[ description = [ Graphical notifications plugin ] ]]
     sndfile             [[ description = [ sound file playing plugin ] ]]
     xcb                 [[ description = [ XCB backend for notification plugin ] ]]
 
-    ( dbus libnotify ) [[ number-selected = at-most-one ]]
-    ( fbcon xcb )      [[ *requires = notification-daemon ]]
+    ( dbus libnotify )  [[ number-selected = at-most-one ]]
+    notification-daemon [[ *requires = gdk-pixbuf ]]
+    ( fbcon xcb )       [[ *requires = notification-daemon ]]
 "
 
 DEPENDENCIES="
@@ -36,13 +38,15 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.28.0]
         avahi? ( net-dns/avahi )
         espeak? ( app-speech/espeak )
+        gdk-pixbuf? (
+            x11-libs/gdk-pixbuf:2.0
+        )
         libnotify? (
             x11-libs/gdk-pixbuf:2.0
             x11-libs/libnotify[>=0.6.5]
         )
         notification-daemon? (
             x11-libs/cairo
-            x11-libs/gdk-pixbuf:2.0
             x11-libs/pango
         )
         sndfile? (
@@ -56,8 +60,8 @@ DEPENDENCIES="
             x11-utils/xcb-util
         )
     recommendation:
-        notification-daemon? (
-            gnome-desktop/librsvg:2 [[ description = [ SVG support for the nd plugin ] ]]
+        gdk-pixbuf? (
+            gnome-desktop/librsvg:2 [[ description = [ SVG support for notification plugin ] ]]
         )
 "
 
@@ -67,6 +71,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     debug
     espeak
     'fbcon linux-framebuffer'
+    gdk-pixbuf
     libnotify
     notification-daemon
     xcb
