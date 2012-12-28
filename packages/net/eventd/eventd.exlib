@@ -23,9 +23,9 @@ MYOPTIONS="
     sndfile             [[ description = [ sound file playing plugin ] ]]
     xcb                 [[ description = [ XCB backend for notification plugin ] ]]
 
-    ( dbus libnotify )  [[ number-selected = at-most-one ]]
-    notification-daemon [[ requires = gdk-pixbuf ]]
-    ( fbcon xcb )       [[ *requires = notification-daemon ]]
+    ( dbus libnotify )       [[ number-selected = at-most-one ]]
+    notification-daemon      [[ requires = gdk-pixbuf ]]
+    ( fbcon gdk-pixbuf xcb ) [[ *requires = notification-daemon ]]
 "
 
 DEPENDENCIES="
