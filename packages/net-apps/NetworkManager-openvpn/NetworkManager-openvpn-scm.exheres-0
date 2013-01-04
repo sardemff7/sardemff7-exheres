@@ -4,7 +4,7 @@
 MY_PN=network-manager-openvpn
 
 require NetworkManager-openvpn
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 ] ]
 
 PLATFORMS="~amd64"
 
