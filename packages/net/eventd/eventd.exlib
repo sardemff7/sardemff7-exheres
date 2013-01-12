@@ -55,6 +55,7 @@ DEPENDENCIES="
         )
         systemd? ( sys-apps/systemd[>=36] )
         xcb? (
+            x11-libs/cairo[X]
             x11-libs/libxcb
             x11-libs/libxcb-glib
             x11-utils/xcb-util
