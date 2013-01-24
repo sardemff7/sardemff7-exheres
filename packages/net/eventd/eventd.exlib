@@ -21,11 +21,11 @@ MYOPTIONS="
     libnotify
     notification-daemon [[ description = [ Graphical notifications plugin ] ]]
     sndfile             [[ description = [ sound file playing plugin ] ]]
-    xcb                 [[ description = [ XCB backend for notification plugin ] ]]
+    X                   [[ description = [ XCB backend for notification plugin ] ]]
 
-    ( dbus libnotify )       [[ number-selected = at-most-one ]]
-    notification-daemon      [[ requires = gdk-pixbuf ]]
-    ( fbcon gdk-pixbuf xcb ) [[ *requires = notification-daemon ]]
+    ( dbus libnotify )     [[ number-selected = at-most-one ]]
+    notification-daemon    [[ requires = gdk-pixbuf ]]
+    ( fbcon gdk-pixbuf X ) [[ *requires = notification-daemon ]]
 "
 
 DEPENDENCIES="
@@ -54,7 +54,7 @@ DEPENDENCIES="
             media-sound/pulseaudio
         )
         systemd? ( sys-apps/systemd[>=36] )
-        xcb? (
+        X? (
             x11-libs/cairo[X]
             x11-libs/libxcb
             x11-libs/libxcb-glib
@@ -75,9 +75,9 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     gdk-pixbuf
     libnotify
     notification-daemon
-    xcb
     sndfile
     systemd
+    'X xcb'
 )
 
 DEFAULT_SRC_TEST_PARAMS=(
