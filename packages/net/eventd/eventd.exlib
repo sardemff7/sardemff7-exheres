@@ -46,7 +46,7 @@ DEPENDENCIES="
             x11-libs/libnotify[>=0.6.5]
         )
         notification-daemon? (
-            x11-libs/cairo
+            x11-libs/cairo[X?]
             x11-libs/pango
         )
         sndfile? (
@@ -55,7 +55,6 @@ DEPENDENCIES="
         )
         systemd? ( sys-apps/systemd[>=36] )
         X? (
-            x11-libs/cairo[X]
             x11-libs/libxcb
             x11-libs/libxcb-glib
             x11-utils/xcb-util
