@@ -10,5 +10,7 @@ PLATFORMS="~amd64"
 DEPENDENCIES="
     build+run:
         x11-libs/gtk+:2[>=2.16]
+    run:
+        vte? ( dev-libs/vte:0 )
 "
 

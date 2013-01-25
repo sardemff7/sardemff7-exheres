@@ -11,6 +11,8 @@ DEPENDENCIES="
     build+run:
         !gtk3? ( x11-libs/gtk+:2[>=2.16] )
         gtk3? ( x11-libs/gtk+:3 )
+    run:
+        vte? ( dev-libs/vte:3.0 )
 "
 
 AT_M4DIR=( m4 )
