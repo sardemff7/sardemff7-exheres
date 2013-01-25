@@ -7,3 +7,8 @@ DOWNLOADS="http://download.geany.org/${PNV}.tar.bz2"
 
 PLATFORMS="~amd64"
 
+DEPENDENCIES="
+    build+run:
+        x11-libs/gtk+:2[>=2.16]
+"
+
