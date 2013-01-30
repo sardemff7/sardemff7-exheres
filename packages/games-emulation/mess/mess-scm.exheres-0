@@ -34,14 +34,11 @@ MYOPTIONS="
 DEPENDENCIES="
     build:
         app-arch/unzip
-        x11-proto/xineramaproto
     build+run:
         dev-libs/expat
         media-libs/SDL[>=1.2.10][opengl(+)?]
         media-libs/SDL_ttf[>=1.2.10]
         sys-libs/zlib
-        x11-libs/libX11
-        x11-libs/libXinerama
         !games-emulation/mame [[
             description = [ If you want both MAME and MESS install mame[mess] ]
             resolution = uninstall-blocked-after
@@ -60,12 +57,6 @@ src_prepare() {
         -e '/^BUILD_ZLIB/s:^:# :' \
         -e '/^SUFFIX/s:^:# :' \
         makefile
-
-    # Remove gconf-2.0 pkgconfig checks
-    # Only used for the debugger
-    edo sed -i \
-        -e '/gconf-2.0/d' \
-        src/osd/sdl/sdl.mak
 }
 
 src_compile() {
@@ -75,7 +66,7 @@ src_compile() {
         NAME="${PN}"
         OPT_FLAGS=-DINI_PATH=\\\"/usr/share/${PN}/ini\\\"
         NOWERROR=1
-        NO_DEBUGGER=1
+        NO_X11=1
     )
     option opengl || make_opts+=( NO_OPENGL=1 )
 
