@@ -1,0 +1,28 @@
+# Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+
+SCM_REPOSITORY="https://hg.mozilla.org/services/server-core"
+
+require scm-hg setuptools
+
+PLATFORMS="~amd64"
+SLOT="0"
+
+# Wrong targets
+RESTRICT="test"
+
+DEPENDENCIES="
+    build+run:
+        dev-python/cef
+        dev-python/metlog-cef
+        dev-python/metlog-py
+        dev-python/Paste
+        dev-python/PasteDeploy
+        dev-python/Routes
+        dev-python/simplejson
+        dev-python/SQLAlchemy
+        dev-python/WebOb
+        dev-python/WSGIProxy
+"
+

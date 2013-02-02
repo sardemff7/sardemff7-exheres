@@ -1,0 +1,45 @@
+# Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+
+SCM_REPOSITORY="https://hg.mozilla.org/services/server-full"
+
+require scm-hg setuptools
+
+PLATFORMS="~amd64"
+SLOT="0"
+MYOPTIONS="apache"
+
+# Wrong targets
+RESTRICT="test"
+
+DEPENDENCIES="
+    build+run:
+        user/weave
+        group/weave
+        dev-python/PasteScript
+        web-apps/mozilla-sync-reg
+        web-apps/mozilla-sync-storage
+    run:
+        dev-python/metlog-py
+        apache? ( apache-mod/mod_wsgi )
+"
+
+src_install() {
+    distutils_src_install
+
+    insinto /usr/share/doc/${PNVR}/conf
+    doins "${FILES}"/SyncServer.ini.example
+    edo pushd "${WORK}"/etc
+    for f in *.conf; do
+        doins ${f}
+    done
+    edo popd
+
+    insinto /usr/share/${PN}
+    doins "${FILES}"/SyncServer.wsgi
+
+    keepdir /etc/${PN}
+
+    keepdir /var/lib/weave
+}
