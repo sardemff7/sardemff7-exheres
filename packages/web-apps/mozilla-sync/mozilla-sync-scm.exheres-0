@@ -1,0 +1,105 @@
+# Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+MOZILLA_SYNC_MODULES=( core reg storage )
+
+MOZILLA_SERVICES_HG_BASE_URI=https://hg.mozilla.org/services
+
+# Meta server
+SCM_CHECKOUT_TO=mozilla/sync/full
+SCM_REPOSITORY=${MOZILLA_SERVICES_HG_BASE_URI}/server-full
+
+SCM_SECONDARY_REPOSITORIES=""
+SCM_EXTERNAL_REFS=""
+for module in ${MOZILLA_SYNC_MODULES[@]}; do
+    printf -v SCM_mozilla_sync_${module}_REPOSITORY \
+        "%s/server-%s" ${MOZILLA_SERVICES_HG_BASE_URI} ${module}
+    printf -v SCM_mozilla_sync_${module}_CHECKOUT_TO \
+        "mozilla/sync/%s" ${module}
+    printf -v SCM_mozilla_sync_${module}_UNPACK_TO \
+        "%s/deps/server-%s" "${WORK}" ${module}
+    SCM_SECONDARY_REPOSITORIES="${SCM_SECONDARY_REPOSITORIES} mozilla_sync_${module}"
+done
+
+require scm-hg setuptools
+
+SUMMARY="Mozilla Sync server"
+
+UPSTREAM_DOCUMENTATION="
+    http://docs.services.mozilla.com/howtos/run-sync.html [[ lang = en ]]
+"
+
+LICENCES="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="apache"
+
+# Wrong targets
+RESTRICT="test"
+
+DEPENDENCIES="
+    build+run:
+        user/weave
+        group/weave
+        dev-python/cef
+        dev-python/Mako
+        dev-python/metlog-py
+        dev-python/Paste
+        dev-python/PasteDeploy
+        dev-python/PasteScript
+        dev-python/recaptcha-client
+        dev-python/repoze-lru [[ note = [ not in setup.py ] ]]
+        dev-python/Routes
+        dev-python/simplejson
+        dev-python/SQLAlchemy
+        dev-python/WebOb
+        dev-python/WSGIProxy
+    run:
+        dev-python/beaker
+        dev-python/docopt
+        dev-python/MarkupSafe
+        dev-python/metlog-cef
+        dev-python/python-memcached
+        dev-python/WebTest
+        dev-python/zopeinterface
+        dev-python/scrypt
+        apache? ( apache-mod/mod_wsgi )
+    suggestion:
+        dev-python/python-ldap [[ description = [ LDAP registration ] ]]
+        dev-python/psycopg2 [[ description = [ PostgreSQL storage ] ]]
+"
+
+src_compile() {
+    local module
+    for module in ${MOZILLA_SYNC_MODULES[@]}; do
+        edo pushd deps/server-${module}
+        distutils_src_compile
+        edo popd
+    done
+    distutils_src_compile
+}
+
+src_install() {
+    local module
+    for module in ${MOZILLA_SYNC_MODULES[@]}; do
+        edo pushd deps/server-${module}
+        distutils_src_install
+        edo popd
+    done
+    distutils_src_install
+
+    insinto /usr/share/doc/${PNVR}/conf
+    doins "${FILES}"/SyncServer.ini.example
+    edo pushd "${WORK}"/etc
+    for f in *.conf; do
+        doins ${f}
+    done
+    edo popd
+
+    insinto /usr/share/${PN}
+    doins "${FILES}"/SyncServer.wsgi
+
+    keepdir /etc/${PN}
+
+    keepdir /var/lib/weave
+}
