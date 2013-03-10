@@ -5,22 +5,8 @@ require geany-plugins
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 1.11 ] ]
 
 PLATFORMS="~amd64"
-MYOPTIONS="
-    scope [[ description = [ GDB frontend plugin ] ]]
-"
-
-DEPENDENCIES="
-    build+run:
-        scope? ( dev-libs/vte:0[>=0.27] )
-    run:
-        scope? ( sys-devel/gdb[>=7.3] )
-"
 
 AT_M4DIR=( build build/cache )
-
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
-    scope
-)
 
 src_prepare() {
     edo mkdir -p build/cache

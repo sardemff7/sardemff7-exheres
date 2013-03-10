@@ -26,6 +26,7 @@ MYOPTIONS="
     gpg         [[ description = [ GPG support via GeanyPG ] ]]
     lua         [[ description = [ Extend Geany using Lua ] ]]
     multiterm   [[ description = [ Mulitple VTE-based terminals plugin ] ]]
+    scope       [[ description = [ GDB frontend plugin ] ]]
     webkit      [[ description = [ Web development helper using WebKit ] ]]
     xml         [[ description = [ XML Pretty-Print plugin ] ]]
 "
@@ -54,6 +55,7 @@ DEPENDENCIES="
         gpg? ( app-crypt/gpgme )
         lua? ( dev-lang/lua )
         multiterm? ( dev-libs/vte:0[>=0.24] )
+        scope? ( dev-libs/vte:0[>=0.27] )
         spell? ( app-spell/gtkspell:2 )
         webkit? (
             net-libs/webkit-gtk:1
@@ -61,6 +63,8 @@ DEPENDENCIES="
             x11-libs/gdk-pixbuf:2.0
         )
         xml? ( dev-libs/libxml2:2.0 )
+    run:
+        scope? ( sys-devel/gdb[>=7.3] )
     test:
         dev-util/cppcheck
 "
@@ -68,8 +72,8 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-addons
     --enable-codenav
+    --enable-commander
     --enable-geanyextrasel
-    --enable-geanygdb
     --enable-geanyinsertnum
     --enable-geanylatex
     --enable-geanylipsum
@@ -79,6 +83,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-geanysendmail
     --enable-geanyvc
     --enable-gproject
+    --disable-markdown
     --enable-shiftcolumn
     --enable-tableconvert
     --enable-treebrowser
@@ -96,6 +101,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gpg geanypg'
     'lua geanylua'
     multiterm
+    scope
     'spell gtkspell'
     'webkit webhelper'
     'xml pretty-printer'
