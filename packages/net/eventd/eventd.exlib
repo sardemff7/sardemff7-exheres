@@ -93,13 +93,13 @@ eventd_src_test() {
     )
 
     for s in ${unix_sockets[@]}; do
-        esandbox allow_net unix:"${WORK}"/${s}
+        esandbox allow_net unix:"${TEMP}"/${s}
     done
 
     default
 
     for s in ${unix_sockets[@]}; do
-        esandbox disallow_net unix:"${WORK}"/${s}
+        esandbox disallow_net unix:"${TEMP}"/${s}
     done
 }
 
