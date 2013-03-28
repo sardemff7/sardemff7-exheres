@@ -23,7 +23,7 @@ DEPENDENCIES="
         gnome-desktop/yelp-tools
         virtual/pkg-config
     build+run:
-        dev-libs/glib:2[>=2.32.0]
+        dev-libs/glib:2[>=2.34.0]
         gnome-desktop/gsettings-desktop-schemas
         media-libs/jpeg
         media-libs/libpng
