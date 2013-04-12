@@ -1,7 +1,7 @@
 # Copyright 2011-2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=sardemff7 suffix=tar.xz ] vala [ vala_slots=[ 0.20 0.18 0.16 0.14 0.12 ] ] systemd-service
+require github [ user=sardemff7 suffix=tar.xz ] systemd-service
 
 export_exlib_phases src_test
 
@@ -85,9 +85,8 @@ DEFAULT_SRC_TEST_PARAMS=(
 
 eventd_src_test() {
     local unix_sockets=(
-        9987
-        9988
-        9989
+        18011
+        18021
         18031
         18032
     )
