@@ -20,6 +20,7 @@ MYOPTIONS="
     gdk-pixbuf          [[ description = [ Icon support for notification plugin ] ]]
     libnotify
     notification-daemon [[ description = [ Graphical notifications plugin ] ]]
+    purple              [[ description = [ IM plugin ] ]]
     sndfile             [[ description = [ sound file playing plugin ] ]]
     X                   [[ description = [ XCB backend for notification plugin ] ]]
 
@@ -49,6 +50,7 @@ DEPENDENCIES="
             x11-libs/cairo[X?]
             x11-libs/pango
         )
+        purple? ( net-im/pidgin )
         sndfile? (
             media-libs/libsndfile
             media-sound/pulseaudio
@@ -69,12 +71,13 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     avahi
     dbus
     debug
-    espeak
+    'espeak tts'
     'fbcon linux-framebuffer'
     gdk-pixbuf
     libnotify
     notification-daemon
-    sndfile
+    'purple im'
+    'sndfile sound'
     systemd
     'X xcb'
 )
