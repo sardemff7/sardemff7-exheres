@@ -1,0 +1,27 @@
+# Copyright 2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils pypi
+
+SUMMARY="Quick and small memcached client for Python"
+DESCRIPTION="
+pylibmc is a Python client for memcached written in C.
+"
+HOMEPAGE="http://sendapatch.se/projects/pylibmc/"
+
+LICENCES="BSD-3"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/libmemcached
+        net-libs/cyrus-sasl
+        sys-libs/zlib
+"
+
+DISTUTILS_SRC_COMPILE_PARAMS=(
+    --with-sasl2
+)
+
