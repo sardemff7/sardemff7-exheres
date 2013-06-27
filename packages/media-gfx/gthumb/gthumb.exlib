@@ -43,7 +43,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-cxx-warnings=minimum
     --enable-gseal
     --enable-test-suite
-    --disable-deprecated
     --disable-gstreamer
     --disable-libbrasero
     --disable-libjson-glib
