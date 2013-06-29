@@ -20,7 +20,7 @@ DEPENDENCIES="
         bluetooth? ( net-wireless/bluez )
         curl? ( net-misc/curl )
         odbc? ( dev-db/unixODBC )
-        usb? ( dev-libs/libusb:1 )
+        usb? ( virtual/usb:1 )
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
