@@ -22,6 +22,6 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        dev-libs/libusb:1
+        virtual/usb:1
 "
 
