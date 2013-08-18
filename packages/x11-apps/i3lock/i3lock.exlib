@@ -1,4 +1,4 @@
-# Copyright 2011-2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2011-2013 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
 export_exlib_phases src_compile src_install
@@ -23,6 +23,7 @@ DEPENDENCIES="
         sys-libs/pam
         x11-libs/libX11
         x11-libs/libxcb
+        x11-libs/libxkbcommon
         x11-utils/xcb-util
         x11-utils/xcb-util-keysyms
         x11-utils/xcb-util-image
