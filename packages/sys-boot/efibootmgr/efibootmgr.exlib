@@ -11,7 +11,10 @@ SLOT="0"
 
 MYOPTIONS=""
 
-DEPENDENCIES=""
+DEPENDENCIES="
+    build+run:
+        sys-apps/pciutils
+"
 
 DEFAULT_SRC_COMPILE_PARAMS=(
     EXTRA_CFLAGS="${CFLAGS}"
