@@ -25,7 +25,7 @@ DEPENDENCIES="
         dev-libs/glib:2
         net-apps/NetworkManager[>=$(ever range -3)]
         gnome? (
-            gnome-desktop/gnome-keyring
+            gnome-desktop/libgnome-keyring:1
             x11-libs/gtk+:3[>=2.91.4]
         )
     run:
