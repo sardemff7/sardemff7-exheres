@@ -3,5 +3,5 @@
 
 require unixODBC
 
-PLATFORMS="~amd64 ~x86 ~ia64"
+PLATFORMS="~amd64 ~x86"
 
