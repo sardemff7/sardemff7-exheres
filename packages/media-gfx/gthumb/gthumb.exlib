@@ -1,4 +1,4 @@
-# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org [ suffix=.tar.xz ] gtk-icon-cache freedesktop-desktop gsettings
@@ -23,15 +23,18 @@ DEPENDENCIES="
         gnome-desktop/yelp-tools
         virtual/pkg-config
     build+run:
-        dev-libs/glib:2[>=2.34.0]
+        dev-libs/glib:2[>=2.36.0]
+        dev-libs/libsecret:1
         gnome-desktop/gsettings-desktop-schemas
+        gnome-desktop/librsvg:2
         media-libs/jpeg
         media-libs/libpng
+        media-libs/libraw
         media-libs/tiff
         sys-libs/zlib
         x11-libs/gtk+:3[>=3.4.0]
         clutter? (
-            x11-libs/clutter:1
+            x11-libs/clutter:1[>=1.12.0]
             x11-libs/clutter-gtk:1.0
         )
         exif? ( graphics/exiv2 )
@@ -43,12 +46,16 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-cxx-warnings=minimum
     --enable-gseal
     --enable-test-suite
+    --enable-jpeg
     --disable-gstreamer
     --disable-libbrasero
     --disable-libjson-glib
-    --disable-libsecret
+    --enable-libraw
+    --enable-libsecret
+    --disable-libsoup
     --disable-schemas-compile
     --disable-scrollkeeper
+    --enable-tiff
     --disable-webkit2
 )
 
