@@ -1,0 +1,28 @@
+# Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org [ suffix=.tar.xz ] gsettings vala [ vala_slots=[ 0.18 0.16 ] ]
+
+SUMMARY="A solitaire (one player) version of the classic Eastern tile game, Mahjongg"
+HOMEPAGE="https://wiki.gnome.org/Apps/Mahjongg"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool[>=0.35.0]
+        dev-util/itstool
+        virtual/pkg-config
+    build+run:
+        dev-libs/glib:2
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --enable-compile-warnings=minimum
+    --enable-cxx-warnings=minimum
+    --disable-introspection
+    --disable-schemas-compile
+)
+
