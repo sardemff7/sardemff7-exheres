@@ -11,7 +11,7 @@ SLOT="0"
 SUMMARY="Open source video SIP phone for desktop & mobile"
 HOMEPAGE="http://www.linphone.org/"
 
-MYOPTIONS="doc gtk ipv6 libnotify X
+MYOPTIONS="doc gtk libnotify X
     video [[ description = [ Video stream support ] ]]
 
     gtk [[ requires = [ X ] ]]
@@ -42,13 +42,13 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-external-mediastreamer
     --enable-external-ortp
+    --enable-ipv6
     --enable-ssl
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'doc manual'
     'gtk gtk_ui'
-    ipv6
     'libnotify notify'
     video
     'X x11'
