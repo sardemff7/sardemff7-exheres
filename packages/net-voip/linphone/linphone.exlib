@@ -12,8 +12,9 @@ SUMMARY="Open source video SIP phone for desktop & mobile"
 HOMEPAGE="http://www.linphone.org/"
 DOWNLOADS="http://download.savannah.gnu.org/releases/${PN}/$(ever range 1-2).x/sources/${PNV}.tar.gz"
 
-MYOPTIONS="doc gtk libnotify X
-    video [[ description = [ Video stream support ] ]]
+MYOPTIONS="doc gtk libnotify speex X
+    assistant [[ description = [ Setup assistant (automatic account creation) ] ]]
+    video     [[ description = [ Video stream support ] ]]
 
     gtk [[ requires = [ X ] ]]
     X   [[ requires = [ video ] ]]
@@ -27,14 +28,15 @@ DEPENDENCIES="
         doc? ( app-text/sgmltools-lite )
     build+run:
         dev-libs/openssl
-        gnome-desktop/libsoup:2.4
-        media-libs/mediastreamer[speex][video?][X?]
+        media-libs/mediastreamer[speex?][video?][X?]
         media-libs/speex
         net-libs/libeXosip2
         net-libs/libosip2
         net-libs/ortp
+        sys-apps/systemd [[ note = [ udev ] ]]
         sys-libs/ncurses
         sys-libs/readline
+        assistant? ( gnome-desktop/libsoup:2.4 )
         gtk? ( x11-libs/gtk+:2 )
         libnotify? ( x11-libs/libnotify )
         X? ( x11-libs/libX11 )
@@ -45,12 +47,15 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-external-ortp
     --enable-ipv6
     --enable-ssl
+    --disable-upnp
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    assistant
     'doc manual'
     'gtk gtk_ui'
     'libnotify notify'
+    speex
     video
     'X x11'
 )
