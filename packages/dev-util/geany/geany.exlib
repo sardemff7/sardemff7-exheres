@@ -19,6 +19,11 @@ SLOT="0"
 
 MYOPTIONS="
     vte [[ description = [ VTE support ( provides an embedded terminal ) ] ]]
+
+    ( linguas:
+        ar ast be bg ca cs de el en_GB es et eu fa fi fr gl he hi hu id it ja kk ko lb lt mn nl nn
+        pl pt_BR pt ro ru sk sl sr sv tr uk vi zh_CN zh_TW
+    )
 "
 
 DEPENDENCIES="
