@@ -33,10 +33,10 @@ DEPENDENCIES="
         dev-libs/yajl
         x11-libs/libX11
         x11-libs/libxcb[>=1.1.93]
-        x11-libs/libXcursor
         x11-libs/pango
         x11-libs/startup-notification
         x11-utils/xcb-util
+        x11-utils/xcb-util-cursor
         x11-utils/xcb-util-keysyms
         x11-utils/xcb-util-wm
     recommendation:
