@@ -43,6 +43,10 @@ DEPENDENCIES="
         x11-plugins/i3status [[
             description = [ Default source for i3bar ]
         ]]
+    suggestion:
+        x11-misc/dmenu [[
+            description = [ Default program launcher ]
+        ]]
 "
 
 DEFAULT_SRC_COMPILE_PARAMS=(
