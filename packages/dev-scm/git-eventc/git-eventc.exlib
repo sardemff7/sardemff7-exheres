@@ -1,0 +1,18 @@
+# Copyright 2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=sardemff7 ]
+
+SUMMARY="A small project to bridge Git repositories to eventd"
+
+LICENCES="GPL-3"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+       core/json-glib
+       dev-scm/libgit2
+       gnome-desktop/libsoup
+"
+
