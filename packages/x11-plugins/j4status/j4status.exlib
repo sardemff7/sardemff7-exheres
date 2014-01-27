@@ -1,7 +1,7 @@
-# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2012-2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=sardemff7 suffix=tar.xz ]
+require github [ user=sardemff7 ] tuxfamily [ group=j4tools suffix=tar.xz ]
 
 SUMMARY="Status line generator"
 HOMEPAGE="http://j4status.j4tools.org/"
