@@ -1,4 +1,4 @@
-# Copyright 2011-2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2011-2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require eventd
@@ -9,7 +9,6 @@ PLATFORMS="~amd64"
 AT_M4DIR=( m4 )
 
 src_prepare() {
-    edo mkdir -p "${WORK}"/m4
     edo intltoolize --force --copy --automake
     autotools_src_prepare
 }
