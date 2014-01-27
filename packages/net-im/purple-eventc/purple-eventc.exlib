@@ -1,7 +1,7 @@
-# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Copyright 2012-2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=sardemff7 suffix=tar.xz ] vala [ vala_slots=[ 0.20 0.18 0.16 0.14 0.12 ] ]
+require github [ user=sardemff7 ] tuxfamily [ group=eventd suffix=tar.xz ] vala [ vala_slots=[ 0.20 0.18 0.16 0.14 0.12 ] ]
 
 SUMMARY="libpurple plugin client for eventd"
 HOMEPAGE="http://purple-eventc.eventd.org/"
