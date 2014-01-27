@@ -1,9 +1,10 @@
 # Copyright 2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=sardemff7 ]
+require github [ user=sardemff7 ] tuxfamily [ group=eventd suffix=tar.xz ]
 
 SUMMARY="A small project to bridge Git repositories to eventd"
+HOMEPAGE="http://git-eventc.eventd.org"
 
 LICENCES="GPL-3"
 SLOT="0"
