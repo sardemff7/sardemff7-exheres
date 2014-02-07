@@ -15,5 +15,6 @@ DEPENDENCIES="
        core/json-glib
        dev-scm/libgit2
        gnome-desktop/libsoup
+       net/eventd
 "
 
