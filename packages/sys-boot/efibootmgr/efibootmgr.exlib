@@ -3,8 +3,9 @@
 
 export_exlib_phases src_install
 
+require github [ user=vathpela tag=${PV} ]
+
 SUMMARY="A Linux user-space application to modify the Intel Extensible Firmware Interface (EFI) Boot Manager"
-HOMEPAGE="http://developer.intel.com"
 
 LICENCES="GPL-2"
 SLOT="0"
