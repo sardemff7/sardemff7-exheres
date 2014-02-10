@@ -19,6 +19,7 @@ MYOPTIONS="
     fbcon
     gdk-pixbuf          [[ description = [ Icon support for notification plugin ] ]]
     libnotify
+    libcanberra         [[ description = [ Themes and files sound support through libcanberra ] ]]
     notification-daemon [[ description = [ Graphical notifications plugin ] ]]
     purple              [[ description = [ IM plugin ] ]]
     sndfile             [[ description = [ sound file playing plugin ] ]]
