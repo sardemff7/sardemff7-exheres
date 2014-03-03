@@ -33,7 +33,7 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'i3bar i3bar-output'
+    'i3bar i3bar-input-output'
     'network-manager nm-input'
     'sensors sensors-input'
     'systemd systemd-input'
