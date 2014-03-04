@@ -1,0 +1,19 @@
+# Copyright 2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge [ suffix=zip ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 ] ]
+
+SUMMARY="A C library which can read Excel (xls) files"
+
+LICENCES="BSD-2"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        virtual/pkg-config
+"
+
+BUGS_TO="sardemff7@exherbo.org"
+
