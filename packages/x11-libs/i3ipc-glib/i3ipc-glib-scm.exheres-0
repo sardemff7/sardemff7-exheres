@@ -1,0 +1,7 @@
+# Copyright 2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require i3ipc-glib
+
+PLATFORMS="~amd64"
+
