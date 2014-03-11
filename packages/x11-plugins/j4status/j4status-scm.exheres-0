@@ -1,10 +1,15 @@
 # Copyright 2012-2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
+SCM_libgwater_REPOSITORY="git://github.com/sardemff7/libgwater"
+
+SCM_SECONDARY_REPOSITORIES="libgwater"
+SCM_EXTERNAL_REFS="libgwater:libgwater"
+
 require j4status
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 ] ]
 
 PLATFORMS="~amd64"
 
-AT_M4DIR=( m4 )
+AT_M4DIR=( m4 libgwater )
 

@@ -12,6 +12,7 @@ SLOT="0"
 MYOPTIONS="
     i3bar           [[ description = [ i3bar JSON protocol support ] ]]
     i3focus         [[ description = [ i3 focus event support through i3ipc-glib ] ]]
+    mpd             [[ description = [ MPD support through libmpdclient ] ]]
     network-manager [[ description = [ Network status support through NetworkManager ] ]]
     sensors         [[ description = [ Sensors support through lm_sensors’ libsensors ] ]]
     systemd         [[ description = [ systemd unit file monitoring support ] ]]
@@ -25,6 +26,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.28.0]
         i3bar? ( dev-libs/yajl )
         i3focus? ( x11-libs/i3ipc-glib )
+        mpd? ( media-libs/libmpdclient )
         network-manager? ( net-apps/NetworkManager[>=0.9] )
         sensors? ( sys-apps/lm_sensors )
         systemd? (
@@ -37,6 +39,7 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'i3bar i3bar-input-output'
     'i3focus i3focus-input'
+    'mpd mpd-input'
     'network-manager nm-input'
     'sensors sensors-input'
     'systemd systemd-input'
