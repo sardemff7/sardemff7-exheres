@@ -61,7 +61,6 @@ DEPENDENCIES="
         systemd? ( sys-apps/systemd[>=36] )
         X? (
             x11-libs/libxcb
-            x11-libs/libxcb-glib
             x11-utils/xcb-util
         )
     recommendation:
