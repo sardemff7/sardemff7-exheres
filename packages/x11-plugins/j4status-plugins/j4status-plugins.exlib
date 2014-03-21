@@ -1,0 +1,28 @@
+# Copyright 2012-2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=j4tools ] tuxfamily [ group=j4tools suffix=tar.xz ]
+
+SUMMARY="Various plugins for j4status"
+HOMEPAGE="http://j4status.j4tools.org/"
+
+LICENCES="GPL-3"
+SLOT="0"
+
+MYOPTIONS="
+    i3focus         [[ description = [ i3 focus event support through i3ipc-glib ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        virtual/pkg-config
+    build+run:
+        dev-libs/glib:2[>=2.28.0]
+        x11-plugins/j4status
+        i3focus? ( x11-libs/i3ipc-glib )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'i3focus i3focus-input'
+)
+
