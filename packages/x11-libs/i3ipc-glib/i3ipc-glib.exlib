@@ -4,6 +4,8 @@
 require github [ user=acrisci tag=v${PV} ]
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 ] ]
 
+export_exlib_phases src_prepare
+
 SUMMARY="A C interface library to i3wm"
 
 LICENCES="GPL-3"
@@ -25,4 +27,9 @@ BUGS_TO="sardemff7@exherbo.org"
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gobject-introspection introspection'
 )
+
+i3ipc-glib_src_prepare() {
+    edo gtkdocize --copy
+    autotools_src_prepare
+}
 
