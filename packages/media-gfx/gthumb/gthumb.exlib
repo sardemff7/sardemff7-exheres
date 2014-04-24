@@ -34,7 +34,7 @@ DEPENDENCIES="
         gnome-desktop/gsettings-desktop-schemas
         gnome-desktop/librsvg:2
         media-libs/jpeg
-        media-libs/libpng
+        media-libs/libpng:=
         media-libs/libraw
         media-libs/tiff
         sys-libs/zlib
