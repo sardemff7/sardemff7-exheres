@@ -21,14 +21,26 @@ DEPENDENCIES="
     build+run:
         dev-libs/libev
         sys-libs/pam
-        x11-libs/libX11
         x11-libs/libxcb
-        x11-libs/libxkbcommon
         x11-utils/xcb-util
         x11-utils/xcb-util-keysyms
         x11-utils/xcb-util-image
         cairo? ( x11-libs/cairo )
 "
+
+if ever at_least scm; then
+    DEPENDENCIES+="
+        build+run:
+            x11-libs/libxkbcommon[X]
+    "
+else
+    DEPENDENCIES+="
+        build+run:
+            x11-libs/libX11
+            x11-libs/libxkbcommon
+            x11-libs/libxkbfile
+    "
+fi
 
 i3lock_src_compile() {
     emake \
