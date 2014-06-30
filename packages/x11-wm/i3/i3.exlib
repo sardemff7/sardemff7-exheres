@@ -30,7 +30,7 @@ DEPENDENCIES="
         x11-proto/xcb-proto[>=1.3]
     build+run:
         dev-libs/libev
-        dev-libs/yajl
+        dev-libs/yajl[>=2.0.1]
         x11-libs/libX11
         x11-libs/libxcb[>=1.1.93]
         x11-libs/pango
@@ -46,6 +46,13 @@ DEPENDENCIES="
     suggestion:
         x11-misc/dmenu [[
             description = [ Default program launcher ]
+        ]]
+        (
+            dev-perl/AnyEvent-I3
+            dev-perl/JSON-XS
+        ) [[
+            *description = [ Used by the tree saving utility ]
+            *group-name = [ i3-save-tree ]
         ]]
 "
 
