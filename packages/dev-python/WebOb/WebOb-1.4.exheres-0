@@ -1,0 +1,32 @@
+# Copyright 2012 Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
+# Copyright 2014 Calvin Walton <calvin.walton@kepstin.ca>
+# Distributed under the terms of the GNU General Public License v2
+
+require pypi
+require setup-py [ import=setuptools blacklist=3.1 ]
+
+SUMMARY="WSGI request and response object"
+DESCRIPTION="
+WebOb provides wrappers around the WSGI request environment, and an
+object to help create WSGI responses.
+
+The objects map much of the specified behavior of HTTP, including
+header parsing and accessors for other standard parts of the
+environment.
+"
+HOMEPAGE="http://webob.org/"
+
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    test:
+        dev-python/nose[python_abis:*(-)?]
+"
+
+setup-py_test_one_multibuild() {
+    edo ${PYTHON} -B setup.py nosetests
+}
+
