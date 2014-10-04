@@ -11,25 +11,17 @@ HOMEPAGE="http://www.opendkim.org/"
 LICENCES="BSD-3"
 SLOT="0"
 MYOPTIONS="
-    ( providers:
-        libmilter
-        sendmail
-    ) [[
-        *description = [ libmilter provider ]
-        number-selected = at-least-one
-    ]]
     cyrus [[ description = [ Use Cyrus SASL ] ]]
     gnutls
 "
 
 DEPENDENCIES="
     build+run:
+        mail-filter/libmilter
         sys-libs/db:=
         cyrus? ( net-libs/cyrus-sasl )
         gnutls? ( dev-libs/gnutls[>=2.11.7] )
         !gnutls? ( dev-libs/openssl )
-        providers:libmilter? ( mail-libs/libmilter )
-        providers:sendmail? ( mail-mta/sendmail )
 "
 
 WORK="${WORKBASE}"/${PNV,,}
