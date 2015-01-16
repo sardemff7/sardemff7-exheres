@@ -1,0 +1,19 @@
+# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2014-2015 Kylie McClain <somasissounds@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require chkrootkit
+
+PLATFORMS="~amd64"
+
+src_prepare() {
+    chkrootkit_src_prepare
+    # fix paths to extra executables
+    edo sed -i -e 's#./check_wtmpx#check_wtmpx#g' \
+               -e 's#./chkdirs#chkdirs#g' \
+               -e 's#./chklastlog#chklastlog#g' \
+               -e 's#./chkproc#chkproc#g' \
+               -e 's#./chkutmp#chkutmp#g' \
+               -e 's#./chkwtmp#chkwtmp#g' \
+               -e 's#./ifpromisc#ifpromisc#g' ${PN}
+}
