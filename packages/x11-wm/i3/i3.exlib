@@ -31,7 +31,8 @@ DEPENDENCIES="
     build+run:
         dev-libs/libev
         dev-libs/yajl[>=2.0.1]
-        x11-libs/libxcb[>=1.1.93]
+        x11-libs/cairo[X]
+        x11-libs/libxkbcommon[X][>=0.4.0]
         x11-libs/pango
         x11-libs/startup-notification
         x11-utils/xcb-util
@@ -54,18 +55,6 @@ DEPENDENCIES="
             *group-name = [ i3-save-tree ]
         ]]
 "
-
-if ever at_least scm; then
-    DEPENDENCIES+="
-        build+run:
-            x11-libs/libxkbcommon[X]
-    "
-else
-    DEPENDENCIES+="
-        build+run:
-            x11-libs/libX11
-    "
-fi
 
 DEFAULT_SRC_COMPILE_PARAMS=(
     V=1
