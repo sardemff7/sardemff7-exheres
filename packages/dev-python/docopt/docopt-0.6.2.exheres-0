@@ -1,7 +1,7 @@
 # Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require setuptools pypi
+require setup-py [ import=setuptools ] pypi
 
 SUMMARY="Pythonic argument parser, that will make you smile"
 HOMEPAGE="http://docopt.org/"
