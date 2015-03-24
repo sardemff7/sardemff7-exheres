@@ -32,6 +32,7 @@ DEPENDENCIES="
         dev-libs/libev
         dev-libs/yajl[>=2.0.1]
         x11-libs/cairo[X]
+        x11-libs/libxcb[>=1.1.93]
         x11-libs/libxkbcommon[X][>=0.4.0]
         x11-libs/pango
         x11-libs/startup-notification
