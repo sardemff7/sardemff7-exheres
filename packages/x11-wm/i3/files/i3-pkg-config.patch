@@ -1,0 +1,209 @@
+From: Thomas Anderson <tanderson@caltech.edu>
+Date: Tue, 7 Apr 2015 18:57:40 -0700
+Subject: [PATCH] Respect EXEC_PREFIX and a users' choice of PKG_CONFIG.
+
+The Makefiles should put binaries in $(EXEC_PREFIX) and
+architecture-independent files in $(PREFIX). Also a user may have a
+prefixed- pkg-config, as in the case of cross compiling on Exherbo
+Linux, so respect the well-accepted $(PKG_CONFIG) variable for this
+purpose.
+---
+ common.mk                            | 15 +++++++++++----
+ i3-config-wizard/i3-config-wizard.mk |  4 ++--
+ i3-dump-log/i3-dump-log.mk           |  4 ++--
+ i3-input/i3-input.mk                 |  4 ++--
+ i3-msg/i3-msg.mk                     |  4 ++--
+ i3-nagbar/i3-nagbar.mk               |  4 ++--
+ i3bar/i3bar.mk                       |  4 ++--
+ src/i3.mk                            | 22 +++++++++++-----------
+ 8 files changed, 34 insertions(+), 27 deletions(-)
+
+diff --git a/common.mk b/common.mk
+index dcc90c9..83163f9 100644
+--- a/common.mk
++++ b/common.mk
+@@ -5,6 +5,9 @@ LN=ln
+ ifndef PREFIX
+   PREFIX=/usr
+ endif
++ifndef EXEC_PREFIX
++  EXEC_PREFIX=$(PREFIX)
++endif
+ ifndef SYSCONFDIR
+   ifeq ($(PREFIX),/usr)
+     SYSCONFDIR=/etc
+@@ -59,8 +62,12 @@ I3_CPPFLAGS += -DI3__FILE__=__FILE__
+ 
+ ## Libraries flags
+ 
++ifndef PKG_CONFIG
+ ifeq ($(shell which pkg-config 2>/dev/null 1>/dev/null || echo 1),1)
+ $(error "pkg-config was not found")
++else
++PKG_CONFIG = $(which pkg-config)
++endif
+ endif
+ 
+ # An easier way to get CFLAGS and LDFLAGS falling back in case there's
+@@ -73,15 +80,15 @@ endif
+ #
+ # We redirect stderr to /dev/null because pkg-config prints an error if support
+ # for gnome-config was enabled but gnome-config is not actually installed.
+-cflags_for_lib = $(shell pkg-config --silence-errors --cflags $(1) 2>/dev/null)
+-ldflags_for_lib = $(shell pkg-config --exists 2>/dev/null $(1) && pkg-config --libs $(1) 2>/dev/null || echo -l$(2))
++cflags_for_lib = $(shell $(PKG_CONFIG) --silence-errors --cflags $(1) 2>/dev/null)
++ldflags_for_lib = $(shell $(PKG_CONFIG) --exists 2>/dev/null $(1) && $(PKG_CONFIG) --libs $(1) 2>/dev/null || echo -l$(2))
+ 
+ # XCB common stuff
+ XCB_CFLAGS  := $(call cflags_for_lib, xcb)
+ XCB_CFLAGS  += $(call cflags_for_lib, xcb-event)
+ XCB_LIBS    := $(call ldflags_for_lib, xcb,xcb)
+ XCB_LIBS    += $(call ldflags_for_lib, xcb-event,xcb-event)
+-ifeq ($(shell pkg-config --exists xcb-util 2>/dev/null || echo 1),1)
++ifeq ($(shell $(PKG_CONFIG) --exists xcb-util 2>/dev/null || echo 1),1)
+ XCB_CFLAGS  += $(call cflags_for_lib, xcb-atom)
+ XCB_CFLAGS  += $(call cflags_for_lib, xcb-aux)
+ XCB_LIBS    += $(call ldflags_for_lib, xcb-atom,xcb-atom)
+@@ -124,7 +131,7 @@ LIBEV_LIBS   := $(call ldflags_for_lib, libev,ev)
+ 
+ # libpcre
+ PCRE_CFLAGS := $(call cflags_for_lib, libpcre)
+-ifeq ($(shell pkg-config --atleast-version=8.10 libpcre 2>/dev/null && echo 1),1)
++ifeq ($(shell $(PKG_CONFIG) --atleast-version=8.10 libpcre 2>/dev/null && echo 1),1)
+ I3_CPPFLAGS += -DPCRE_HAS_UCP=1
+ endif
+ PCRE_LIBS   := $(call ldflags_for_lib, libpcre,pcre)
+diff --git a/i3-config-wizard/i3-config-wizard.mk b/i3-config-wizard/i3-config-wizard.mk
+index 1dab645..900893f 100644
+--- a/i3-config-wizard/i3-config-wizard.mk
++++ b/i3-config-wizard/i3-config-wizard.mk
+@@ -20,8 +20,8 @@ i3-config-wizard/i3-config-wizard: libi3.a $(i3_config_wizard_OBJECTS)
+ 
+ install-i3-config-wizard: i3-config-wizard/i3-config-wizard
+ 	echo "[i3-config-wizard] Install"
+-	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/bin
+-	$(INSTALL) -m 0755 i3-config-wizard/i3-config-wizard $(DESTDIR)$(PREFIX)/bin/
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(EXEC_PREFIX)/bin
++	$(INSTALL) -m 0755 i3-config-wizard/i3-config-wizard $(DESTDIR)$(EXEC_PREFIX)/bin/
+ 
+ clean-i3-config-wizard:
+ 	echo "[i3-config-wizard] Clean"
+diff --git a/i3-dump-log/i3-dump-log.mk b/i3-dump-log/i3-dump-log.mk
+index bbce356..7e5d449 100644
+--- a/i3-dump-log/i3-dump-log.mk
++++ b/i3-dump-log/i3-dump-log.mk
+@@ -20,8 +20,8 @@ i3-dump-log/i3-dump-log: libi3.a $(i3_dump_log_OBJECTS)
+ 
+ install-i3-dump-log: i3-dump-log/i3-dump-log
+ 	echo "[i3-dump-log] Install"
+-	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/bin
+-	$(INSTALL) -m 0755 i3-dump-log/i3-dump-log $(DESTDIR)$(PREFIX)/bin/
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(EXEC_PREFIX)/bin
++	$(INSTALL) -m 0755 i3-dump-log/i3-dump-log $(DESTDIR)$(EXEC_PREFIX)/bin/
+ 
+ clean-i3-dump-log:
+ 	echo "[i3-dump-log] Clean"
+diff --git a/i3-input/i3-input.mk b/i3-input/i3-input.mk
+index 03f4e0a..be3e283 100644
+--- a/i3-input/i3-input.mk
++++ b/i3-input/i3-input.mk
+@@ -20,8 +20,8 @@ i3-input/i3-input: libi3.a $(i3_input_OBJECTS)
+ 
+ install-i3-input: i3-input/i3-input
+ 	echo "[i3-input] Install"
+-	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/bin
+-	$(INSTALL) -m 0755 i3-input/i3-input $(DESTDIR)$(PREFIX)/bin/
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(EXEC_PREFIX)/bin
++	$(INSTALL) -m 0755 i3-input/i3-input $(DESTDIR)$(EXEC_PREFIX)/bin/
+ 
+ clean-i3-input:
+ 	echo "[i3-input] Clean"
+diff --git a/i3-msg/i3-msg.mk b/i3-msg/i3-msg.mk
+index fda56da..277c43e 100644
+--- a/i3-msg/i3-msg.mk
++++ b/i3-msg/i3-msg.mk
+@@ -20,8 +20,8 @@ i3-msg/i3-msg: libi3.a $(i3_msg_OBJECTS)
+ 
+ install-i3-msg: i3-msg/i3-msg
+ 	echo "[i3-msg] Install"
+-	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/bin
+-	$(INSTALL) -m 0755 i3-msg/i3-msg $(DESTDIR)$(PREFIX)/bin/
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(EXEC_PREFIX)/bin
++	$(INSTALL) -m 0755 i3-msg/i3-msg $(DESTDIR)$(EXEC_PREFIX)/bin/
+ 
+ clean-i3-msg:
+ 	echo "[i3-msg] Clean"
+diff --git a/i3-nagbar/i3-nagbar.mk b/i3-nagbar/i3-nagbar.mk
+index e98d658..aba3c09 100644
+--- a/i3-nagbar/i3-nagbar.mk
++++ b/i3-nagbar/i3-nagbar.mk
+@@ -20,8 +20,8 @@ i3-nagbar/i3-nagbar: libi3.a $(i3_nagbar_OBJECTS)
+ 
+ install-i3-nagbar: i3-nagbar/i3-nagbar
+ 	echo "[i3-nagbar] Install"
+-	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/bin
+-	$(INSTALL) -m 0755 i3-nagbar/i3-nagbar $(DESTDIR)$(PREFIX)/bin/
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(EXEC_PREFIX)/bin
++	$(INSTALL) -m 0755 i3-nagbar/i3-nagbar $(DESTDIR)$(EXEC_PREFIX)/bin/
+ 
+ clean-i3-nagbar:
+ 	echo "[i3-nagbar] Clean"
+diff --git a/i3bar/i3bar.mk b/i3bar/i3bar.mk
+index 53227a8..737b0b6 100644
+--- a/i3bar/i3bar.mk
++++ b/i3bar/i3bar.mk
+@@ -20,8 +20,8 @@ i3bar/i3bar: libi3.a $(i3bar_OBJECTS)
+ 
+ install-i3bar: i3bar/i3bar
+ 	echo "[i3bar] Install"
+-	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/bin
+-	$(INSTALL) -m 0755 i3bar/i3bar $(DESTDIR)$(PREFIX)/bin/
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(EXEC_PREFIX)/bin
++	$(INSTALL) -m 0755 i3bar/i3bar $(DESTDIR)$(EXEC_PREFIX)/bin/
+ 
+ clean-i3bar:
+ 	echo "[i3bar] Clean"
+diff --git a/src/i3.mk b/src/i3.mk
+index 8c76346..e850e23 100644
+--- a/src/i3.mk
++++ b/src/i3.mk
+@@ -70,25 +70,25 @@ i3: libi3.a $(i3_OBJECTS)
+ 
+ install-i3: i3
+ 	echo "[i3] Install"
+-	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/bin
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(EXEC_PREFIX)/bin
+ 	$(INSTALL) -d -m 0755 $(DESTDIR)$(SYSCONFDIR)/i3
+-	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/include/i3
++	$(INSTALL) -d -m 0755 $(DESTDIR)$(EXEC_PREFIX)/include/i3
+ 	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/share/xsessions
+ 	$(INSTALL) -d -m 0755 $(DESTDIR)$(PREFIX)/share/applications
+-	$(INSTALL) -m 0755 i3 $(DESTDIR)$(PREFIX)/bin/
+-	$(LN) -sf i3 $(DESTDIR)$(PREFIX)/bin/i3-with-shmlog
+-	$(INSTALL) -m 0755 i3-migrate-config-to-v4 $(DESTDIR)$(PREFIX)/bin/
+-	$(INSTALL) -m 0755 i3-sensible-editor $(DESTDIR)$(PREFIX)/bin/
+-	$(INSTALL) -m 0755 i3-sensible-pager $(DESTDIR)$(PREFIX)/bin/
+-	$(INSTALL) -m 0755 i3-sensible-terminal $(DESTDIR)$(PREFIX)/bin/
+-	$(INSTALL) -m 0755 i3-save-tree $(DESTDIR)$(PREFIX)/bin/
+-	$(INSTALL) -m 0755 i3-dmenu-desktop $(DESTDIR)$(PREFIX)/bin/
++	$(INSTALL) -m 0755 i3 $(DESTDIR)$(EXEC_PREFIX)/bin/
++	$(LN) -sf i3 $(DESTDIR)$(EXEC_PREFIX)/bin/i3-with-shmlog
++	$(INSTALL) -m 0755 i3-migrate-config-to-v4 $(DESTDIR)$(EXEC_PREFIX)/bin/
++	$(INSTALL) -m 0755 i3-sensible-editor $(DESTDIR)$(EXEC_PREFIX)/bin/
++	$(INSTALL) -m 0755 i3-sensible-pager $(DESTDIR)$(EXEC_PREFIX)/bin/
++	$(INSTALL) -m 0755 i3-sensible-terminal $(DESTDIR)$(EXEC_PREFIX)/bin/
++	$(INSTALL) -m 0755 i3-save-tree $(DESTDIR)$(EXEC_PREFIX)/bin/
++	$(INSTALL) -m 0755 i3-dmenu-desktop $(DESTDIR)$(EXEC_PREFIX)/bin/
+ 	test -e $(DESTDIR)$(SYSCONFDIR)/i3/config || $(INSTALL) -m 0644 i3.config $(DESTDIR)$(SYSCONFDIR)/i3/config
+ 	test -e $(DESTDIR)$(SYSCONFDIR)/i3/config.keycodes || $(INSTALL) -m 0644 i3.config.keycodes $(DESTDIR)$(SYSCONFDIR)/i3/config.keycodes
+ 	$(INSTALL) -m 0644 i3.xsession.desktop $(DESTDIR)$(PREFIX)/share/xsessions/i3.desktop
+ 	$(INSTALL) -m 0644 i3-with-shmlog.xsession.desktop $(DESTDIR)$(PREFIX)/share/xsessions/i3-with-shmlog.desktop
+ 	$(INSTALL) -m 0644 i3.applications.desktop $(DESTDIR)$(PREFIX)/share/applications/i3.desktop
+-	$(INSTALL) -m 0644 include/i3/ipc.h $(DESTDIR)$(PREFIX)/include/i3/
++	$(INSTALL) -m 0644 include/i3/ipc.h $(DESTDIR)$(EXEC_PREFIX)/include/i3/
+ 
+ clean-i3:
+ 	echo "[i3] Clean"
+-- 
+2.3.3
+
