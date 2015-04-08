@@ -57,7 +57,20 @@ DEPENDENCIES="
         ]]
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PN}-pkg-config.patch )
+
 DEFAULT_SRC_COMPILE_PARAMS=(
+    CC=$(exhost --target)-gcc
+    AR=$(exhost --target)-ar
+    PKG_CONFIG=$(exhost --tool-prefix)pkg-config
+    EXEC_PREFIX=/usr/$(exhost --target)
+    SYSCONFDIR=/etc
+    V=1
+)
+
+DEFAULT_SRC_INSTALL_PARAMS=(
+    EXEC_PREFIX=/usr/$(exhost --target)
+    SYSCONFDIR=/etc
     V=1
 )
 
