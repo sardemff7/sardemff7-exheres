@@ -24,12 +24,12 @@ mlocate_src_install() {
     local alternatives=(
         locate ${PN} 10
 
-        /usr/bin/locate                     ${PN}.locate
-        /usr/bin/updatedb                   ${PN}.updatedb
-        /usr/share/man/man1/locate.1        /usr/share/man/man1/${PN}.locate.1
-        /usr/share/man/man5/mlocate.db.5    /usr/share/man/man5/${PN}.mlocate.db.5
-        /usr/share/man/man5/updatedb.conf.5 /usr/share/man/man5/${PN}.updatedb.conf.5
-        /usr/share/man/man8/updatedb.8      /usr/share/man/man8/${PN}.updatedb.8
+        /usr/$(exhost --target)/bin/locate   ${PN}.locate
+        /usr/$(exhost --target)/bin/updatedb ${PN}.updatedb
+        /usr/share/man/man1/locate.1         /usr/share/man/man1/${PN}.locate.1
+        /usr/share/man/man5/mlocate.db.5     /usr/share/man/man5/${PN}.mlocate.db.5
+        /usr/share/man/man5/updatedb.conf.5  /usr/share/man/man5/${PN}.updatedb.conf.5
+        /usr/share/man/man8/updatedb.8       /usr/share/man/man8/${PN}.updatedb.8
     )
 
     alternatives_for "${alternatives[@]}"
