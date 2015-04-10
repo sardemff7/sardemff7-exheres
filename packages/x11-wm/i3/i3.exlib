@@ -58,6 +58,19 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_COMPILE_PARAMS=(
+    CC=${CC}
+    AR=${AR}
+    PKG_CONFIG=$(exhost --tool-prefix)pkg-config
+    PREFIX=/usr
+    EXEC_PREFIX=/usr/$(exhost --target)
+    SYSCONFDIR=/etc
+    V=1
+)
+
+DEFAULT_SRC_INSTALL_PARAMS=(
+    PREFIX=/usr
+    EXEC_PREFIX=/usr/$(exhost --target)
+    SYSCONFDIR=/etc
     V=1
 )
 

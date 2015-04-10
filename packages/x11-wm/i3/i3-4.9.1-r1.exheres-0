@@ -14,3 +14,7 @@ UPSTREAM_DOCUMENTATION="
 
 PLATFORMS="~amd64"
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/0001-Respect-EXEC_PREFIX-and-a-users-choice-of-PKG_CONFIG.patch
+)
+
