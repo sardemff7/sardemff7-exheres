@@ -24,3 +24,9 @@ DEPENDENCIES="
         sys-sound/alsa-lib
 "
 
+DEFAULT_SRC_INSTALL_PARAMS=(
+    PREFIX=/usr/$(exhost --target)
+    MANPREFIX=/usr
+    SYSCONFDIR=/etc
+)
+
