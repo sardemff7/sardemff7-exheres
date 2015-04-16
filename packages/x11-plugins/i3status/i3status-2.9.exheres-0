@@ -7,3 +7,6 @@ DOWNLOADS="http://i3wm.org/${PN}/${PNV}.tar.bz2"
 
 PLATFORMS="~amd64"
 
+# Patch accepted upstream, delete after next release
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}"/${PN}-prefix-install-paths.patch )
+
