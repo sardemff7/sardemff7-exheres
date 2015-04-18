@@ -68,6 +68,7 @@ DEFAULT_SRC_COMPILE_PARAMS=(
 )
 
 DEFAULT_SRC_INSTALL_PARAMS=(
+    PKG_CONFIG=$(exhost --tool-prefix)pkg-config
     PREFIX=/usr
     EXEC_PREFIX=/usr/$(exhost --target)
     SYSCONFDIR=/etc
