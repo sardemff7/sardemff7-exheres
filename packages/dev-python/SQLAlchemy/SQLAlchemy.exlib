@@ -1,7 +1,7 @@
 # Copyright 2011 Dan Callaghan <djc@djc.id.au>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ project=sqlalchemy ] pypi setuptools [ python_dep=2.4 ]
+require sourceforge [ project=sqlalchemy ] pypi setup-py [ import=distutils test=pytest ]
 
 SUMMARY="Database abstraction library for Python"
 DESCRIPTION="
@@ -17,7 +17,6 @@ SLOT="0"
 
 DEPENDENCIES="
     test:
-        dev-lang/python:*[sqlite]
-        dev-python/nose
+        dev-python/mock[python_abis:*(-)?]
 "
 
