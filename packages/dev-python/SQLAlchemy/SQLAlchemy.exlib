@@ -1,7 +1,7 @@
 # Copyright 2011 Dan Callaghan <djc@djc.id.au>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ project=sqlalchemy ] pypi setup-py [ import=distutils test=pytest ]
+require sourceforge [ project=sqlalchemy ] pypi setup-py [ import=distutils python_opts=[sqlite] test=pytest ]
 
 SUMMARY="Database abstraction library for Python"
 DESCRIPTION="
