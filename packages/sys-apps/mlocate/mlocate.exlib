@@ -18,6 +18,10 @@ DEPENDENCIES="
         group/${PN}
 "
 
+DEFAULT_SRC_COMPILE_PARAMS=(
+    AR="${AR}"
+)
+
 mlocate_src_install() {
     default
 
