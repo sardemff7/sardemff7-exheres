@@ -18,6 +18,10 @@ DEPENDENCIES="
         group/${PN}
 "
 
+# XXX: sydbox prevents tests to pass
+# See https://bugs.exherbo.org/show_bug.cgi?id=412
+RESTRICT=test
+
 DEFAULT_SRC_COMPILE_PARAMS=(
     AR="${AR}"
 )
