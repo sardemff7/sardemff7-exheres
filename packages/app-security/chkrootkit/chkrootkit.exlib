@@ -15,7 +15,19 @@ MYOPTIONS=""
 
 DEPENDENCIES=""
 
+DEFAULT_SRC_COMPILE_PARAMS=(
+    CC=${CC}
+    sense
+)
+
 chkrootkit_src_prepare() {
+    # Respect CFLAGS
+    # Do not strip
+    edo sed -i \
+        -e '/^CFLAGS/s:=:+=:' \
+        -e '/@strip/d' \
+        Makefile
+
     # Fix log path
     edo sed -i \
         -e 's|/var/adm/|/var/log/|g' \
