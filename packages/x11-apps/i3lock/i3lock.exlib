@@ -1,7 +1,7 @@
 # Copyright 2011-2013 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
-export_exlib_phases src_compile src_install
+export_exlib_phases src_install
 
 SUMMARY="A simple screen locker like slock"
 DESCRIPTION="
@@ -13,7 +13,7 @@ HOMEPAGE="http://i3wm.org/${PN}"
 LICENCES="BSD-3"
 SLOT="0"
 
-MYOPTIONS="cairo"
+MYOPTIONS=""
 
 DEPENDENCIES="
     build:
@@ -21,11 +21,11 @@ DEPENDENCIES="
     build+run:
         dev-libs/libev
         sys-libs/pam
+        x11-libs/cairo[X]
         x11-libs/libxcb
         x11-utils/xcb-util
         x11-utils/xcb-util-keysyms
         x11-utils/xcb-util-image
-        cairo? ( x11-libs/cairo )
 "
 
 if ever at_least scm; then
@@ -41,11 +41,6 @@ else
             x11-libs/libxkbfile
     "
 fi
-
-i3lock_src_compile() {
-    emake \
-        $(option cairo || echo NOLIBCAIRO=y)
-}
 
 i3lock_src_install() {
     default
