@@ -7,3 +7,7 @@ require i3lock scm-git
 
 PLATFORMS="~amd64"
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/0001-Make-pkg-config-configurable.patch
+)
+

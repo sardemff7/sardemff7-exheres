@@ -1,0 +1,42 @@
+Upstream: https://github.com/i3/i3lock/pull/14
+
+From 36b408c71dd146c74a395a4914beb3d68bc484b2 Mon Sep 17 00:00:00 2001
+From: Nikolay Orlyuk <virkony@gmail.com>
+Date: Sun, 26 Apr 2015 21:57:47 +0300
+Subject: [PATCH] Make pkg-config configurable
+
+---
+ Makefile | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index d91eaf7..ea724a8 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,18 +1,19 @@
+ INSTALL=install
+ PREFIX=/usr
+ SYSCONFDIR=/etc
++PKG_CONFIG ?= pkg-config
+ 
+ # Check if pkg-config is installed, we need it for building CFLAGS/LIBS
+-ifeq ($(shell which pkg-config 2>/dev/null 1>/dev/null || echo 1),1)
+-$(error "pkg-config was not found")
++ifeq ($(shell which $(PKG_CONFIG) 2>/dev/null 1>/dev/null || echo 1),1)
++$(error "$(PKG_CONFIG) was not found")
+ endif
+ 
+ CFLAGS += -std=c99
+ CFLAGS += -pipe
+ CFLAGS += -Wall
+ CPPFLAGS += -D_GNU_SOURCE
+-CFLAGS += $(shell pkg-config --cflags cairo xcb-dpms xcb-xinerama xcb-atom xcb-image xcb-xkb xkbcommon xkbcommon-x11)
+-LIBS += $(shell pkg-config --libs cairo xcb-dpms xcb-xinerama xcb-atom xcb-image xcb-xkb xkbcommon xkbcommon-x11)
++CFLAGS += $(shell $(PKG_CONFIG) --cflags cairo xcb-dpms xcb-xinerama xcb-atom xcb-image xcb-xkb xkbcommon xkbcommon-x11)
++LIBS += $(shell $(PKG_CONFIG) --libs cairo xcb-dpms xcb-xinerama xcb-atom xcb-image xcb-xkb xkbcommon xkbcommon-x11)
+ LIBS += -lpam
+ LIBS += -lev
+ LIBS += -lm
+-- 
+2.3.3
+
