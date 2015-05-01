@@ -4,6 +4,9 @@
 #     Copyright 1999-2011 Gentoo Foundation
 
 require sourceforge [ project=qalculate suffix=tar.gz ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
+
+export_exlib_phases src_prepare
 
 SUMMARY="The ultimate desktop calculator - GTK+ frontend"
 
@@ -24,4 +27,13 @@ DEPENDENCIES="
         sci-libs/libqalculate[~${PV}]
         x11-libs/gtk+:2
 "
+
+qalculate-gtk_src_prepare() {
+    edo sed -i \
+        -e '$a\data/periodictable.glade' \
+        po/POTFILES.in
+
+    edo intltoolize --automake --force
+    autotools_src_prepare
+}
 
