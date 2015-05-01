@@ -1,0 +1,28 @@
+# Copyright 2015 <name>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="git://linuxtv.org/${PN}.git"
+
+require scm-git
+
+SUMMARY="Digital TV scan tables"
+HOMEPAGE="http://git.linuxtv.org/cgit.cgi/${PN}.git/about/"
+DOWNLOADS=""
+
+LICENCES="|| ( GPL-2 LGPL-2.1 )"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        media-libs/v4l-utils
+"
+
+BUGS_TO="sardemff7@exherbo.org"
+
+DEFAULT_SRC_INSTALL_PARAMS=(
+    DATADIR="${IMAGE}"/usr/share
+)
+
+
