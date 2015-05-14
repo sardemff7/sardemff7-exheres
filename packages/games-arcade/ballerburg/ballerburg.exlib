@@ -1,7 +1,11 @@
-# Copyright 2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2012-2015 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
+PREFIX=/usr
+
 require cmake [ api=2 ]
+
+export_exlib_phases src_prepare
 
 SUMMARY="A Ballerburg remake"
 HOMEPAGE="http://baller.tuxfamily.org/"
@@ -13,7 +17,22 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        media-libs/SDL
-        media-libs/SDL_gfx
+        media-libs/SDL:2
 "
 
+CMAKE_SRC_CONFIGURE_PARAMS=(
+    -DBINDIR:PATH="/usr/$(exhost --target)/bin"
+    -DBIN2DATADIR:PATH="../../share/${PN}"
+    -DBIN2LOCALEDIR:PATH="../../share/locale"
+    -DENABLE_SDL2:BOOL=TRUE
+)
+
+ballerburg_src_prepare() {
+    cmake_src_prepare
+
+    # TODO(sardemff7) Patch upstreamç
+    # Use prefixed pkg-config
+    edo sed -i \
+        -e "s:pkg-config:$(exhost --tool-prefix)&:" \
+        CMakeLists.txt
+}
