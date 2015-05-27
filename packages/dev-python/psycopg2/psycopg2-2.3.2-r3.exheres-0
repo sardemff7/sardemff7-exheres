@@ -1,7 +1,7 @@
 # Copyright 2011 Dan Callaghan <djc@djc.id.au>
 # Distributed under the terms of the GNU General Public License v2
 
-require pypi distutils [ python_dep=2.4 ]
+require pypi setup-py [ import=distutils blacklist='3' ]
 
 SUMMARY="PostgreSQL database adapter for Python"
 DESCRIPTION="
@@ -14,13 +14,15 @@ LICENCES="LGPL-3"
 SLOT="0"
 PLATFORMS="~amd64 ~x86"
 
-RESTRICT="test" # Requires a running postgres with test database
+# Requires a running postgres with test database
+RESTRICT="test"
 
 DEPENDENCIES="
     build+run:
         dev-db/postgresql[>=7.4]
 "
 
-src_test() {
-    edo python -B setup.py test
+test_one_multibuild() {
+    edo ${PYTHON} -B setup.py test
 }
+
