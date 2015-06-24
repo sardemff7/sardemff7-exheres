@@ -23,6 +23,7 @@ MYOPTIONS="
     notification-daemon [[ description = [ Graphical notifications plugin ] ]]
     purple              [[ description = [ IM plugin ] ]]
     sndfile             [[ description = [ sound file playing plugin ] ]]
+    systemd
     X                   [[ description = [ XCB backend for notification plugin ] ]]
 
     ( dbus libnotify )     [[ number-selected = at-most-one ]]
