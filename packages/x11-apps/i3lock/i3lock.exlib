@@ -23,7 +23,7 @@ DEPENDENCIES="
         sys-libs/pam
         x11-libs/cairo[X]
         x11-libs/libxcb
-        x11-libs/libxkbcommon[X]
+        x11-libs/libxkbcommon[>=0.5.0][X]
         x11-utils/xcb-util
         x11-utils/xcb-util-keysyms
         x11-utils/xcb-util-image

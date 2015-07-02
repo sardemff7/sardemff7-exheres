@@ -7,7 +7,3 @@ DOWNLOADS="http://i3wm.org/${PN}/${PNV}.tar.bz2"
 
 PLATFORMS="~amd64"
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/0001-Make-pkg-config-configurable.patch
-)
-
