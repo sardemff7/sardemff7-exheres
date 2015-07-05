@@ -1,0 +1,35 @@
+
+# Copyright 2015 Quentin “Sardem FF7” Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require sourceforge
+
+SUMMARY="An algebraic and RPN calculator"
+DESCRIPTION="
+galculator's main features include:
+- Algebraic mode, RPN (Reverse Polish Notation), Formula Entry and Paper mode
+- Decimal, hexadecimal, octal and binary number base
+- Radiant, degree and grad support
+- Basic and Scientific Mode
+- User defined constants and functions
+- Trigonometric functions, power, sqare root, natural and common logarithm,
+- inverse and hyperbolic functions
+- Binary arithmetic of configurable bit length and signedness
+- Quad-precision floating point arithmetic
+- 112-bit binary arithmetic
+- Copy and paste
+- Available in more than 20 translations.
+"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        sys-libs/libquadmath
+        x11-libs/gtk+:3
+"
+
+BUGS_TO="sardemff7@exherbo.org"
+
