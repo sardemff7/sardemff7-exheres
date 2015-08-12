@@ -1,7 +1,8 @@
-# Copyright 2011-2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Copyright 2011-2015 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require github [ user=sardemff7 ] tuxfamily [ group=eventd suffix=tar.xz ] systemd-service
+require option-renames [ renames=[ 'gdk-pixbuf icon' ] ]
 
 export_exlib_phases src_test
 
@@ -13,21 +14,24 @@ SLOT="0"
 
 MYOPTIONS="
     avahi
-    dbus                  [[ description = [ DBus org.freedesktop.Notifications interface ] ]]
     debug                 [[ description = [ Extra debug output ] ]]
-    espeak                [[ description = [ Text-to-Speech plugin ] ]]
-    fbcon
-    gdk-pixbuf            [[ description = [ Icon support for notification plugin ] ]]
+    fbcon                 [[ description = [ Framebuffer backend for notification plugin ] ]]
+    icon                  [[ description = [ Icon support for notification plugin ] ]]
     gobject-introspection
-    libnotify
-    libcanberra           [[ description = [ Themes and files sound support through libcanberra ] ]]
-    notification-daemon   [[ description = [ Graphical notifications plugin ] ]]
-    purple                [[ description = [ IM plugin ] ]]
-    sndfile               [[ description = [ sound file playing plugin ] ]]
     systemd
     X                     [[ description = [ XCB backend for notification plugin ] ]]
 
-    ( fbcon gdk-pixbuf X ) [[ *requires = notification-daemon ]]
+    ( plugins:
+        dbus                  [[ description = [ DBus org.freedesktop.Notifications interface ] ]]
+        tts                   [[ description = [ Text-to-Speech plugin through eSpeak ] ]]
+        libnotify
+        libcanberra           [[ description = [ Themes and files sound support through libcanberra ] ]]
+        notification-daemon   [[ description = [ Graphical notifications plugin ] ]]
+        im                    [[ description = [ IM plugin through libpurple ] ]]
+        sound                 [[ description = [ sound file plugin through libsndfile ] ]]
+    )
+
+    ( fbcon icon X ) [[ *requires = [ plugins: notification-daemon ] ]]
 
     ( linguas: fr )
 "
@@ -42,51 +46,57 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.28.0]
         avahi? ( net-dns/avahi )
-        espeak? ( app-speech/espeak )
-        gdk-pixbuf? (
+        icon? (
             x11-libs/gdk-pixbuf:2.0
         )
         gobject-introspection? (
             gnome-desktop/gobject-introspection:1
-        )
-        libnotify? (
-            x11-libs/gdk-pixbuf:2.0
-            x11-libs/libnotify[>=0.6.5]
-        )
-        notification-daemon? (
-            x11-libs/cairo[X?]
-            x11-libs/pango
-        )
-        purple? ( net-im/pidgin )
-        sndfile? (
-            media-libs/libsndfile
-            media-sound/pulseaudio
         )
         systemd? ( sys-apps/systemd[>=36] )
         X? (
             x11-libs/libxcb
             x11-utils/xcb-util
         )
+
+        plugins:im? ( net-im/pidgin )
+        plugins:libcanberra? (
+            media-libs/libcanberra
+        )
+        plugins:libnotify? (
+            x11-libs/gdk-pixbuf:2.0
+            x11-libs/libnotify[>=0.6.5]
+        )
+        plugins:notification-daemon? (
+            x11-libs/cairo[X?]
+            x11-libs/pango
+        )
+        plugins:sound? (
+            media-libs/libsndfile
+            media-sound/pulseaudio
+        )
+        plugins:tts? ( app-speech/espeak )
     recommendation:
-        gdk-pixbuf? (
+        icon? (
             gnome-desktop/librsvg:2 [[ description = [ SVG support for notification plugin ] ]]
         )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     avahi
-    dbus
     debug
-    'espeak tts'
     'fbcon linux-framebuffer'
-    gdk-pixbuf
+    'icon gdk-pixbuf'
     'gobject-introspection introspection'
-    libnotify
-    notification-daemon
-    'purple im'
-    'sndfile sound'
     systemd
     'X xcb'
+
+    plugins:dbus
+    plugins:im
+    plugins:libnotify
+    plugins:libcanberra
+    plugins:notification-daemon
+    plugins:sound
+    plugins:tts
 )
 
 DEFAULT_SRC_TEST_PARAMS=(
