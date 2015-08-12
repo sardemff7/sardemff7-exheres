@@ -1,8 +1,19 @@
 # Copyright 2011-2015 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
+OPTION_RENAMES=(
+    'dbus plugins:dbus'
+    'espeak plugins:tts'
+    'gdk-pixbuf icon'
+    'libnotify plugins:libnotify'
+    'libcanberra plugins:libcanberra'
+    'notification-daemon plugins:notification-daemon'
+    'purple plugins:im'
+    'sndfile plugins:sound'
+)
+
 require github [ user=sardemff7 ] tuxfamily [ group=eventd suffix=tar.xz ] systemd-service
-require option-renames [ renames=[ 'gdk-pixbuf icon' ] ]
+require option-renames
 
 export_exlib_phases src_test
 
