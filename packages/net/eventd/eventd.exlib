@@ -13,20 +13,20 @@ SLOT="0"
 
 MYOPTIONS="
     avahi
-    dbus                [[ description = [ DBus org.freedesktop.Notifications interface ] ]]
-    debug               [[ description = [ Extra debug output ] ]]
-    espeak              [[ description = [ Text-to-Speech plugin ] ]]
+    dbus                  [[ description = [ DBus org.freedesktop.Notifications interface ] ]]
+    debug                 [[ description = [ Extra debug output ] ]]
+    espeak                [[ description = [ Text-to-Speech plugin ] ]]
     fbcon
-    gdk-pixbuf          [[ description = [ Icon support for notification plugin ] ]]
+    gdk-pixbuf            [[ description = [ Icon support for notification plugin ] ]]
+    gobject-introspection
     libnotify
-    libcanberra         [[ description = [ Themes and files sound support through libcanberra ] ]]
-    notification-daemon [[ description = [ Graphical notifications plugin ] ]]
-    purple              [[ description = [ IM plugin ] ]]
-    sndfile             [[ description = [ sound file playing plugin ] ]]
+    libcanberra           [[ description = [ Themes and files sound support through libcanberra ] ]]
+    notification-daemon   [[ description = [ Graphical notifications plugin ] ]]
+    purple                [[ description = [ IM plugin ] ]]
+    sndfile               [[ description = [ sound file playing plugin ] ]]
     systemd
-    X                   [[ description = [ XCB backend for notification plugin ] ]]
+    X                     [[ description = [ XCB backend for notification plugin ] ]]
 
-    ( dbus libnotify )     [[ number-selected = at-most-one ]]
     ( fbcon gdk-pixbuf X ) [[ *requires = notification-daemon ]]
 
     ( linguas: fr )
@@ -45,6 +45,9 @@ DEPENDENCIES="
         espeak? ( app-speech/espeak )
         gdk-pixbuf? (
             x11-libs/gdk-pixbuf:2.0
+        )
+        gobject-introspection? (
+            gnome-desktop/gobject-introspection:1
         )
         libnotify? (
             x11-libs/gdk-pixbuf:2.0
@@ -77,6 +80,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'espeak tts'
     'fbcon linux-framebuffer'
     gdk-pixbuf
+    'gobject-introspection introspection'
     libnotify
     notification-daemon
     'purple im'
