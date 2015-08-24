@@ -11,7 +11,7 @@ DEPENDENCIES="
         x11-libs/cairo[>=1.10.0]
         x11-libs/gtk+:3[>=3.4.0]
         sound? (
-            media-libs/libcanberra[>=0.26][gtk3]
+            media-libs/libcanberra[>=0.26][gtk][providers:gtk3]
         )
 "
 
