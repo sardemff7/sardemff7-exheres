@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 OPTION_RENAMES=(
-    'dbus plugins:dbus'
     'espeak plugins:tts'
     'gdk-pixbuf icon'
     'libnotify plugins:libnotify'
@@ -33,7 +32,6 @@ MYOPTIONS="
     X                     [[ description = [ XCB backend for notification plugin ] ]]
 
     ( plugins:
-        dbus                  [[ description = [ DBus org.freedesktop.Notifications interface ] ]]
         tts                   [[ description = [ Text-to-Speech plugin through eSpeak ] ]]
         libnotify
         libcanberra           [[ description = [ Themes and files sound support through libcanberra ] ]]
@@ -101,7 +99,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     systemd
     'X xcb'
 
-    plugins:dbus
     plugins:im
     plugins:libnotify
     plugins:libcanberra
