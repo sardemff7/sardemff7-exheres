@@ -10,7 +10,9 @@ LICENCES="GPL-3"
 SLOT="0"
 
 MYOPTIONS="
-    i3focus         [[ description = [ i3 focus event support through i3ipc-glib ] ]]
+    ( plugins:
+        i3focus         [[ description = [ i3 focus event support through i3ipc-glib ] ]]
+    )
 "
 
 DEPENDENCIES="
@@ -19,10 +21,10 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.28.0]
         x11-plugins/j4status
-        i3focus? ( x11-libs/i3ipc-glib )
+        plugins:i3focus? ( x11-libs/i3ipc-glib )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'i3focus i3focus-input'
+    'plugins:i3focus i3focus-input'
 )
 
