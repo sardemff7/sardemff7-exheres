@@ -10,6 +10,7 @@ LICENCES="GPL-3"
 SLOT="0"
 
 MYOPTIONS="
+    systemd
     ( plugins:
         i3bar           [[ description = [ i3bar JSON protocol support ] ]]
         mpd             [[ description = [ MPD support through libmpdclient ] ]]
@@ -24,19 +25,18 @@ DEPENDENCIES="
     build:
         virtual/pkg-config
     build+run:
-        dev-libs/glib:2[>=2.28.0]
+        dev-libs/glib:2[>=2.40.0]
+        systemd? ( sys-apps/systemd )
         plugins:i3bar? ( dev-libs/yajl )
         plugins:mpd? ( media-libs/libmpdclient )
         plugins:network-manager? ( net-apps/NetworkManager[>=0.9] )
         plugins:sensors? ( sys-apps/lm_sensors )
-        plugins:systemd? (
-            dev-libs/glib:2[>=2.32.0]
-            sys-apps/systemd
-        )
+        plugins:systemd? ( sys-apps/systemd )
         plugins:upower? ( sys-apps/upower )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    systemd
     'plugins:i3bar i3bar-input-output'
     'plugins:mpd mpd-input'
     'plugins:network-manager nm-input'
