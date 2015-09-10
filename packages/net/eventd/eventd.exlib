@@ -112,21 +112,8 @@ DEFAULT_SRC_TEST_PARAMS=(
 )
 
 eventd_src_test() {
-    local unix_sockets=(
-        18011
-        18021
-        18031
-        18032
-    )
-
-    for s in ${unix_sockets[@]}; do
-        esandbox allow_net unix:"${TEMP}"/${s}
-    done
-
+    esandbox allow_net unix:"${TEMP}/*"
     default
-
-    for s in ${unix_sockets[@]}; do
-        esandbox disallow_net unix:"${TEMP}"/${s}
-    done
+    esandbox disallow_net unix:"${TEMP}/*"
 }
 
