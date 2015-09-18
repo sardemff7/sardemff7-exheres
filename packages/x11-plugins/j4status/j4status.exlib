@@ -14,6 +14,7 @@ MYOPTIONS="
     ( plugins:
         i3bar           [[ description = [ i3bar JSON protocol support ] ]]
         mpd             [[ description = [ MPD support through libmpdclient ] ]]
+        netlink         [[ description = [ Network status support through Netlink ] ]]
         network-manager [[ description = [ Network status support through NetworkManager ] ]]
         pulseaudio      [[ description = [ Audio control through PulseAudio ] ]]
         sensors         [[ description = [ Sensors support through lm_sensors’ libsensors ] ]]
@@ -30,6 +31,7 @@ DEPENDENCIES="
         systemd? ( sys-apps/systemd )
         plugins:i3bar? ( dev-libs/yajl )
         plugins:mpd? ( media-libs/libmpdclient )
+        plugins:netlink? ( net-libs/libnl:3.0 )
         plugins:network-manager? ( net-apps/NetworkManager[>=0.9] )
         plugins:pulseaudio? ( media-sound/pulseaudio[>=0.9.16] )
         plugins:sensors? ( sys-apps/lm_sensors )
@@ -41,6 +43,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     systemd
     'plugins:i3bar i3bar-input-output'
     'plugins:mpd mpd-input'
+    'plugins:netlink nl-input'
     'plugins:network-manager nm-input'
     'plugins:pulseaudio pulseaudio-input'
     'plugins:sensors sensors-input'
