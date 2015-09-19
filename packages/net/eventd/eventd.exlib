@@ -19,7 +19,10 @@ export_exlib_phases src_test
 SUMMARY="Small daemon to act on remote or local events"
 HOMEPAGE="http://www.eventd.org"
 
-LICENCES="GPL-3"
+LICENCES="
+    GPL-3 [[ note = [ For eventd, eventdctl, plugins and eventc ] ]]
+    LGPL-3 [[ note = [ For libeventd, libeventc and libeventd-plugin ] ]]
+"
 SLOT="0"
 
 MYOPTIONS="
