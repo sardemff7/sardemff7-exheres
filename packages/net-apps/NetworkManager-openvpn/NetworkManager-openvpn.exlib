@@ -25,15 +25,18 @@ DEPENDENCIES="
         dev-libs/glib:2
         net-apps/NetworkManager[>=$(ever range -3)]
         gnome? (
-            gnome-desktop/libgnome-keyring:1
-            x11-libs/gtk+:3[>=2.91.4]
+            dev-libs/libsecret:1
+            gnome-desktop/network-manager-applet[>=1.0.5]
+            x11-libs/gtk+:3[>=3.4]
         )
     run:
         net-misc/openvpn
+        user/nm-openvpn
+        group/nm-openvpn
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --with-gtkver=3
+    --localstatedir=/var
     --without-tests
 )
 
