@@ -21,6 +21,7 @@ MYOPTIONS="
         hu id it ja kn ko lt lv mk ml ms nb nds ne nl nn oc pa pl ps pt_BR pt ro ru rw sk sl sq
         sr@latin sr@Latn sr sv th tr uk vi xh zh_CN zh_HK zh_TW
     )
+    ( providers: ijg-jpeg jpeg-turbo ) [[ number-selected = exactly-one ]]
 "
 
 DEPENDENCIES="
@@ -33,7 +34,6 @@ DEPENDENCIES="
         dev-libs/libsecret:1
         gnome-desktop/gsettings-desktop-schemas
         gnome-desktop/librsvg:2
-        media-libs/jpeg
         media-libs/libpng:=
         media-libs/libraw
         media-libs/tiff
@@ -44,6 +44,8 @@ DEPENDENCIES="
             x11-libs/clutter-gtk:1.0
         )
         exif? ( graphics/exiv2 )
+        providers:ijg-jpeg? ( media-libs/jpeg:= )
+        providers:jpeg-turbo? ( media-libs/libjpeg-turbo )
         webp? ( media-libs/libwebp[>=0.2.0] )
 "
 
