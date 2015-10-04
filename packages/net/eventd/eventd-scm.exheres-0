@@ -8,14 +8,9 @@ SCM_SECONDARY_REPOSITORIES="libnkutils libgwater"
 SCM_EXTERNAL_REFS="src/libnkutils:libnkutils src/libgwater:libgwater"
 
 require eventd
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 1.13 1.12 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
 
 PLATFORMS="~amd64"
 
 AT_M4DIR=( m4 src/libnkutils src/libgwater )
-
-src_prepare() {
-    edo intltoolize --force --copy --automake
-    autotools_src_prepare
-}
 
