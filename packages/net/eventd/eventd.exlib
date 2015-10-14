@@ -74,7 +74,6 @@ DEPENDENCIES="
         )
         plugins:libnotify? (
             x11-libs/gdk-pixbuf:2.0
-            x11-libs/libnotify[>=0.6.5]
         )
         plugins:notification-daemon? (
             x11-libs/cairo[X?]
@@ -87,6 +86,7 @@ DEPENDENCIES="
         )
         plugins:tts? ( app-speech/espeak )
     run:
+        dev-libs/glib-networking[ssl]
         plugins:notification-daemon? (
             gnome-desktop/librsvg:2 [[ description = [ SVG support for notification plugin ] ]]
         )
