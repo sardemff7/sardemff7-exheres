@@ -30,16 +30,18 @@ MYOPTIONS="
     debug                 [[ description = [ Extra debug output ] ]]
     fbcon                 [[ description = [ Framebuffer backend for notification plugin ] ]]
     gobject-introspection
+    json                  [[ description = [ EvP JSON protocol library ] ]]
     systemd
     X                     [[ description = [ XCB backend for notification plugin ] ]]
 
     ( plugins:
-        tts                   [[ description = [ Text-to-Speech plugin through eSpeak ] ]]
+        http                  [[ description = [ EvP JSON protocol over WebSocket through libsoup ] ]]
+        im                    [[ description = [ IM plugin through libpurple ] ]]
         libnotify
         libcanberra           [[ description = [ Themes and files sound support through libcanberra ] ]]
         notification-daemon   [[ description = [ Graphical notifications plugin ] ]]
-        im                    [[ description = [ IM plugin through libpurple ] ]]
         sound                 [[ description = [ sound file plugin through libsndfile ] ]]
+        tts                   [[ description = [ Text-to-Speech plugin through eSpeak ] ]]
     )
 
     ( fbcon X ) [[ *requires = [ plugins: notification-daemon ] ]]
@@ -58,12 +60,14 @@ DEPENDENCIES="
         gobject-introspection? (
             gnome-desktop/gobject-introspection:1[>=1.42.0]
         )
+        json? ( dev-libs/yajl[>=2] )
         systemd? ( sys-apps/systemd[>=36] )
         X? (
             x11-libs/libxcb
             x11-utils/xcb-util
         )
 
+        plugins:http? ( gnome-desktop/libsoup:2.4 )
         plugins:im? ( net-im/pidgin )
         plugins:libcanberra? (
             media-libs/libcanberra
@@ -93,9 +97,11 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     debug
     'fbcon linux-framebuffer'
     'gobject-introspection introspection'
+    json
     systemd
     'X xcb'
 
+    plugins:http
     plugins:im
     plugins:libnotify
     plugins:libcanberra
