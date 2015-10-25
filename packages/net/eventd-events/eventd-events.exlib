@@ -13,6 +13,7 @@ MYOPTIONS=""
 DEPENDENCIES="
     build:
         dev-util/intltool
+        net/eventd
 "
 
 BUGS_TO="sardemff7@exherbo.org"
