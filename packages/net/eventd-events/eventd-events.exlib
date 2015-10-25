@@ -1,0 +1,19 @@
+# Copyright 2015 Quentin Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=sardemff7 ] tuxfamily [ group=eventd suffix=tar.xz ]
+
+SUMMARY="A collection of events for eventd"
+HOMEPAGE="http://www.eventd.org/events/"
+
+LICENCES="CCPL-Attribution-ShareAlike-4.0"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+"
+
+BUGS_TO="sardemff7@exherbo.org"
+

@@ -1,0 +1,15 @@
+# Copyright 2015 Quentin Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require eventd-events
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
+
+PLATFORMS="~amd64"
+
+AT_M4DIR=( m4 )
+
+src_prepare() {
+    edo mkdir -p m4
+    edo intltoolize --automake --copy
+    autotools_src_prepare
+}
