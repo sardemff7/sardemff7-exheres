@@ -13,8 +13,9 @@ MYOPTIONS=""
 DEPENDENCIES="
     build+run:
        core/json-glib
-       dev-scm/libgit2
-       gnome-desktop/libsoup
-       net/eventd
+       dev-libs/glib:2[>=2.42]
+       dev-scm/libgit2[>=0.23.0]
+       gnome-desktop/libsoup[>=2.48]
+       net/eventd[>=0.6]
 "
 
