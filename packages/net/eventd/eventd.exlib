@@ -96,7 +96,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     avahi
     debug
     'fbcon linux-framebuffer'
-    'fbcon nd-linux-framebuffer'
+    'fbcon nd-fbdev'
     'gobject-introspection introspection'
     json
     systemd
