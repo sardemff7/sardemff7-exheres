@@ -7,3 +7,8 @@ DOWNLOADS="https://fedorahosted.org/releases/${PN:0:1}/${PN:1:1}/${PN}/${PNV}.ta
 
 PLATFORMS="~amd64 ~x86"
 
+src_prepare() {
+    # https://fedorahosted.org/mlocate/changeset/242/
+    edo sed -i -e 's/S_IRWXG | S_IRWXG/S_IRWXG | S_IRWXO/' src/updatedb.c
+}
+

@@ -43,5 +43,8 @@ mlocate_src_install() {
     alternatives_for "${alternatives[@]}"
 
     keepdir /var/lib/${PN}
+
+    insinto /etc
+    doins "${FILES}"/updatedb.conf
 }
 
