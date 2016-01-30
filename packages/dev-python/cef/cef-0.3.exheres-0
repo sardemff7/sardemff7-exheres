@@ -12,7 +12,7 @@ The cef module provide a log_cef function that can be used to emit CEF logs.
 "
 HOMEPAGE="https://github.com/mozilla/cef"
 
-LICENCES="MPL-2"
+LICENCES="MPL-2.0"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""

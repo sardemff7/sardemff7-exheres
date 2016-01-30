@@ -10,7 +10,7 @@ developed by the Mozilla Services team.
 "
 HOMEPAGE="https://github.com/mozilla-services/metlog-py"
 
-LICENCES="MPL-2"
+LICENCES="MPL-2.0"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
