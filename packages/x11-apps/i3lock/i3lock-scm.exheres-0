@@ -1,9 +1,0 @@
-# Copyright 2011-2013 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
-# Distributed under the terms of the GNU General Public License v2
-
-SCM_REPOSITORY="git://code.stapelberg.de/${PN}"
-
-require i3lock scm-git
-
-PLATFORMS="~amd64"
-
