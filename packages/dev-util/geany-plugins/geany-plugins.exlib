@@ -17,62 +17,93 @@ LICENCES="GPL-2 Scintilla"
 SLOT="0"
 
 MYOPTIONS="
-    spell
-    debugger    [[ description = [ Debugger plugin, gdb helper for Geany ] ]]
-    devhelp     [[ description = [ Integrate devhelp functionality with Geany ] ]]
-    enchant     [[ description = [ Enable spell chack using enchant ] ]]
-    gendoc      [[ description = [ Plugin to help documentation generation ] ]]
-    geniuspaste [[ description = [ Pastebins client plugin ] ]]
-    gpg         [[ description = [ GPG support via GeanyPG ] ]]
-    lua         [[ description = [ Extend Geany using Lua ] ]]
-    multiterm   [[ description = [ Mulitple VTE-based terminals plugin ] ]]
-    scope       [[ description = [ GDB frontend plugin ] ]]
-    webkit      [[ description = [ Web development helper using WebKit ] ]]
-    xml         [[ description = [ XML Pretty-Print plugin ] ]]
+    spell [[ description = [ Spellcheck support in GeanyVC ] ]]
+
+    ( plugins:
+        debugger       [[ description = [ Debugger plugin, gdb helper for Geany ] ]]
+        devhelp        [[ description = [ Integrate devhelp functionality with Geany ] ]]
+        geanygendoc    [[ description = [ Plugin to help documentation generation ] ]]
+        geanylua       [[ description = [ Extend Geany using Lua ] ]]
+        geanypg        [[ description = [ GPG support via GeanyPG ] ]]
+        geanypy        [[ description = [ Support for Python plugins ] ]]
+        geniuspaste    [[ description = [ Pastebins client plugin ] ]]
+        gitchangebar   [[ description = [ Highlight uncommited changes ] ]]
+        markdown       [[ description = [ Preview Markdown generated HTML ] ]]
+        multiterm      [[ description = [ Mulitple VTE-based terminals plugin ] ]]
+        pretty-printer [[ description = [ XML Pretty-Print plugin ] ]]
+        spellcheck     [[ description = [ Spell checking plugin (using enchant) ] ]]
+        scope          [[ description = [ GDB frontend plugin ] ]]
+        webhelper      [[ description = [ Web development helper using WebKit ] ]]
+    )
+
+    ( providers:
+        gtk2
+        gtk3
+    ) [[ number-selected = exactly-one ]]
+
+    ( plugins: debugger geanypy multiterm scope ) [[ *requires = [ providers: gtk2 ] ]]
 "
 
 DEPENDENCIES="
     build:
         sys-devel/gettext
-        multiterm? ( dev-lang/vala:* )
+        plugins:multiterm? ( dev-lang/vala:* )
     build+run:
         dev-libs/glib:2
-        dev-util/geany[~$(ever is_scm || echo '>' )${PV}][-gtk3(-)]
-        debugger? ( dev-libs/vte:0[>=0.24] )
-        devhelp? (
+        dev-util/geany[~$(ever is_scm || echo '>' )${PV}][providers:gtk2=][providers:gtk3=]
+        spell? (
+            providers:gtk2? ( app-spell/gtkspell:2 )
+            providers:gtk3? ( app-spell/gtkspell:3.0 )
+        )
+
+        plugins:debugger? ( dev-libs/vte:0[>=0.24] )
+        plugins:devhelp? (
             gnome-desktop/libwnck:1
             gnome-platform/GConf:2
             net-libs/webkit-gtk:1
             x11-libs/gtk+:2
             sys-libs/zlib
         )
-        enchant? ( app-spell/enchant )
-        gendoc? (
+        plugins:geanygendoc? (
             dev-libs/ctpl
             x11-libs/gtk+:2
         )
-        geniuspaste? ( gnome-desktop/libsoup:2.4 )
-        gpg? ( app-crypt/gpgme )
-        lua? ( dev-lang/lua )
-        multiterm? ( dev-libs/vte:0[>=0.24] )
-        scope? ( dev-libs/vte:0[>=0.27] )
-        spell? ( app-spell/gtkspell:2 )
-        webkit? (
-            net-libs/webkit-gtk:1
-            x11-libs/gtk+:2[>=2.12]
+        plugins:geanylua? ( dev-lang/lua:5.1 )
+        plugins:geanypg? ( app-crypt/gpgme )
+        plugins:geanypy? (
+            dev-lang/python:2.7
+            gnome-bindings/pygtk:2
+        )
+        plugins:geniuspaste? ( gnome-desktop/libsoup:2.4 )
+        plugins:gitchangebar? ( dev-scm/libgit2 )
+        plugins:markdown? (
+            providers:gtk2? ( net-libs/webkit-gtk:1[>=1.1.13] )
+            providers:gtk3? ( net-libs/webkit:3.0 )
+        )
+        plugins:multiterm? ( dev-libs/vte:0[>=0.24] )
+        plugins:pretty-printer? ( dev-libs/libxml2:2.0 )
+        plugins:scope? ( dev-libs/vte:0[>=0.27] )
+        plugins:spellcheck? ( app-spell/enchant )
+        plugins:webhelper? (
+            providers:gtk2? ( net-libs/webkit-gtk:1[>=1.1.18] )
+            providers:gtk3? ( net-libs/webkit:3.0 )
             x11-libs/gdk-pixbuf:2.0
         )
-        xml? ( dev-libs/libxml2:2.0 )
     run:
-        scope? ( sys-devel/gdb[>=7.3] )
+        plugins:scope? ( sys-devel/gdb[>=7.3] )
     test:
         dev-util/cppcheck
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-addons
+    --enable-autoclose
+    --enable-automark
     --enable-codenav
     --enable-commander
+    --enable-defineformat
+    --enable-geanyctags
+    --disable-geanydoc
     --enable-geanyextrasel
     --enable-geanyinsertnum
     --enable-geanylatex
@@ -82,8 +113,11 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-geanyprj
     --enable-geanysendmail
     --enable-geanyvc
-    --enable-gproject
-    --disable-markdown
+    --enable-lineoperations
+    --enable-overview
+    --enable-pairtaghighlighter
+    --enable-pohelper
+    --enable-projectorganizer
     --enable-shiftcolumn
     --enable-tableconvert
     --enable-treebrowser
@@ -93,18 +127,22 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 )
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    debugger
-    devhelp
-    'enchant spellcheck'
-    'gendoc geanygendoc'
-    geniuspaste
-    'gpg geanypg'
-    'lua geanylua'
-    multiterm
-    scope
     'spell gtkspell'
-    'webkit webhelper'
-    'xml pretty-printer'
+
+    plugins:debugger
+    plugins:devhelp
+    plugins:geanygendoc
+    plugins:geanylua
+    plugins:geanypg
+    plugins:geanypy
+    plugins:geniuspaste
+    plugins:gitchangebar
+    plugins:markdown
+    plugins:multiterm
+    plugins:pretty-printer
+    plugins:scope
+    plugins:spellcheck
+    plugins:webhelper
 )
 
 DEFAULT_SRC_CONFIGURE_TESTS=(
