@@ -20,6 +20,11 @@ SLOT="0"
 MYOPTIONS="
     vte [[ description = [ VTE support ( provides an embedded terminal ) ] ]]
 
+    ( providers:
+        gtk2
+        gtk3
+    ) [[ number-selected = exactly-one ]]
+
     ( linguas:
         ar ast be bg ca cs de el en_GB es et eu fa fi fr gl he hi hu id it ja kk ko lb lt mn nl nn
         pl pt_BR pt ro ru sk sl sr sv tr uk vi zh_CN zh_TW
@@ -32,18 +37,28 @@ DEPENDENCIES="
         sys-devel/gettext
         virtual/pkg-config
     build+run:
-        dev-libs/glib:2[>=2.20]
+        dev-libs/glib:2[>=2.28]
+        providers:gtk2? ( x11-libs/gtk+:2[>=2.24] )
+        providers:gtk3? ( x11-libs/gtk+:3 )
+    recommendation:
+        providers:gtk2? ( dev-libs/vte:0 )
+        providers:gtk3? ( dev-libs/vte:2.91 )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-plugins
     --enable-socket
+    --enable-vte
     --disable-binreloc
     --disable-gnu-regex
 )
 
+DEFAULT_SRC_CONFIGURE_OPTIONS=(
+    "providers:gtk3 --with-vte-module-path=/usr/$(exhost --target)/lib/libvte-2.91.so"
+)
+
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    vte
+    providers:gtk3
 )
 
 geany_pkg_postrm() {

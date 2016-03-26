@@ -2,24 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require geany
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 1.11 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 1.13 1.12 1.11 ] ]
 
 PLATFORMS="~amd64"
-MYOPTIONS="gtk3"
-
-DEPENDENCIES="
-    build+run:
-        !gtk3? ( x11-libs/gtk+:2[>=2.16] )
-        gtk3? ( x11-libs/gtk+:3 )
-    run:
-        vte? ( dev-libs/vte:3.0 )
-"
 
 AT_M4DIR=( m4 )
-
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    gtk3
-)
 
 src_prepare() {
     autotools_src_prepare
