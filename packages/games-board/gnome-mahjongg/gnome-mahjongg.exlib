@@ -1,7 +1,7 @@
 # Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=.tar.xz ] gsettings vala [ vala_slots=[ 0.18 0.16 ] ]
+require gnome.org [ suffix=.tar.xz ] gsettings vala
 
 SUMMARY="A solitaire (one player) version of the classic Eastern tile game, Mahjongg"
 HOMEPAGE="https://wiki.gnome.org/Apps/Mahjongg"
