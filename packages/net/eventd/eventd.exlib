@@ -32,6 +32,7 @@ MYOPTIONS="
     gobject-introspection
     json                  [[ description = [ EvP JSON protocol library ] ]]
     systemd
+    wayland               [[ description = [ Wayland backend for notification plugin ] ]]
     X                     [[ description = [ XCB backend for notification plugin ] ]]
 
     ( plugins:
@@ -53,6 +54,7 @@ DEPENDENCIES="
         app-text/docbook-xsl-stylesheets
         dev-libs/libxslt
         virtual/pkg-config
+        wayland? ( sys-libs/wayland-notification-area )
     build+run:
         dev-libs/glib:2[>=2.28.0]
         sys-apps/util-linux [[ note = [ For libuuid ] ]]
@@ -62,6 +64,7 @@ DEPENDENCIES="
         )
         json? ( dev-libs/yajl[>=2] )
         systemd? ( sys-apps/systemd[>=36] )
+        wayland? ( sys-libs/wayland[>=1.9.91] )
         X? (
             x11-libs/libxcb
             x11-utils/xcb-util
@@ -99,6 +102,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gobject-introspection introspection'
     json
     systemd
+    'wayland nd-wayland'
     'X nd-xcb'
 
     plugins:http
