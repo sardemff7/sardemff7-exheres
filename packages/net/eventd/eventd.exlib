@@ -45,7 +45,8 @@ MYOPTIONS="
         tts                   [[ description = [ Text-to-Speech plugin through eSpeak ] ]]
     )
 
-    ( fbcon X ) [[ *requires = [ plugins: notification-daemon ] ]]
+    ( fbcon wayland X ) [[ *requires = [ plugins: notification-daemon ] ]]
+    plugins:notification-daemon? ( ( fbcon wayland X ) [[ number-selected = at-least-one ]] )
 "
 
 DEPENDENCIES="
