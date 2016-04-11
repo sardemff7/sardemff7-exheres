@@ -6,17 +6,16 @@
 export_exlib_phases src_install
 
 SUMMARY="ODBC solution for UNIX/Linux"
-HOMEPAGE="http://www.unixodbc.org/"
-DOWNLOADS="http://www.unixodbc.org/${PNV}.tar.gz"
+HOMEPAGE="http://www.unixodbc.org"
+DOWNLOADS="ftp://ftp.unixodbc.org/pub/${PN}/${PNV}.tar.gz"
+
+REMOTE_IDS="freecode:unixodbc"
 
 LICENCES="|| ( GPL-2 LGPL-2 )"
 SLOT="0"
-
 MYOPTIONS=""
 
 DEPENDENCIES=""
-
-REMOTE_IDS="freecode:unixodbc"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --sysconfdir=/etc/${PN}
@@ -26,6 +25,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 unixODBC_src_install() {
     default
 
-    keepdir /etc/unixODBC/ODBCDataSources
+    keepdir /etc/${PN}/ODBCDataSources
 }
 
