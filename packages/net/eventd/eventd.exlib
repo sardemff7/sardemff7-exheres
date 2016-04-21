@@ -1,4 +1,4 @@
-# Copyright 2011-2015 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Copyright 2011-2016 Quentin “Sardem FF7” Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 OPTION_RENAMES=(
@@ -10,13 +10,13 @@ OPTION_RENAMES=(
     'sndfile plugins:sound'
 )
 
-require github [ user=sardemff7 ] tuxfamily [ group=eventd suffix=tar.xz ] systemd-service
+require github [ user=sardemff7 ] systemd-service
 require option-renames
 
 export_exlib_phases src_test
 
 SUMMARY="Small daemon to act on remote or local events"
-HOMEPAGE="http://www.eventd.org"
+HOMEPAGE="https://www.eventd.org"
 
 LICENCES="
     GPL-3 [[ note = [ For eventd, eventdctl, and plugins ] ]]
@@ -55,7 +55,7 @@ DEPENDENCIES="
         app-text/docbook-xsl-stylesheets
         dev-libs/libxslt
         virtual/pkg-config
-        wayland? ( sys-libs/wayland-notification-area )
+        wayland? ( sys-libs/wayland-notification-area[>=3] )
     build+run:
         dev-libs/glib:2[>=2.28.0]
         sys-apps/util-linux [[ note = [ For libuuid ] ]]
@@ -64,7 +64,11 @@ DEPENDENCIES="
             gnome-desktop/gobject-introspection:1[>=1.42.0]
         )
         json? ( dev-libs/yajl[>=2] )
-        systemd? ( sys-apps/systemd[>=36] )
+        systemd? (
+            user/eventd
+            group/eventd
+            sys-apps/systemd[>=36]
+        )
         wayland? ( sys-libs/wayland[>=1.9.91] )
         X? (
             x11-libs/libxcb
