@@ -3,5 +3,7 @@
 
 require wayland-notification-area
 
+DOWNLOADS="https://www.eventd.org/download/${PN}/${PNV}.tar.xz"
+
 PLATFORMS="~amd64"
 
