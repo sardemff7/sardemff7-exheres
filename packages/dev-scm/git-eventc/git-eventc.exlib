@@ -1,10 +1,10 @@
-# Copyright 2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Copyright 2014-2016 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=sardemff7 ] tuxfamily [ group=eventd suffix=tar.xz ]
+require github [ user=sardemff7 ]
 
 SUMMARY="A small project to bridge Git repositories to eventd"
-HOMEPAGE="http://git-eventc.eventd.org"
+HOMEPAGE="https://clients.eventd.org/git/"
 
 LICENCES="GPL-3"
 SLOT="0"
@@ -12,12 +12,15 @@ MYOPTIONS="systemd"
 
 DEPENDENCIES="
     build+run:
-       core/json-glib
-       dev-libs/glib:2[>=2.42]
-       dev-scm/libgit2[>=0.23.0]
-       gnome-desktop/libsoup[>=2.48]
-       net/eventd[>=0.6]
-       systemd? ( sys-apps/systemd )
+        core/json-glib
+        dev-libs/glib:2[>=2.42]
+        dev-scm/libgit2[>=0.23.0]
+        gnome-desktop/libsoup[>=2.48]
+        net/eventd[>=0.6]
+        systemd? (
+            user/git-eventc
+            sys-apps/systemd
+        )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
