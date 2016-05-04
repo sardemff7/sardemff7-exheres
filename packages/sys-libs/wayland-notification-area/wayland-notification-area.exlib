@@ -25,7 +25,7 @@ DEPENDENCIES="
     build+run:
         sys-libs/wayland
         plugins:orbment? ( compositor/orbment )
-        plugins:weston? ( compositor/weston )
+        plugins:weston? ( compositor/weston[>=1.10.91] )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
