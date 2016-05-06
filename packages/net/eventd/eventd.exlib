@@ -57,7 +57,7 @@ DEPENDENCIES="
         virtual/pkg-config
         wayland? ( sys-libs/wayland-notification-area[>=3] )
     build+run:
-        dev-libs/glib:2[>=2.28.0]
+        dev-libs/glib:2[>=2.40.0]
         sys-apps/util-linux [[ note = [ For libuuid ] ]]
         avahi? ( net-dns/avahi )
         gobject-introspection? (
