@@ -10,8 +10,9 @@ LICENCES="MIT"
 SLOT="0"
 
 MYOPTIONS="
+    wlc [[ description = [ WLC helper library ] ]]
     ( plugins:
-        orbment [[ description = [ Plugin for Orbment ] ]]
+        orbment [[ description = [ Plugin for Orbment ] requires = [ wlc ] ]]
         weston  [[ description = [ Plugin for Weston ] ]]
     )
 "
@@ -24,11 +25,13 @@ DEPENDENCIES="
         virtual/pkg-config
     build+run:
         sys-libs/wayland
+        wlc? ( sys-libs/wlc )
         plugins:orbment? ( compositor/orbment )
         plugins:weston? ( compositor/weston[>=1.10.91] )
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    wlc
     plugins:orbment
     plugins:weston
 )
