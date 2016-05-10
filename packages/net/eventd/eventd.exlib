@@ -73,6 +73,7 @@ DEPENDENCIES="
         X? (
             x11-libs/libxcb
             x11-utils/xcb-util
+            x11-utils/xcb-util-wm
         )
 
         plugins:http? ( gnome-desktop/libsoup:2.4 )
