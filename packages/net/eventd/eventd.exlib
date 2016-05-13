@@ -85,7 +85,7 @@ DEPENDENCIES="
             x11-libs/gdk-pixbuf:2.0
         )
         plugins:notification-daemon? (
-            x11-libs/cairo[X?]
+            x11-libs/cairo[>=1.14][X?]
             x11-libs/gdk-pixbuf:2.0
             x11-libs/pango
         )
