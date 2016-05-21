@@ -27,7 +27,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        sys-libs/libquadmath
+        sys-libs/libquadmath:=
         x11-libs/gtk+:3
 "
 
