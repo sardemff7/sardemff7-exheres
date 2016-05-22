@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 OPTION_RENAMES=(
+    'avahi dns-sd'
     'espeak plugins:tts'
     'libnotify plugins:libnotify'
     'libcanberra plugins:libcanberra'
@@ -26,11 +27,12 @@ LICENCES="
 SLOT="0"
 
 MYOPTIONS="
-    avahi
     debug                 [[ description = [ Extra debug output ] ]]
+    dns-sd                [[ description = [ DNS-SD support (publish and browse) through Avahi ] ]]
     fbcon                 [[ description = [ Framebuffer backend for notification plugin ] ]]
     gobject-introspection
     json                  [[ description = [ EvP JSON protocol library ] ]]
+    ssdp                  [[ description = [ SSDP support (public and browse) through GSSDP ] ]]
     systemd
     wayland               [[ description = [ Wayland backend for notification plugin ] ]]
     X                     [[ description = [ XCB backend for notification plugin ] ]]
@@ -59,11 +61,12 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.40.0]
         sys-apps/util-linux [[ note = [ For libuuid ] ]]
-        avahi? ( net-dns/avahi )
+        dns-sd? ( net-dns/avahi )
         gobject-introspection? (
             gnome-desktop/gobject-introspection:1[>=1.42.0]
         )
         json? ( dev-libs/yajl[>=2] )
+        ssdp? ( net-libs/gssdp:1.0 )
         systemd? (
             user/eventd
             group/eventd
@@ -102,11 +105,12 @@ DEPENDENCIES="
 "
 
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    avahi
+    dns-sd
     debug
     'fbcon nd-fbdev'
     'gobject-introspection introspection'
     json
+    ssdp
     systemd
     'wayland nd-wayland'
     'X nd-xcb'
@@ -125,8 +129,8 @@ DEFAULT_SRC_TEST_PARAMS=(
 )
 
 eventd_src_test() {
-    esandbox allow_net unix:"${TEMP}/*"
+    esandbox allow_net unix:"${TEMP}/**"
     default
-    esandbox disallow_net unix:"${TEMP}/*"
+    esandbox disallow_net unix:"${TEMP}/**"
 }
 
