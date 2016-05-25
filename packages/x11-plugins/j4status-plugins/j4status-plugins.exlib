@@ -29,7 +29,7 @@ DEPENDENCIES="
         plugins:alsa? ( sys-sound/alsa-lib )
         plugins:fsinfo? ( sys-apps/util-linux [[ note = [ For libblkid ] ]] )
         plugins:i3focus? ( x11-libs/i3ipc-glib )
-        plugins:iw? ( net-wireless/iw )
+        plugins:iw? ( net-wireless/wireless_tools )
         plugins:netlink? ( net-libs/libnl:3.0 )
         plugins:network-manager? ( net-apps/NetworkManager[>=0.9] )
 "
