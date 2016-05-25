@@ -15,7 +15,6 @@ MYOPTIONS="
         fsinfo          [[ description = [ Filesystem usage through blkid ] ]]
         i3focus         [[ description = [ i3 focus event support through i3ipc-glib ] ]]
         iw              [[ description = [ Wireless connection status through iw ] ]]
-        netlink         [[ description = [ Network status support through Netlink ] ]]
         network-manager [[ description = [ Network status support through NetworkManager ] ]]
     )
 "
@@ -30,7 +29,6 @@ DEPENDENCIES="
         plugins:fsinfo? ( sys-apps/util-linux [[ note = [ For libblkid ] ]] )
         plugins:i3focus? ( x11-libs/i3ipc-glib )
         plugins:iw? ( net-wireless/wireless_tools )
-        plugins:netlink? ( net-libs/libnl:3.0 )
         plugins:network-manager? ( net-apps/NetworkManager[>=0.9] )
 "
 
@@ -44,7 +42,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'plugins:fsinfo fsinfo-input'
     'plugins:i3focus i3focus-input'
     'plugins:iw iw-input'
-    'plugins:netlink nl-input'
     'plugins:network-manager nm-input'
 )
 
