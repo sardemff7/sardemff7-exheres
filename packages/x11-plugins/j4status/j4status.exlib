@@ -16,7 +16,6 @@ MYOPTIONS="
         mpd             [[ description = [ MPD support through libmpdclient ] ]]
         pulseaudio      [[ description = [ Audio control through PulseAudio ] ]]
         sensors         [[ description = [ Sensors support through lm_sensors’ libsensors ] ]]
-        systemd         [[ description = [ systemd unit file monitoring support ] ]]
         upower          [[ description = [ Battery support through UPower ] ]]
     )
 "
@@ -31,7 +30,6 @@ DEPENDENCIES="
         plugins:mpd? ( media-libs/libmpdclient )
         plugins:pulseaudio? ( media-sound/pulseaudio[>=0.9.16] )
         plugins:sensors? ( sys-apps/lm_sensors )
-        plugins:systemd? ( sys-apps/systemd )
         plugins:upower? ( sys-apps/upower )
 "
 
@@ -41,7 +39,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'plugins:mpd mpd-input'
     'plugins:pulseaudio pulseaudio-input'
     'plugins:sensors sensors-input'
-    'plugins:systemd systemd-input'
     'plugins:upower upower-input'
 )
 
