@@ -1,0 +1,22 @@
+# Copyright 2016 Quentin “Sardem FF7” Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=sardemff7 ] vala systemd-service
+
+SUMMARY=" Keep an eye on your sessions"
+
+LICENCES="GPL-3"
+SLOT="0"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib:2[>=2.32.0]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    # Just to avoid the build dependencies
+    --with-systemduserunitdir=${SYSTEMDUSERUNITDIR}
+    --with-dbussessionservicedir=/usr/share/dbus-1/services
+)
+
