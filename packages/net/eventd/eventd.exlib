@@ -31,14 +31,13 @@ MYOPTIONS="
     dns-sd                [[ description = [ DNS-SD support (publish and browse) through Avahi ] ]]
     fbcon                 [[ description = [ Framebuffer backend for notification plugin ] ]]
     gobject-introspection
-    json                  [[ description = [ EvP JSON protocol library ] ]]
     ssdp                  [[ description = [ SSDP support (public and browse) through GSSDP ] ]]
     systemd
     wayland               [[ description = [ Wayland backend for notification plugin ] ]]
+    websocket             [[ description = [ EvP protocol over WebSocket through libsoup ] ]]
     X                     [[ description = [ XCB backend for notification plugin ] ]]
 
     ( plugins:
-        http                  [[ description = [ EvP JSON protocol over WebSocket through libsoup ] ]]
         im                    [[ description = [ IM plugin through libpurple ] ]]
         libnotify
         libcanberra           [[ description = [ Themes and files sound support through libcanberra ] ]]
@@ -65,7 +64,6 @@ DEPENDENCIES="
         gobject-introspection? (
             gnome-desktop/gobject-introspection:1[>=1.42.0]
         )
-        json? ( dev-libs/yajl[>=2] )
         ssdp? ( net-libs/gssdp:1.0 )
         systemd? (
             user/eventd
@@ -73,13 +71,13 @@ DEPENDENCIES="
             sys-apps/systemd[>=36]
         )
         wayland? ( sys-libs/wayland[>=1.9.91] )
+        websocket? ( gnome-desktop/libsoup:2.4 )
         X? (
             x11-libs/libxcb
             x11-utils/xcb-util
             x11-utils/xcb-util-wm
         )
 
-        plugins:http? ( gnome-desktop/libsoup:2.4 )
         plugins:im? ( net-im/pidgin )
         plugins:libcanberra? (
             media-libs/libcanberra
@@ -109,13 +107,12 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     debug
     'fbcon nd-fbdev'
     'gobject-introspection introspection'
-    json
     ssdp
     systemd
     'wayland nd-wayland'
+    websocket
     'X nd-xcb'
 
-    plugins:http
     plugins:im
     plugins:libnotify
     plugins:libcanberra
