@@ -1,0 +1,25 @@
+# Copyright 2016 Quentin “Sardem FF7” Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Synchronize mailboxes between a pop and an imap servers"
+HOMEPAGE="http://www.linux-france.org/prj/${PN}"
+DOWNLOADS="${HOMEPAGE}/dist/${PNV}.tgz"
+
+LICENCES="NLPL"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-perl/Date-Manip
+        dev-perl/Email-Simple
+        dev-perl/Mail-IMAPClient
+        dev-perl/Mail-POP3Client
+"
+
+src_install() {
+    dobin ${PN}
+    emagicdocs
+}
+
