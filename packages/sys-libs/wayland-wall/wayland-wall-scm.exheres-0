@@ -1,7 +1,7 @@
 # Copyright 2016 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require wayland-notification-area
+require wayland-wall
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
 
 PLATFORMS="~amd64"
@@ -9,7 +9,7 @@ PLATFORMS="~amd64"
 AT_M4DIR=( m4 )
 
 src_prepare() {
-    edo mkdir -p m4 src
+    edo mkdir -p m4
     autotools_src_prepare
 }
 

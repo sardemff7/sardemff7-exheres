@@ -1,0 +1,23 @@
+# Copyright 2016 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=wayland-wall ]
+
+SUMMARY="A collection of protocols for Wayland compositors"
+HOMEPAGE="${HOMEPAGE}#${PN}"
+
+LICENCES="MIT"
+SLOT="0"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        app-text/docbook-xml-dtd:4.5
+        app-text/docbook-xsl-stylesheets
+        dev-libs/libxslt
+        virtual/pkg-config
+    test:
+        sys-libs/wayland
+"
+
