@@ -56,7 +56,13 @@ DEPENDENCIES="
         app-text/docbook-xsl-stylesheets
         dev-libs/libxslt
         virtual/pkg-config
-        wayland? ( sys-libs/wayland-notification-area[>=3] )
+        wayland? (
+            $(if ever is_scm; then
+                echo 'sys-libs/wayland-wall'
+            else
+                echo 'sys-libs/wayland-notification-area[>=3]'
+            fi)
+        )
     build+run:
         dev-libs/glib:2[>=2.40.0]
         sys-apps/util-linux [[ note = [ For libuuid ] ]]
