@@ -9,7 +9,11 @@ HOMEPAGE="${HOMEPAGE}#${PN}"
 LICENCES="MIT"
 SLOT="0"
 
-MYOPTIONS=""
+MYOPTIONS="
+    clients [[ description = [ Demo clients for Wayland Wall protocols ] ]]
+    images  [[ description = [ Images support in clients through gdk-pixbuf ]
+               requires = [ clients ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -17,7 +21,15 @@ DEPENDENCIES="
         app-text/docbook-xsl-stylesheets
         dev-libs/libxslt
         virtual/pkg-config
+    build+run:
+        clients? ( sys-libs/wayland[>=1.9.91] )
+        images? ( x11-libs/gdk-pixbuf:2.0 )
     test:
         sys-libs/wayland
 "
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    clients
+    images
+)
 
