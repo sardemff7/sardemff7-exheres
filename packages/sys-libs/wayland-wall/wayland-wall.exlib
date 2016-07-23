@@ -13,6 +13,8 @@ MYOPTIONS="
     clients [[ description = [ Demo clients for Wayland Wall protocols ] ]]
     images  [[ description = [ Images support in clients through gdk-pixbuf ]
                requires = [ clients ] ]]
+    text    [[ description = [ Text support in clients through pango ]
+               requires = [ clients ] ]]
 "
 
 DEPENDENCIES="
@@ -22,8 +24,12 @@ DEPENDENCIES="
         dev-libs/libxslt
         virtual/pkg-config
     build+run:
-        clients? ( sys-libs/wayland[>=1.9.91] )
+        clients? (
+            sys-libs/wayland[>=1.9.91]
+            x11-libs/cairo
+        )
         images? ( x11-libs/gdk-pixbuf:2.0 )
+        text? ( x11-libs/pango )
     test:
         sys-libs/wayland
 "
@@ -31,5 +37,6 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     clients
     images
+    text
 )
 
