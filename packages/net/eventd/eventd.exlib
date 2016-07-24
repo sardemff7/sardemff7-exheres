@@ -43,7 +43,7 @@ MYOPTIONS="
         libcanberra           [[ description = [ Themes and files sound support through libcanberra ] ]]
         notification-daemon   [[ description = [ Graphical notifications plugin ] ]]
         sound                 [[ description = [ sound file plugin through libsndfile ] ]]
-        tts                   [[ description = [ Text-to-Speech plugin through eSpeak ] ]]
+        tts                   [[ description = [ Text-to-Speech plugin through Speech Dispatcher ] ]]
     )
 
     ( fbcon wayland X ) [[ *requires = [ plugins: notification-daemon ] ]]
@@ -94,7 +94,7 @@ DEPENDENCIES="
             media-libs/libsndfile
             media-sound/pulseaudio
         )
-        plugins:tts? ( app-speech/espeak )
+        plugins:tts? ( app-speech/speechd )
     run:
         dev-libs/glib-networking[ssl]
         plugins:notification-daemon? (
