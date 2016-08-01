@@ -1,7 +1,7 @@
 # Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=.tar.xz ] gtk-icon-cache freedesktop-desktop gsettings
+require gnome.org [ suffix=tar.xz ] gtk-icon-cache freedesktop-desktop gsettings
 
 export_exlib_phases pkg_postinst pkg_postrm
 
