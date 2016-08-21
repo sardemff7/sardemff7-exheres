@@ -5,9 +5,3 @@ require gnome-mahjongg
 
 PLATFORMS="~amd64"
 
-DEPENDENCIES="
-    build+run:
-        gnome-desktop/librsvg:2
-        x11-libs/gtk+:3[>=3.4.0]
-"
-
