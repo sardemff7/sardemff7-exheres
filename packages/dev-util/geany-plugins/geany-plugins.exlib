@@ -82,7 +82,7 @@ DEPENDENCIES="
         )
         plugins:multiterm? ( dev-libs/vte:0[>=0.24] )
         plugins:pretty-printer? ( dev-libs/libxml2:2.0 )
-        plugins:scope? ( dev-libs/vte:0[>=0.27] )
+        plugins:scope? ( dev-libs/vte:0[>=0.17] )
         plugins:spellcheck? ( app-spell/enchant )
         plugins:webhelper? (
             providers:gtk2? ( net-libs/webkit-gtk:1[>=1.1.18] )
@@ -111,7 +111,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-geanymacro
     --enable-geanynumberedbookmarks
     --enable-geanyprj
-    --enable-geanysendmail
+    --enable-sendmail
     --enable-geanyvc
     --enable-lineoperations
     --enable-overview
