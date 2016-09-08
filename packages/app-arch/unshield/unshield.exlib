@@ -9,11 +9,16 @@ SUMMARY="InstallShield cabinet files extraction tool"
 LICENCES="MIT"
 SLOT="0"
 
-MYOPTIONS=""
+MYOPTIONS="
+    ( providers: libressl openssl ) [[ number-selected = exactly-one ]]
+"
 
 DEPENDENCIES="
     build+run:
-        dev-libs/openssl [[ note = [ Automagic for MD5 ] ]]
         sys-libs/zlib
+        (
+            providers:libressl? ( dev-libs/libressl:= )
+            providers:openssl? ( dev-libs/openssl )
+        ) [[ note = [ Automagic for MD5 ] ]]
 "
 
