@@ -2,10 +2,9 @@
 # Copyright 2012 Benedikt Morbach <benedikt.morbach@googlemail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require sourceforge [ project=synce suffix=tar.gz ]
+require github [ user=twogood tag=${PV} ] cmake [ api=2 ]
 
 SUMMARY="InstallShield cabinet files extraction tool"
-HOMEPAGE="http://www.synce.org/oldwiki/index.php/${PN^}"
 
 LICENCES="MIT"
 SLOT="0"
@@ -14,6 +13,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
+        dev-libs/openssl [[ note = [ Automagic for MD5 ] ]]
         sys-libs/zlib
 "
 

@@ -5,3 +5,7 @@ require unshield
 
 PLATFORMS="~amd64"
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/07ce8d82f0f60b9048265410fa8063298ab520c4.patch
+)
+
