@@ -5,6 +5,3 @@ require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ] ssh
 
 PLATFORMS="~amd64"
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}/04e656373cba3100f68e33ddccd6be448a6328da.patch"
-)
