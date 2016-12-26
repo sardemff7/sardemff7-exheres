@@ -1,12 +1,9 @@
-# Copyright 2011 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2011-2016 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 # Based in part upon 'sdlmess-9999.ebuild' from Gentoo overlay sardemff7, which is:
 #     Copyright 1999-2011 Gentoo Foundation
 
-SCM_REPOSITORY="svn://dspnet.fr/mame"
-SCM_METADATA_UNNEEDED=1
-
-require scm-svn
+require github [ user=mamedev pn=mame ]
 
 SUMMARY="Multi Emulator Super System - will more or less faithfully reproduce computer and console systems on a PC"
 DESCRIPTION="
@@ -36,8 +33,8 @@ DEPENDENCIES="
         app-arch/unzip
     build+run:
         dev-libs/expat
-        media-libs/SDL[>=1.2.10][opengl(+)?]
-        media-libs/SDL_ttf[>=1.2.10]
+        media-libs/SDL:2[opengl(+)?]
+        media-libs/SDL_ttf:2
         sys-libs/zlib
         !games-emulation/mame [[
             description = [ If you want both MAME and MESS install mame[mess] ]
@@ -45,40 +42,51 @@ DEPENDENCIES="
         ]]
 "
 
-src_prepare() {
-    # Use system flags and libs
-    # Also remove suffixes
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/cross.patch
+)
+
+src_configure() {
     edo sed -i \
-        -e '/^CCOMFLAGS += -O$(OPTIMIZE)=/s:^:# :' \
-        -e '/^CCOMFLAGS += -pipe$/s:^:# :' \
-        -e '/^CCOMFLAGS =$/s:$'":${CFLAGS}:" \
-        -e '/^LDFLAGS += -s/s:^:# :' \
-        -e '/^BUILD_EXPAT/s:^:# :' \
-        -e '/^BUILD_ZLIB/s:^:# :' \
-        -e '/^SUFFIX/s:^:# :' \
-        makefile
-}
+        -e "/^CC  =/s/= gcc/:= $(exhost --tool-prefix)cc/" \
+        -e "/^CXX =/s/= g++/:= $(exhost --tool-prefix)c++/" \
+        -e "/^AR  =/s/= ar/:= $(exhost --tool-prefix)ar/" \
+        3rdparty/genie/build/gmake.linux/genie.make
+        src/devices/cpu/m68000/makefile
 
-src_compile() {
-    local make_opts=(
-        OSD=sdl
-        TARGET=mess
-        NAME="${PN}"
-        OPT_FLAGS=-DINI_PATH=\\\"/usr/share/${PN}/ini\\\"
-        NOWERROR=1
-        NO_USE_QTDEBUG=1
-        NO_USE_XINPUT=1
-        NO_X11=1
-    )
-    option opengl || make_opts+=( NO_OPENGL=1 )
+    edo tee useroptions.mak <<EOF
+OSD=sdl
+SUBTARGET=mess
+NAME="${PN}"
+OPT_FLAGS=-DINI_PATH=\\"/usr/share/${PN}/ini\\"
 
-    emake all ${make_opts[@]}
+NO_USE_QTDEBUG = 1
+USE_QTDEBUG = 0
+NO_USE_XINPUT = 1
+NO_X11 = 1
+
+$(option opengl NO_OPENGL=1)
+
+USE_SYSTEM_LIB_EXPAT = 1
+USE_SYSTEM_LIB_ZLIB = 1
+USE_SYSTEM_LIB_JPEG = 1
+USE_SYSTEM_LIB_FLAC = 1
+USE_SYSTEM_LIB_SQLITE3 = 1
+USE_LIBSDL = 1
+USE_DISPATCH_GL = 1
+NOWERROR = 1
+
+OVERRIDE_CC=$(exhost --tool-prefix)cc
+OVERRIDE_CXX=$(exhost --tool-prefix)c++
+OVERRIDE_LD=$(exhost --tool-prefix)ld
+OVERRIDE_AR=$(exhost --tool-prefix)ar
+EOF
 }
 
 src_install() {
     dobin ${PN}
 
-    exeinto /usr/${LIBDIR}/${PN}
+    exeinto /usr/$(exhost --target)/lib/${PN}
     doexe \
         castool \
         chdman \
