@@ -6,7 +6,7 @@ require alternatives
 export_exlib_phases src_install
 
 SUMMARY="A locate/updatedb implementation"
-HOMEPAGE="https://fedorahosted.org/${PN}/"
+HOMEPAGE="https://pagure.io/${PN}/"
 
 LICENCES="GPL-2"
 SLOT="0"
