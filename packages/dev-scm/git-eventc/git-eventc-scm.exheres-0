@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require git-eventc
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
 
 PLATFORMS="~amd64"
 
