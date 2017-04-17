@@ -1,16 +1,13 @@
 # Copyright 2011-2016 Quentin “Sardem FF7” Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_libnkutils_REPOSITORY="git://github.com/sardemff7/libnkutils"
-SCM_libgwater_REPOSITORY="git://github.com/sardemff7/libgwater"
+SCM_libnkutils_REPOSITORY="https://github.com/sardemff7/libnkutils"
+SCM_libgwater_REPOSITORY="https://github.com/sardemff7/libgwater"
 
 SCM_SECONDARY_REPOSITORIES="libnkutils libgwater"
 SCM_EXTERNAL_REFS="src/libnkutils:libnkutils src/libgwater:libgwater"
 
 require eventd
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
 
 PLATFORMS="~amd64"
-
-AT_M4DIR=( m4 src/libnkutils src/libgwater )
 

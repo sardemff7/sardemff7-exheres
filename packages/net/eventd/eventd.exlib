@@ -12,6 +12,7 @@ OPTION_RENAMES=(
 )
 
 require github [ user=sardemff7 ] systemd-service
+require meson [ meson_minimum_version=0.39.1 ]
 require option-renames
 
 export_exlib_phases src_test
@@ -102,11 +103,11 @@ DEPENDENCIES="
         )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+MESON_SRC_CONFIGURE_OPTION_ENABLES=(
     dns-sd
     debug
     'fbcon nd-fbdev'
-    'gobject-introspection introspection'
+    gobject-introspection
     ssdp
     systemd
     'wayland nd-wayland'
@@ -121,13 +122,11 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     plugins:tts
 )
 
-DEFAULT_SRC_TEST_PARAMS=(
-    EVENTD_TESTS_TMP_DIR="${TEMP}"
-)
+export EVENTD_TESTS_TMP_DIR=${TEMP}
 
 eventd_src_test() {
     esandbox allow_net unix:"${TEMP}/**"
-    default
+    meson_src_test
     esandbox disallow_net unix:"${TEMP}/**"
 }
 
