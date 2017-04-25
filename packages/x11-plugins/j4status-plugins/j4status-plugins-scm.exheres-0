@@ -7,7 +7,7 @@ SCM_SECONDARY_REPOSITORIES="libgwater"
 SCM_EXTERNAL_REFS="src/libgwater:libgwater"
 
 require j4status-plugins
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 1.12 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
 
 PLATFORMS="~amd64"
 
