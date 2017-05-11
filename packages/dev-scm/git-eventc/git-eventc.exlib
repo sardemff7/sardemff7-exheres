@@ -3,6 +3,8 @@
 
 require github [ user=sardemff7 ]
 
+export_exlib_phases pkg_pretend
+
 SUMMARY="A small project to bridge Git repositories to eventd"
 HOMEPAGE="https://clients.eventd.org/git/"
 
@@ -27,3 +29,11 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     systemd
 )
 
+git-eventc_pkg_pretend() {
+    if option systemd; then
+        einfo "There is no default git-eventc-webhook.socket"
+        einfo "You have to create it yourself using the socket type matching your use case"
+        einfo "E.g. connected directly to internel (TCP), behind Apache (localhost TCP),"
+        einfo "behind nginx or haproxy (UNIX)"
+    fi
+}
