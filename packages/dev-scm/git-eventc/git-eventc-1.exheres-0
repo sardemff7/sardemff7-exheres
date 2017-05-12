@@ -1,0 +1,8 @@
+# Copyright 2017 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require git-eventc
+
+DOWNLOADS="https://clients.eventd.org/download/${PN}/${PNV}.tar.xz"
+
+PLATFORMS="~amd64"

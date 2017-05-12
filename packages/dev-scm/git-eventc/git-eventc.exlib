@@ -1,7 +1,8 @@
-# Copyright 2014-2016 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Copyright 2014-2017 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=sardemff7 ]
+require github [ user=sardemff7 ] systemd-service
+require meson [ meson_minimum_version=0.39.1 ]
 
 export_exlib_phases pkg_pretend
 
@@ -25,7 +26,7 @@ DEPENDENCIES="
         )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+MESON_SRC_CONFIGURE_OPTION_ENABLES=(
     systemd
 )
 
