@@ -11,7 +11,9 @@ HOMEPAGE="https://clients.eventd.org/git/"
 
 LICENCES="GPL-3"
 SLOT="0"
-MYOPTIONS="systemd"
+MYOPTIONS="systemd
+    debug [[ description = [ Extra output ] ]]
+"
 
 DEPENDENCIES="
     build+run:
@@ -27,6 +29,7 @@ DEPENDENCIES="
 "
 
 MESON_SRC_CONFIGURE_OPTION_ENABLES=(
+    debug
     systemd
 )
 
