@@ -1,4 +1,4 @@
-# Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Copyright 2012-2017 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org [ suffix=tar.xz ] gtk-icon-cache freedesktop-desktop gsettings
@@ -14,6 +14,8 @@ SLOT="0"
 MYOPTIONS="
     clutter [[ description = [ Transitions for the slideshow plugin ] ]]
     exif
+    raw     [[ description = [ RAW format support through libraw ] ]]
+    tiff
     webp    [[ description = [ WebP format support ] ]]
 
     ( linguas:
@@ -26,7 +28,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        dev-util/intltool
+        dev-util/intltool[>=0.50.1]
         gnome-desktop/yelp-tools
         virtual/pkg-config
     build+run:
@@ -35,10 +37,8 @@ DEPENDENCIES="
         gnome-desktop/gsettings-desktop-schemas
         gnome-desktop/librsvg:2
         media-libs/libpng:=
-        media-libs/libraw
-        media-libs/tiff
         sys-libs/zlib
-        x11-libs/gtk+:3[>=3.4.0]
+        x11-libs/gtk+:3[>=3.13.2]
         clutter? (
             x11-libs/clutter:1[>=1.12.0]
             x11-libs/clutter-gtk:1.0
@@ -46,6 +46,12 @@ DEPENDENCIES="
         exif? ( graphics/exiv2 )
         providers:ijg-jpeg? ( media-libs/jpeg:= )
         providers:jpeg-turbo? ( media-libs/libjpeg-turbo )
+        raw? (
+            media-libs/libraw
+        )
+        tiff? (
+            media-libs/tiff
+        )
         webp? ( media-libs/libwebp[>=0.2.0] )
 "
 
@@ -70,6 +76,8 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     clutter
     'exif exiv2'
+    'raw libraw'
+    tiff
     'webp libwebp'
 )
 
