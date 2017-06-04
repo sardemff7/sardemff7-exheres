@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require github [ user=wayland-wall ]
+require meson [ meson_minimum_version=0.39.1 ]
 
 SUMMARY="A collection of protocols for Wayland compositors"
 HOMEPAGE="${HOMEPAGE}#${PN}"
@@ -19,9 +20,6 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        app-text/docbook-xml-dtd:4.5
-        app-text/docbook-xsl-stylesheets
-        dev-libs/libxslt
         virtual/pkg-config
     build+run:
         clients? (
@@ -34,7 +32,7 @@ DEPENDENCIES="
         sys-libs/wayland
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+MESON_SRC_CONFIGURE_OPTION_ENABLES=(
     clients
     images
     text
