@@ -103,7 +103,7 @@ DEPENDENCIES="
         )
 "
 
-MESON_SRC_CONFIGURE_OPTION_ENABLES=(
+MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
     dns-sd
     debug
     'fbcon nd-fbdev'
@@ -120,6 +120,9 @@ MESON_SRC_CONFIGURE_OPTION_ENABLES=(
     plugins:notification-daemon
     plugins:sound
     plugins:tts
+)
+MESON_SRC_CONFIGURE_OPTION_ENABLES=(
+    "${MESON_SRC_CONFIGURE_OPTION_SWITCHES[@]}"
 )
 
 export EVENTD_TESTS_TMP_DIR=${TEMP}
