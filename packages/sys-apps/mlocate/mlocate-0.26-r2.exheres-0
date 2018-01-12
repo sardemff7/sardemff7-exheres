@@ -5,7 +5,7 @@ require mlocate
 
 DOWNLOADS="https://releases.pagure.org/${PN}/${PNV}.tar.xz"
 
-PLATFORMS="~amd64 ~x86"
+PLATFORMS="~amd64 ~armv7 ~x86"
 
 src_prepare() {
     # https://fedorahosted.org/mlocate/changeset/242/
