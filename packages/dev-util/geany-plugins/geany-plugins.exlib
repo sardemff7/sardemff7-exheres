@@ -106,23 +106,25 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --disable-geanydoc
     --enable-geanyextrasel
     --enable-geanyinsertnum
-    --enable-geanylatex
-    --enable-geanylipsum
     --enable-geanymacro
     --enable-geanynumberedbookmarks
     --enable-geanyprj
-    --enable-sendmail
     --enable-geanyvc
+    --enable-keyrecord
+    --enable-latex
     --enable-lineoperations
+    --enable-lipsum
     --enable-overview
     --enable-pairtaghighlighter
     --enable-pohelper
     --enable-projectorganizer
+    --enable-sendmail
     --enable-shiftcolumn
     --enable-tableconvert
     --enable-treebrowser
     --disable-updatechecker
-    --enable-xmlsnippets
+    --enable-utilslib
+    --enable-workbench
     --enable-nls
 )
 
