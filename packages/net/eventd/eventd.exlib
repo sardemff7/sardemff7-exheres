@@ -12,7 +12,7 @@ OPTION_RENAMES=(
 )
 
 require github [ user=sardemff7 ] systemd-service
-require meson [ meson_minimum_version=0.41.0 ]
+require meson [ meson_minimum_version=0.44.1 ]
 require option-renames
 
 export_exlib_phases src_test
