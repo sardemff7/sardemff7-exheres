@@ -20,6 +20,6 @@ DEPENDENCIES="
     build+run:
         sys-libs/wayland
         sys-libs/wayland-wall
-        compositor/weston:=[>=1.11.90]
+        compositor/weston:=[>=3.0.90]
 "
 
