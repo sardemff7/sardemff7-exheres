@@ -1,0 +1,10 @@
+image: exherbo/exherbo_ci
+
+variables:
+  REPO: sardemff7
+  REPO_NAMESPACE: exherbo-devs
+
+build:
+  script:
+    - buildtest
+
