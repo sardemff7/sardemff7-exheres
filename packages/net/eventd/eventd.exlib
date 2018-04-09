@@ -100,7 +100,7 @@ DEPENDENCIES="
         plugins:tts? ( app-speech/speechd )
         plugins:webhook? ( gnome-desktop/libsoup:2.4[>=2.42] )
     run:
-        dev-libs/glib-networking[ssl]
+        dev-libs/glib-networking[ssl(+)]
         plugins:notification-daemon? (
             gnome-desktop/librsvg:2 [[ description = [ SVG support for notification plugin ] ]]
             x11-apps/xkeyboard-config
