@@ -10,20 +10,4 @@ SCM_EXTERNAL_REFS="src/libnkutils:libnkutils src/libgwater:libgwater"
 require eventd
 
 PLATFORMS="~amd64"
-MYOPTIONS="
-    ( plugins:
-        webhook               [[ description = [ WebHook plugin through libsoup ] ]]
-    )
-"
-
-DEPENDENCIES="
-    build+run:
-        plugins:webhook? (
-            gnome-desktop/libsoup:2.4
-        )
-"
-
-MESON_SRC_CONFIGURE_OPTION_ENABLES+=(
-    plugins:webhook
-)
 
