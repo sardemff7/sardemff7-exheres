@@ -15,13 +15,22 @@ RESTRICT="test"
 DEPENDENCIES="
     build:
         dev-lang/python:*[>=2.6]
+        dev-perl/Data-Dump
         dev-perl/ExtUtils-Depends
         dev-perl/ExtUtils-PkgConfig
+        dev-perl/XML-Descent
+        dev-perl/XML-Simple
     build+run:
         dev-perl/Mouse
         dev-perl/MouseX-NativeTraits
         dev-perl/Try-Tiny
         dev-perl/XS-Object-Magic
+        x11-libs/libxcb[>=1.2]
+        x11-utils/xcb-util
+        x11-utils/xcb-util-wm
+    test:
+        dev-perl/Test-Deep
+        dev-perl/Test-Exception
 "
 
 DEFAULT_SRC_COMPILE_PARAMS=( -j1 )
