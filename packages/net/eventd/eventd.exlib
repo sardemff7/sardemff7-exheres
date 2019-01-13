@@ -34,7 +34,6 @@ MYOPTIONS="
     gobject-introspection
     ssdp                  [[ description = [ SSDP support (public and browse) through GSSDP ] ]]
     systemd
-    wayland               [[ description = [ Wayland backend for notification plugin ] ]]
     websocket             [[ description = [ EvP protocol over WebSocket through libsoup ] ]]
     X                     [[ description = [ XCB backend for notification plugin ] ]]
 
@@ -48,8 +47,8 @@ MYOPTIONS="
         webhook               [[ description = [ WebHook sending plugin through libsoup ] ]]
     )
 
-    ( fbcon wayland X ) [[ *requires = [ plugins: notification-daemon ] ]]
-    plugins:notification-daemon? ( ( fbcon wayland X ) [[ number-selected = at-least-one ]] )
+    ( fbcon X ) [[ *requires = [ plugins: notification-daemon ] ]]
+    plugins:notification-daemon? ( ( fbcon X ) [[ number-selected = at-least-one ]] )
 "
 
 DEPENDENCIES="
@@ -58,7 +57,6 @@ DEPENDENCIES="
         app-text/docbook-xsl-stylesheets
         dev-libs/libxslt
         virtual/pkg-config
-        wayland? ( sys-libs/wayland-wall )
     build+run:
         dev-libs/glib:2[>=2.40.0]
         sys-apps/util-linux [[ note = [ For libuuid ] ]]
@@ -72,7 +70,6 @@ DEPENDENCIES="
             group/eventd
             sys-apps/systemd[>=36]
         )
-        wayland? ( sys-libs/wayland[>=1.9.91] )
         websocket? ( gnome-desktop/libsoup:2.4 )
         X? (
             x11-libs/libxcb
@@ -108,14 +105,10 @@ DEPENDENCIES="
 "
 
 MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
-    dns-sd
     debug
     'fbcon nd-fbdev'
     gobject-introspection
-    ssdp
     systemd
-    'wayland nd-wayland'
-    websocket
     'X nd-xcb'
 
     plugins:im
@@ -125,6 +118,12 @@ MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
     plugins:sound
     plugins:tts
     plugins:webhook
+)
+
+MESON_SRC_CONFIGURE_OPTION_FEATURES=(
+    dns-sd
+    ssdp
+    websocket
 )
 
 export EVENTD_TESTS_TMP_DIR=${TEMP}
