@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require github [ user=sardemff7 ] systemd-service
-require meson [ meson_minimum_version=0.39.1 ]
+require meson
 
 export_exlib_phases pkg_pretend
 
