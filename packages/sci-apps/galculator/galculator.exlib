@@ -1,8 +1,5 @@
-
 # Copyright 2015 Quentin “Sardem FF7” Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
-
-require sourceforge
 
 SUMMARY="An algebraic and RPN calculator"
 DESCRIPTION="
@@ -20,6 +17,8 @@ galculator's main features include:
 - Copy and paste
 - Available in more than 20 translations.
 "
+HOMEPAGE="http://${PN}.mnim.org"
+DOWNLOADS="${HOMEPAGE}/downloads/${PNV}.tar.bz2"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -27,9 +26,15 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
+        dev-libs/glib:2
         sys-libs/libquadmath:=
         x11-libs/gtk+:3
+        x11-libs/pango
 "
 
 BUGS_TO="sardemff7@exherbo.org"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/potfiles.patch"
+)
 

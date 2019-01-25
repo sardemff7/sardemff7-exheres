@@ -1,0 +1,30 @@
+Source: Debian
+Reason: fix tests
+Upstream: yes
+
+Last-Update: 2015-09-06
+Forwarded: yes
+Author: Dmitry Smirnov <onlyjob@member.fsf.org>
+Description: fix FTBFS
+~~~~
+ INTLTOOL_EXTRACT="/usr/bin/intltool-extract" XGETTEXT="/usr/bin/xgettext" srcdir=. /usr/bin/intltool-update --gettext-package galculator --pot
+ rm -f missing notexist
+ srcdir=. /usr/bin/intltool-update -m
+ The following files contain translations and are currently not in use. Please
+ consider adding these to the POTFILES.in file, located in the po/ directory.
+
+ src/flex_parser.c
+
+ If some of these files are left out on purpose then please add them to
+ POTFILES.skip instead of POTFILES.in. A file 'missing' containing this list
+ of left out files has been written in the current directory.
+ if [ -r missing -o -r notexist ]; then \
+   exit 1; \
+ fi
+~~~~
+
+--- a/po/POTFILES.skip
++++ b/po/POTFILES.skip
+@@ -1 +1,2 @@
+ ui/about.ui
++src/flex_parser.c
