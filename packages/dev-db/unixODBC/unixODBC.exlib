@@ -15,7 +15,10 @@ LICENCES="|| ( GPL-2 LGPL-2 )"
 SLOT="0"
 MYOPTIONS=""
 
-DEPENDENCIES=""
+DEPENDENCIES="
+    build+run:
+        sys-libs/readline:=
+"
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --sysconfdir=/etc/${PN}
