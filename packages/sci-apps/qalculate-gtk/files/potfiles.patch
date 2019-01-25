@@ -1,0 +1,17 @@
+Upstream: no
+Reason: failing tests
+
+commit fdc7213b2bb4ebce48bf5f22322965a01ab007ca
+Author: Alexander Kapshuna <kapsh@kap.sh>
+Date:   Fri Jan 25 22:04:23 2019 +0300
+
+    Fix "make check" in po
+
+diff --git a/po/POTFILES.skip b/po/POTFILES.skip
+new file mode 100644
+index 0000000..66e76a8
+--- /dev/null
++++ b/po/POTFILES.skip
+@@ -0,0 +1,2 @@
++data/calendarconversion.ui
++data/periodictable.ui

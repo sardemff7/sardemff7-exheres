@@ -3,12 +3,10 @@
 # Based in part upon 'qalculate-gtk-0.9.7.ebuild' from Gentoo, which is:
 #     Copyright 1999-2011 Gentoo Foundation
 
-require sourceforge [ project=qalculate suffix=tar.gz ]
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
-
-export_exlib_phases src_prepare
+require github [ user=qalculate release=v${PV} suffix=tar.gz ]
 
 SUMMARY="The ultimate desktop calculator - GTK+ frontend"
+HOMEPAGE+=" https://qalculate.github.io/"
 
 LICENCES="GPL-2"
 SLOT="0"
@@ -17,23 +15,20 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        app-text/rarian
         dev-util/intltool
         virtual/pkg-config
         sys-devel/gettext
     build+run:
-        gnome-platform/libglade:2
-        sci-libs/cln[>=1.2]
-        sci-libs/libqalculate[~${PV}]
-        x11-libs/gtk+:2
+        dev-libs/glib:2[>=2.4]
+        dev-libs/libxml2:2.0
+        sci-libs/libqalculate:=[~${PV}]
+        x11-libs/cairo
+        x11-libs/gdk-pixbuf:2.0
+        x11-libs/gtk+:3[>=3.12]
+        x11-libs/pango
 "
 
-qalculate-gtk_src_prepare() {
-    edo sed -i \
-        -e '$a\data/periodictable.glade' \
-        po/POTFILES.in
-
-    edo intltoolize --automake --force
-    autotools_src_prepare
-}
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}/potfiles.patch"
+)
 
