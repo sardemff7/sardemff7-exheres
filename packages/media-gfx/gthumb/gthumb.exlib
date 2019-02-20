@@ -2,84 +2,85 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org [ suffix=tar.xz ] gtk-icon-cache freedesktop-desktop gsettings
+require meson
 
-export_exlib_phases pkg_postinst pkg_postrm
+export_exlib_phases src_install pkg_postinst pkg_postrm
 
 SUMMARY="An image viewer and browser for the GNOME Desktop"
-HOMEPAGE="http://live.gnome.org/gthumb"
+HOMEPAGE="https://wiki.gnome.org/action/show/Apps/Gthumb"
 
 LICENCES="GPL-2"
 SLOT="0"
-
 MYOPTIONS="
     clutter [[ description = [ Transitions for the slideshow plugin ] ]]
+    colord [[ description = [ Use colord to read the monitor color profile ] ]]
     exif
-    raw     [[ description = [ RAW format support through libraw ] ]]
+    lcms
+    raw [[ description = [ RAW format support through libraw ] ]]
+    svg
     tiff
-    webp    [[ description = [ WebP format support ] ]]
-
-    ( linguas:
-        am ar az bg ca ca@valencia cs da de dz el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr
-        hu id it ja kn ko lt lv mk ml ms nb nds ne nl nn oc pa pl ps pt_BR pt ro ru rw sk sl sq
-        sr@latin sr@Latn sr sv th tr uk vi xh zh_CN zh_HK zh_TW
-    )
+    webp [[ description = [ WebP format support ] ]]
     ( providers: ijg-jpeg jpeg-turbo ) [[ number-selected = exactly-one ]]
 "
 
+# NOTE: gstreamer and gst-plugins-base are optional but currently hard-enabled
+# since gthumb fails to build otherwise due to a meson error.
+# last checked: 3.7.1
 DEPENDENCIES="
     build:
-        dev-util/intltool[>=0.50.1]
         gnome-desktop/yelp-tools
         virtual/pkg-config
     build+run:
-        dev-libs/glib:2[>=2.36.0]
-        dev-libs/libsecret:1
+        dev-libs/glib:2[>=2.38.0]
         gnome-desktop/gsettings-desktop-schemas
-        gnome-desktop/librsvg:2
+        media-libs/gstreamer:1.0
+        media-plugins/gst-plugins-base:1.0
         media-libs/libpng:=
         sys-libs/zlib
-        x11-libs/gtk+:3[>=3.13.2]
+        x11-libs/gtk+:3[>=3.16]
         clutter? (
             x11-libs/clutter:1[>=1.12.0]
             x11-libs/clutter-gtk:1.0
         )
-        exif? ( graphics/exiv2 )
+        colord? ( sys-apps/colord[>=1.3] )
+        exif? ( graphics/exiv2[>=0.27] )
+        lcms? ( media-libs/lcms2[>=2.6] )
         providers:ijg-jpeg? ( media-libs/jpeg:= )
         providers:jpeg-turbo? ( media-libs/libjpeg-turbo )
-        raw? (
-            media-libs/libraw
-        )
-        tiff? (
-            media-libs/tiff
-        )
+        raw? ( media-libs/libraw[>=0.14] )
+        svg? ( gnome-desktop/librsvg:2[>=2.34.0] )
+        tiff? ( media-libs/tiff )
         webp? ( media-libs/libwebp[>=0.2.0] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --enable-compile-warnings=minimum
-    --enable-cxx-warnings=minimum
-    --enable-gseal
-    --enable-test-suite
-    --enable-jpeg
-    --disable-gstreamer
-    --disable-libbrasero
-    --disable-libjson-glib
-    --enable-libraw
-    --enable-libsecret
-    --disable-libsoup
-    --disable-schemas-compile
-    --disable-scrollkeeper
-    --enable-tiff
-    --disable-webkit2
+MESON_SRC_CONFIGURE_PARAMS=(
+    -Dgstreamer=true
+    -Dlibbrasero=false
+    -Dlibchamplain=false
+    -Drun-in-place=false
+
+    # Requires a deprecated webkit
+    -Dlibsecret=false
+    -Dwebservices=false
 )
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
     clutter
+    colord
     'exif exiv2'
+    'lcms lcms2'
     'raw libraw'
-    tiff
+    'svg librsvg'
+    'tiff libtiff'
     'webp libwebp'
 )
+
+gthumb_src_install() {
+    # gsettings_src_install uses `default`
+    export GSETTINGS_DISABLE_SCHEMAS_COMPILE=1
+    meson_src_install
+    unset GSETTINGS_DISABLE_SCHEMAS_COMPILE
+}
 
 gthumb_pkg_postinst() {
     gsettings_exlib_compile_gsettings_schemas

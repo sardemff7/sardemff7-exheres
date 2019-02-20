@@ -1,0 +1,15 @@
+Source/Upstream: Reported, https://gitlab.gnome.org/GNOME/gthumb/merge_requests/4
+Reason: Fix libdir 
+
+diff -Naur gthumb-3.7.1/meson.build gthumb-3.7.1.new/meson.build
+--- gthumb-3.7.1/meson.build	2019-02-18 20:47:49.000000000 +0100
++++ gthumb-3.7.1.new/meson.build	2019-02-20 19:05:38.880260310 +0100
+@@ -32,7 +32,7 @@
+ prefix = get_option('prefix')
+ datadir = join_paths(prefix, get_option('datadir'))
+ pkgdatadir = join_paths(datadir, meson.project_name())
+-pkgincludedir = join_paths(prefix, 'include', meson.project_name())
++pkgincludedir = join_paths(prefix, get_option('includedir'), meson.project_name())
+ pkglibdir = join_paths(prefix, get_option('libdir'), meson.project_name())
+ po_dir = join_paths(meson.source_root(), 'po')
+ extensions_install_dir = join_paths(pkglibdir, 'extensions')
