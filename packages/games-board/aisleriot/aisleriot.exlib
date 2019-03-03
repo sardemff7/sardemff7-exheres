@@ -21,7 +21,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        dev-lang/guile:2.0
+        dev-lang/guile:2.2
         dev-libs/libxml2:2.0
         dev-util/intltool[>=0.35.0]
         virtual/pkg-config
@@ -41,7 +41,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --disable-introspection
     --disable-schemas-compile
     --with-card-theme-formats=svg
-    --with-guile=2.0
+    --with-guile=2.2
     --with-platform=gtk-only
 )
 
