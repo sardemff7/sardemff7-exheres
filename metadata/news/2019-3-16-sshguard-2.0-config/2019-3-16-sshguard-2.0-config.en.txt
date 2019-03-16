@@ -1,0 +1,19 @@
+Title: Configuring sshguard 2.0
+Author: Steven Siloti <ssiloti@gmail.com>
+Content-Type: text/plain
+Posted: 2019-3-16
+Revision: 1
+News-Item-Format: 1.0
+Display-If-Installed: net-security/sshguard
+
+As of sshguard 2.0 backends and log readers are configured with /etc/sshguard.conf
+A sample config file is installed at /usr/share/sshguard/sshguard.conf.sample
+
+To configure sshguard, copy the sample config and modify it to your preference.
+At a minimum the BACKEND option and one of FILES or LOGREADER should be set.
+
+    cp /usr/share/sshguard/sshguard.conf.sample /etc/sshguard.conf
+
+Available backends are installed in /usr/libexec/sshg-fw-*
+
+    ls /usr/libexec/sshg-fw-*
