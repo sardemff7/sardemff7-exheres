@@ -11,7 +11,7 @@ ExecStartPre=-/sbin/iptables -N sshguard
 ExecStartPre=-/sbin/ip6tables -N sshguard
 ExecStartPre=-/sbin/iptables -A INPUT -j sshguard
 ExecStartPre=-/sbin/ip6tables -A INPUT -j sshguard
-ExecStart=/usr/sbin/sshguard -l /var/log/secure
+ExecStart=/usr/sbin/sshguard
 
 [Install]
 WantedBy=multi-user.target
