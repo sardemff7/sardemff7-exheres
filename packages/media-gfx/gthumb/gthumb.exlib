@@ -50,7 +50,7 @@ DEPENDENCIES="
         raw? ( media-libs/libraw[>=0.14] )
         svg? ( gnome-desktop/librsvg:2[>=2.34.0] )
         tiff? ( media-libs/tiff )
-        webp? ( media-libs/libwebp[>=0.2.0] )
+        webp? ( media-libs/libwebp:=[>=0.2.0] )
 "
 
 MESON_SRC_CONFIGURE_PARAMS=(
