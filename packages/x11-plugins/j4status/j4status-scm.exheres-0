@@ -8,9 +8,6 @@ SCM_SECONDARY_REPOSITORIES="libnkutils libgwater"
 SCM_EXTERNAL_REFS="src/libnkutils:libnkutils src/libgwater:libgwater"
 
 require j4status
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
 
 PLATFORMS="~amd64"
-
-AT_M4DIR=( m4 src/libnkutils src/libgwater )
 

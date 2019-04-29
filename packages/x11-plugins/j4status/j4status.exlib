@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require github [ user=sardemff7 ] tuxfamily [ group=j4tools suffix=tar.xz ]
+require meson
 
 SUMMARY="Status line generator"
 HOMEPAGE="http://j4status.j4tools.org/"
@@ -35,13 +36,16 @@ DEPENDENCIES="
         plugins:upower? ( sys-apps/upower )
 "
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
     systemd
-    'plugins:i3bar i3bar-input-output'
-    'plugins:mpd mpd-input'
-    'plugins:netlink nl-input'
-    'plugins:pulseaudio pulseaudio-input'
-    'plugins:sensors sensors-input'
-    'plugins:upower upower-input'
+)
+
+MESON_SRC_CONFIGURE_OPTION_FEATURES=(
+    plugins:i3bar
+    plugins:mpd
+    'plugins:netlink nl'
+    plugins:pulseaudio
+    plugins:sensors
+    plugins:upower
 )
 
