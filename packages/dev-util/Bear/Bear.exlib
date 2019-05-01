@@ -15,5 +15,6 @@ DEPENDENCIES="
 "
 
 # TODO(sardemff7): Need some upstream fixing for our banned cc
+# TODO(danyspin97): Need lit tool, which has been buried
 RESTRICT="test"
 
