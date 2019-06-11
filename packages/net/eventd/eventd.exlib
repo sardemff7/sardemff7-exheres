@@ -64,7 +64,7 @@ DEPENDENCIES="
         gobject-introspection? (
             gnome-desktop/gobject-introspection:1[>=1.42.0]
         )
-        ssdp? ( net-libs/gssdp:1.0 )
+        ssdp? ( net-libs/gssdp:1.2 )
         systemd? (
             user/eventd
             group/eventd
