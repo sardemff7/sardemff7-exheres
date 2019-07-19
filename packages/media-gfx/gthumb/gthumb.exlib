@@ -15,6 +15,7 @@ MYOPTIONS="
     clutter [[ description = [ Transitions for the slideshow plugin ] ]]
     colord [[ description = [ Use colord to read the monitor color profile ] ]]
     exif
+    gstreamer
     lcms
     raw [[ description = [ RAW format support through libraw ] ]]
     svg
@@ -23,9 +24,6 @@ MYOPTIONS="
     ( providers: ijg-jpeg jpeg-turbo ) [[ number-selected = exactly-one ]]
 "
 
-# NOTE: gstreamer and gst-plugins-base are optional but currently hard-enabled
-# since gthumb fails to build otherwise due to a meson error.
-# last checked: 3.7.1
 DEPENDENCIES="
     build:
         gnome-desktop/yelp-tools
@@ -33,8 +31,6 @@ DEPENDENCIES="
     build+run:
         dev-libs/glib:2[>=2.38.0]
         gnome-desktop/gsettings-desktop-schemas
-        media-libs/gstreamer:1.0
-        media-plugins/gst-plugins-base:1.0
         media-libs/libpng:=
         sys-libs/zlib
         x11-libs/gtk+:3[>=3.16]
@@ -44,6 +40,10 @@ DEPENDENCIES="
         )
         colord? ( sys-apps/colord[>=1.3] )
         exif? ( graphics/exiv2[>=0.27] )
+        gstreamer? (
+            media-libs/gstreamer:1.0
+            media-plugins/gst-plugins-base:1.0
+        )
         lcms? ( media-libs/lcms2[>=2.6] )
         providers:ijg-jpeg? ( media-libs/jpeg:= )
         providers:jpeg-turbo? ( media-libs/libjpeg-turbo )
@@ -54,7 +54,6 @@ DEPENDENCIES="
 "
 
 MESON_SRC_CONFIGURE_PARAMS=(
-    -Dgstreamer=true
     -Dlibbrasero=false
     -Dlibchamplain=false
     -Drun-in-place=false
@@ -68,6 +67,7 @@ MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
     clutter
     colord
     'exif exiv2'
+    gstreamer
     'lcms lcms2'
     'raw libraw'
     'svg librsvg'

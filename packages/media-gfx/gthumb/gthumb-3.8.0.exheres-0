@@ -5,9 +5,3 @@ require gthumb
 
 PLATFORMS="~amd64"
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/exiv2-0.27.patch
-    "${FILES}"/libdir.patch
-    "${FILES}"/includedir.patch
-)
-
