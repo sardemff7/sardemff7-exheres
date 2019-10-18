@@ -96,6 +96,10 @@ DEPENDENCIES="
         )
         plugins:tts? ( app-speech/speechd )
         plugins:webhook? ( gnome-desktop/libsoup:2.4[>=2.42] )
+    test:
+        plugins:notification-daemon? (
+            x11-apps/xkeyboard-config
+        )
     run:
         dev-libs/glib-networking[ssl(+)]
         plugins:notification-daemon? (
