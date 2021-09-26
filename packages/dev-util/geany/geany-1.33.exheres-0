@@ -3,7 +3,7 @@
 
 require geany
 
-DOWNLOADS="http://download.geany.org/${PNV}.tar.bz2"
+DOWNLOADS="https://download.geany.org/${PNV}.tar.bz2"
 
 PLATFORMS="~amd64"
 

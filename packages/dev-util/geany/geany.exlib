@@ -12,7 +12,7 @@ small and fast IDE, which has only a few dependencies from other packages. Anoth
 independent as possible from a special Desktop Environment like KDE or GNOME - Geany only requires
 the GTK2 runtime libraries
 "
-HOMEPAGE="http://www.geany.org/"
+HOMEPAGE="https://www.geany.org/"
 
 LICENCES="GPL-2 Scintilla"
 SLOT="0"
