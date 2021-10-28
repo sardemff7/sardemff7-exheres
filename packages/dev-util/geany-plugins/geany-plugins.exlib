@@ -11,7 +11,7 @@ What you will find here is a lot of plugin stuff for Geany.
 There is a Geany Plugins project containing a lot of plugins,
 which is developed by various developers on SourceForge.
 "
-HOMEPAGE="http://plugins.geany.org/"
+HOMEPAGE="https://plugins.geany.org/"
 
 LICENCES="GPL-2 Scintilla"
 SLOT="0"
