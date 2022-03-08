@@ -1,4 +1,4 @@
-# Copyright 2011-2012 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
+# Copyright 2011-2022 Quentin "Sardem FF7" Glidic <sardemff7+exherbo@sardemff7.net>
 # Distributed under the terms of the GNU General Public License v2
 
 require gtk-icon-cache freedesktop-desktop github [ user=geany ]
@@ -24,57 +24,38 @@ MYOPTIONS="
         geanygendoc    [[ description = [ Plugin to help documentation generation ] ]]
         geanylua       [[ description = [ Extend Geany using Lua ] ]]
         geanypg        [[ description = [ GPG support via GeanyPG ] ]]
-        geanypy        [[ description = [ Support for Python plugins ] ]]
         geniuspaste    [[ description = [ Pastebins client plugin ] ]]
         gitchangebar   [[ description = [ Highlight uncommited changes ] ]]
         markdown       [[ description = [ Preview Markdown generated HTML ] ]]
-        multiterm      [[ description = [ Mulitple VTE-based terminals plugin ] ]]
         pretty-printer [[ description = [ XML Pretty-Print plugin ] ]]
-        spellcheck     [[ description = [ Spell checking plugin (using enchant) ] ]]
         scope          [[ description = [ GDB frontend plugin ] ]]
+        spellcheck     [[ description = [ Spell checking plugin (using enchant) ] ]]
         webhelper      [[ description = [ Web development helper using WebKit ] ]]
     )
-
-    ( providers:
-        gtk2
-        gtk3
-    ) [[ number-selected = exactly-one ]]
-
-    ( plugins: debugger geanypy multiterm scope ) [[ *requires = [ providers: gtk2 ] ]]
-    ( plugins: markdown webhelper ) [[ *requires = [ providers: gtk3 ] ]]
 "
 
 DEPENDENCIES="
     build:
         sys-devel/gettext
-        plugins:multiterm? ( dev-lang/vala:* )
     build+run:
         dev-libs/glib:2
-        dev-util/geany[~$(ever is_scm || echo '>' )${PV}][providers:gtk2=][providers:gtk3=]
-        spell? (
-            providers:gtk2? ( app-spell/gtkspell:2 )
-            providers:gtk3? ( app-spell/gtkspell:3.0 )
-        )
+        dev-util/geany[~$(ever is_scm || echo '>' )${PV}]
+        spell? ( app-spell/gtkspell:3.0 )
 
-        plugins:debugger? ( dev-libs/vte:0[>=0.24] )
+        plugins:debugger? ( dev-libs/vte:2.91[>=0.46] )
         plugins:geanygendoc? (
             dev-libs/ctpl
             x11-libs/gtk+:2
         )
         plugins:geanylua? ( dev-lang/lua:5.1 )
         plugins:geanypg? ( app-crypt/gpgme )
-        plugins:geanypy? (
-            dev-lang/python:2.7
-            gnome-bindings/pygtk:2
-        )
         plugins:geniuspaste? ( gnome-desktop/libsoup:2.4 )
         plugins:gitchangebar? ( dev-scm/libgit2 )
         plugins:markdown? (
             net-libs/webkit:3.0
         )
-        plugins:multiterm? ( dev-libs/vte:0[>=0.24] )
         plugins:pretty-printer? ( dev-libs/libxml2:2.0 )
-        plugins:scope? ( dev-libs/vte:0[>=0.17] )
+        plugins:scope? ( dev-libs/vte:2.91 )
         plugins:spellcheck? ( app-spell/enchant:0 )
         plugins:webhelper? (
             net-libs/webkit:3.0
@@ -100,11 +81,13 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-geanymacro
     --enable-geanynumberedbookmarks
     --enable-geanyprj
+    --disable-geanypy
     --enable-geanyvc
     --enable-keyrecord
     --enable-latex
     --enable-lineoperations
     --enable-lipsum
+    --disable-multiterm
     --enable-overview
     --enable-pairtaghighlighter
     --enable-pohelper
@@ -126,11 +109,9 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     plugins:geanygendoc
     plugins:geanylua
     plugins:geanypg
-    plugins:geanypy
     plugins:geniuspaste
     plugins:gitchangebar
     plugins:markdown
-    plugins:multiterm
     plugins:pretty-printer
     plugins:scope
     plugins:spellcheck
