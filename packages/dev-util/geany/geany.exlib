@@ -33,7 +33,7 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.32]
         x11-libs/gtk+:3
     recommendation:
-        dev-libs/vte:3.0 [[ description = [ Integrated terminal support ] ]]
+        dev-libs/vte:2.91 [[ description = [ Integrated terminal support ] ]]
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
