@@ -30,9 +30,10 @@ MYOPTIONS="
         pretty-printer [[ description = [ XML Pretty-Print plugin ] ]]
         scope          [[ description = [ GDB frontend plugin ] ]]
         spellcheck     [[ description = [ Spell checking plugin (using enchant) ] ]]
-        webhelper      [[ description = [ Web development helper using WebKit ] ]]
     )
 "
+# Still depends on webkit:3.0, reenable when it has been ported webkit:4.x
+# webhelper      [[ description = [ Web development helper using WebKit ] ]]
 
 DEPENDENCIES="
     build:
@@ -55,10 +56,6 @@ DEPENDENCIES="
         plugins:pretty-printer? ( dev-libs/libxml2:2.0 )
         plugins:scope? ( dev-libs/vte:2.91 )
         plugins:spellcheck? ( app-spell/enchant:0 )
-        plugins:webhelper? (
-            net-libs/webkit:3.0
-            x11-libs/gdk-pixbuf:2.0
-        )
     run:
         plugins:scope? ( sys-devel/gdb[>=7.3] )
     test:
@@ -113,7 +110,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     plugins:pretty-printer
     plugins:scope
     plugins:spellcheck
-    plugins:webhelper
 )
 
 DEFAULT_SRC_CONFIGURE_TESTS=(
