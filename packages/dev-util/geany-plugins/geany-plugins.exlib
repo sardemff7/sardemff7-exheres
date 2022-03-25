@@ -55,7 +55,7 @@ DEPENDENCIES="
         plugins:markdown? ( net-libs/webkit:4.0 )
         plugins:pretty-printer? ( dev-libs/libxml2:2.0 )
         plugins:scope? ( dev-libs/vte:2.91 )
-        plugins:spellcheck? ( app-spell/enchant:0 )
+        plugins:spellcheck? ( app-spell/enchant:2 )
     run:
         plugins:scope? ( sys-devel/gdb[>=7.3] )
     test:
