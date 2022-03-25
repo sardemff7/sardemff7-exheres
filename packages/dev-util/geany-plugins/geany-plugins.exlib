@@ -51,7 +51,7 @@ DEPENDENCIES="
         plugins:geanylua? ( dev-lang/lua:5.1 )
         plugins:geanypg? ( app-crypt/gpgme )
         plugins:geniuspaste? ( gnome-desktop/libsoup:2.4 )
-        plugins:gitchangebar? ( dev-scm/libgit2 )
+        plugins:gitchangebar? ( dev-scm/libgit2:= )
         plugins:markdown? ( net-libs/webkit:4.0 )
         plugins:pretty-printer? ( dev-libs/libxml2:2.0 )
         plugins:scope? ( dev-libs/vte:2.91 )
