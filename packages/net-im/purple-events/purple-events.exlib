@@ -1,10 +1,11 @@
 # Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=sardemff7 ] tuxfamily [ group=purpleevents suffix=tar.xz ]
+require github [ user=sardemff7 tag=v${PV} ]
+require meson
 
 SUMMARY="libpurple events handling plugin and library"
-HOMEPAGE="http://purple-events.sardemff7.net/"
+HOMEPAGE="https://purple-events.sardemff7.net/"
 
 LICENCES="GPL-3"
 SLOT="0"
@@ -13,10 +14,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        dev-util/intltool
         sys-devel/gettext
         virtual/pkg-config
     build+run:
+        dev-libs/glib:2
         net-im/pidgin[>=2.6.0]
 "
 
