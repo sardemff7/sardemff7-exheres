@@ -14,6 +14,7 @@ OPTION_RENAMES=(
 require github [ user=sardemff7 ] systemd-service
 require meson
 require option-renames
+require vala [ with_opt=true ]
 
 export_exlib_phases src_test
 
@@ -48,6 +49,7 @@ MYOPTIONS="
     )
 
     ( fbcon X ) [[ *requires = [ plugins: notification-daemon ] ]]
+    vapi [[ requires = [ gobject-introspection ] ]]
     plugins:notification-daemon? ( ( fbcon X ) [[ number-selected = at-least-one ]] )
 "
 
@@ -113,6 +115,7 @@ MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
     'fbcon nd-fbdev'
     gobject-introspection
     systemd
+    vapi
     'X nd-xcb'
 
     plugins:im

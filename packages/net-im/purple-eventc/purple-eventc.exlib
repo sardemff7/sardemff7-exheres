@@ -17,7 +17,7 @@ DEPENDENCIES="
         virtual/pkg-config
     build+run:
         dev-libs/glib[>=2.26.0]
-        net/eventd[>=0.5.2][gobject-introspection]
+        net/eventd[>=0.5.2][vapi]
         net-im/pidgin[>=2.6.0]
         net-im/purple-events
 "
