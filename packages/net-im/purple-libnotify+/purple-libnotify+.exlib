@@ -3,10 +3,11 @@
 
 MY_PN=${PN%+}-plus
 
-require github [ user=sardemff7 ] tuxfamily [ group=purpleevents suffix=tar.xz ]
+require github [ user=sardemff7 tag=v${PV} ]
+require meson
 
 SUMMARY="Provides libnotify popups to Pidgin and Finch"
-HOMEPAGE="http://purple-libnotify-plus.sardemff7.net/"
+HOMEPAGE="https://purple-libnotify-plus.sardemff7.net/"
 
 LICENCES="GPL-3"
 SLOT="0"
@@ -15,10 +16,10 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        dev-util/intltool
         sys-devel/gettext
         virtual/pkg-config
     build+run:
+        dev-libs/glib:2
         net-im/pidgin[>=2.6.0]
         net-im/purple-events[>=0.99.1]
         x11-libs/gdk-pixbuf:2.0
