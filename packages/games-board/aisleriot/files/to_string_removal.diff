@@ -1,0 +1,17 @@
+Source: Dolan Dolan
+Upstream: https://gitlab.gnome.org/GNOME/aisleriot/-/commit/e4e55fd282a23f2093996cc5d906e85b190900e2
+Reason: Unable to explicitly state guile version 2.2 (-Dguile=2.2) without patch
+
+diff --git a/meson.build b/meson.build
+index 7bb77bfc..2998c2a3 100644
+--- a/meson.build
++++ b/meson.build
+@@ -326,7 +326,7 @@ if get_option('guile') == 'auto'
+     assert(false, 'Guile not found')
+   endif
+ else
+-  guile_version = get_option('guile').to_string()
++  guile_version = get_option('guile')
+ endif
+ 
+ guile_req = 'guile-' + guile_version

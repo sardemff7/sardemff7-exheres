@@ -1,22 +1,30 @@
 # Copyright 2012-2013 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org [ suffix=tar.xz ] gsettings
+require gitlab [ prefix=https://gitlab.gnome.org user=GNOME new_download_scheme=true ] \
+        meson
 
 SUMMARY="A collection of card games which are easy to play with the aid of a mouse"
 HOMEPAGE="https://wiki.gnome.org/Apps/Aisleriot"
 
-LICENCES="GPL-3"
+LICENCES="
+    GPL-3
+    LGPL-3
+    GFDL
+    GFDL-1.3
+"
 SLOT="0"
 MYOPTIONS="
+    doc
     sound [[ description = [ Sound support through libcanberra ] ]]
     
     ( linguas:
-        af am ar as ast az be bg bn bn_IN br ca ca@valencia cs cy da de dz el en_CA en_GB en@shaw eo
-        es et eu fa fi fr ga gl gu he hi hr hu id is it ja ka kk km kn ko ku lt lv mai mk ml mn mr
+        af am ar as ast az be bg bn bn_IN br bs ca ca@valencia cs cy da de dz el en_CA en_GB en@shaw eo
+        es et eu fa fi fr fur ga gl gu he hi hr hu id is it ja ka kk km kn ko ku lt lv mai mk ml mn mr
         ms nb ne nl nn oc or pa pl pt pt_BR ro ru rw si sk sl sq sr sr@latin sv ta te tg th tr ug uk
         vi wa xh zh_CN zh_HK zh_TW
     )
+
 "
 
 DEPENDENCIES="
@@ -25,27 +33,41 @@ DEPENDENCIES="
         dev-libs/libxml2:2.0
         dev-util/intltool[>=0.35.0]
         virtual/pkg-config
+        doc? (
+            dev-util/itstool
+        )
     build+run:
-        dev-libs/glib:2
-        gnome-desktop/librsvg:2
+        dev-libs/glib:2[>=2.32.0]
+        gnome-desktop/librsvg:2[>=2.32.0]
         x11-libs/cairo[>=1.10.0]
-        x11-libs/gtk+:3[>=3.4.0]
+        x11-libs/gtk+:3[>=3.18.0]
         sound? (
             media-libs/libcanberra[>=0.26][providers:gtk3]
         )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    --enable-compile-warnings=minimum
-    --enable-cxx-warnings=minimum
-    --disable-introspection
-    --disable-schemas-compile
-    --with-card-theme-formats=svg
-    --with-guile=2.2
-    --with-platform=gtk-only
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/to_string_removal.diff
 )
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+MESON_SRC_CONFIGURE_PARAMS=(
+    -Dbinreloc=false
+    -Ddefault_theme=gnomangelo_bitmap.svgz
+    -Ddefault_theme_format=svg-rsvg
+    -Ddbg=false
+    -Ddbgui=false
+    -Dguile=2.2
+    -Dgconf=false
+    -Dhelp_format=html
+    -Dtheme_fixed=true
+    -Dtheme_kde=false
+    -Dtheme_pysol=false
+    -Dtheme_svg_qtsvg=false
+    -Dtheme_svg_rsvg=true
+)
+
+MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
+    "doc docs"
     sound
 )
 
