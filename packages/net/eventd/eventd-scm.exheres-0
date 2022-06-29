@@ -5,7 +5,7 @@ SCM_libnkutils_REPOSITORY="https://github.com/sardemff7/libnkutils"
 SCM_libgwater_REPOSITORY="https://github.com/sardemff7/libgwater"
 
 SCM_SECONDARY_REPOSITORIES="libnkutils libgwater"
-SCM_EXTERNAL_REFS="src/libnkutils:libnkutils src/libgwater:libgwater"
+SCM_EXTERNAL_REFS="subprojects/libnkutils:libnkutils subprojects/libgwater:libgwater"
 
 require eventd
 
