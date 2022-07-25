@@ -1,11 +1,11 @@
 # Copyright 2012-2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_libnkutils_REPOSITORY="git://github.com/sardemff7/libnkutils"
-SCM_libgwater_REPOSITORY="git://github.com/sardemff7/libgwater"
+SCM_libnkutils_REPOSITORY="https://github.com/sardemff7/libnkutils"
+SCM_libgwater_REPOSITORY="https://github.com/sardemff7/libgwater"
 
 SCM_SECONDARY_REPOSITORIES="libnkutils libgwater"
-SCM_EXTERNAL_REFS="src/libnkutils:libnkutils src/libgwater:libgwater"
+SCM_EXTERNAL_REFS="subprojects/libnkutils:libnkutils subprojects/libgwater:libgwater"
 
 require j4status
 
