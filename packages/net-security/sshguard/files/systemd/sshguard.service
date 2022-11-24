@@ -7,10 +7,6 @@ After=iptables.service
 After=syslog.target
 
 [Service]
-ExecStartPre=-/sbin/iptables -N sshguard
-ExecStartPre=-/sbin/ip6tables -N sshguard
-ExecStartPre=-/sbin/iptables -A INPUT -j sshguard
-ExecStartPre=-/sbin/ip6tables -A INPUT -j sshguard
 ExecStart=/usr/sbin/sshguard
 
 [Install]
