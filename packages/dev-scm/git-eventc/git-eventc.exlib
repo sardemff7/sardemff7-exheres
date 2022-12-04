@@ -20,7 +20,7 @@ DEPENDENCIES="
         core/json-glib
         dev-libs/glib:2[>=2.42]
         dev-scm/libgit2[>=0.23.0]
-        gnome-desktop/libsoup:2.4[>=2.48]
+        gnome-desktop/libsoup:3.0
         net/eventd[>=0.24.0]
         systemd? (
             user/git-eventc
