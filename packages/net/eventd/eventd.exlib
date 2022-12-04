@@ -58,19 +58,19 @@ DEPENDENCIES="
         dev-libs/libxslt
         virtual/pkg-config
     build+run:
-        dev-libs/glib:2[>=2.40.0]
+        dev-libs/glib:2[>=2.66.0]
         sys-apps/util-linux [[ note = [ For libuuid ] ]]
         dns-sd? ( net-dns/avahi )
         gobject-introspection? (
             gnome-desktop/gobject-introspection:1[>=1.42.0]
         )
-        ssdp? ( net-libs/gssdp:1.2 )
+        ssdp? ( net-libs/gssdp:1.6 )
         systemd? (
             user/eventd
             group/eventd
             sys-apps/systemd[>=36]
         )
-        websocket? ( gnome-desktop/libsoup:2.4 )
+        websocket? ( gnome-desktop/libsoup:3.0 )
         X? (
             x11-libs/libxcb
             x11-utils/xcb-util
@@ -95,7 +95,7 @@ DEPENDENCIES="
             media-sound/pulseaudio
         )
         plugins:tts? ( app-speech/speechd )
-        plugins:webhook? ( gnome-desktop/libsoup:2.4[>=2.42] )
+        plugins:webhook? ( gnome-desktop/libsoup:3.0 )
     test:
         plugins:notification-daemon? (
             x11-apps/xkeyboard-config
