@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require github [ user=sardemff7 ] tuxfamily [ group=eventd suffix=tar.xz ] vala
+require meson
 
 SUMMARY="libpurple plugin client for eventd"
 HOMEPAGE="http://purple-eventc.eventd.org/"
@@ -12,7 +13,6 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build:
-        dev-util/intltool
         sys-devel/gettext
         virtual/pkg-config
     build+run:

@@ -2,15 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require purple-eventc
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ]
 
 PLATFORMS="~amd64"
-
-AT_M4DIR=( m4 )
-
-src_prepare() {
-    edo mkdir -p "${WORK}"/{include,m4}
-    edo intltoolize --force --copy --automake
-    autotools_src_prepare
-}
 
