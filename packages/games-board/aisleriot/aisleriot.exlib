@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gitlab [ prefix=https://gitlab.gnome.org user=GNOME new_download_scheme=true ] \
-        meson
+        meson [ meson_minimum_version=0.62.0 ]
 
 SUMMARY="A collection of card games which are easy to play with the aid of a mouse"
 HOMEPAGE="https://wiki.gnome.org/Apps/Aisleriot"
@@ -15,16 +15,7 @@ LICENCES="
 "
 SLOT="0"
 MYOPTIONS="
-    doc
     sound [[ description = [ Sound support through libcanberra ] ]]
-    
-    ( linguas:
-        af am ar as ast az be bg bn bn_IN br bs ca ca@valencia cs cy da de dz el en_CA en_GB en@shaw eo
-        es et eu fa fi fr fur ga gl gu he hi hr hu id is it ja ka kk km kn ko ku lt lv mai mk ml mn mr
-        ms nb ne nl nn oc or pa pl pt pt_BR ro ru rw si sk sl sq sr sr@latin sv ta te tg th tr ug uk
-        vi wa xh zh_CN zh_HK zh_TW
-    )
-
 "
 
 DEPENDENCIES="
@@ -32,10 +23,8 @@ DEPENDENCIES="
         dev-lang/guile:2.2
         dev-libs/libxml2:2.0
         dev-util/intltool[>=0.35.0]
+        dev-util/itstool
         virtual/pkg-config
-        doc? (
-            dev-util/itstool
-        )
     build+run:
         dev-libs/glib:2[>=2.32.0]
         gnome-desktop/librsvg:2[>=2.32.0]
@@ -46,16 +35,13 @@ DEPENDENCIES="
         )
 "
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/to_string_removal.diff
-)
-
 MESON_SRC_CONFIGURE_PARAMS=(
     -Dbinreloc=false
     -Ddefault_theme=gnomangelo_bitmap.svgz
     -Ddefault_theme_format=svg-rsvg
     -Ddbg=false
     -Ddbgui=false
+    -Ddocs=true
     -Dguile=2.2
     -Dgconf=false
     -Dhelp_format=html
@@ -67,7 +53,6 @@ MESON_SRC_CONFIGURE_PARAMS=(
 )
 
 MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
-    "doc docs"
     sound
 )
 
