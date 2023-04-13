@@ -6,7 +6,7 @@ require autotools [ supported_autoconf=[ 2.7 ] supported_automake=[ 1.16 ] ]
 
 PLATFORMS="~amd64"
 
-AT_M4DIR=( build build/cache build/bundled geanypy/m4 )
+AT_M4DIR=( build build/cache build/bundled )
 
 src_prepare() {
     edo mkdir -p build/cache
