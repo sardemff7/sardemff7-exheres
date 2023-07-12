@@ -23,7 +23,7 @@ DEPENDENCIES="
         dev-lang/erlang
         dev-libs/expat
         dev-libs/libxml2:2.0
-        dev-libs/openssl
+        dev-libs/openssl:=
         sys-libs/zlib
 "
 

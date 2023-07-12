@@ -24,7 +24,7 @@ DEPENDENCIES="
     build+run:
         dev-erlang/exmpp
         dev-lang/erlang
-        dev-libs/openssl
+        dev-libs/openssl:=
     run:
         user/ejabberd
         group/ejabberd

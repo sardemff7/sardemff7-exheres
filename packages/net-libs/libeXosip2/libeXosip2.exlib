@@ -19,7 +19,7 @@ MYOPTIONS="ssl"
 
 DEPENDENCIES="
     build+run:
-        dev-libs/openssl
+        dev-libs/openssl:=
         net-libs/libosip2
 "
 

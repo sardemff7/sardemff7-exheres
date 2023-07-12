@@ -27,7 +27,7 @@ DEPENDENCIES="
         cyrus? ( net-libs/cyrus-sasl )
         providers:gnutls? ( dev-libs/gnutls[>=2.11.7] )
         providers:libressl? ( dev-libs/libressl:= )
-        providers:openssl? ( dev-libs/openssl )
+        providers:openssl? ( dev-libs/openssl:= )
         lua? ( dev-lang/lua:= )
 "
 
