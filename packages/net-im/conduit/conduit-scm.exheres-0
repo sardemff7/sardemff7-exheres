@@ -31,6 +31,10 @@ src_prepare() {
         debian/matrix-conduit.service
 }
 
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
+    conduit-example.toml
+)
+
 src_install() {
     cargo_src_install
     install_systemd_files
