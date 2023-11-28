@@ -1,9 +1,0 @@
-# Copyright 2012 Morgane "Sardem FF7" Glidic <sardemff7@exherbo.org>
-# Distributed under the terms of the GNU General Public License v2
-
-require hatari
-
-DOWNLOADS="http://download.tuxfamily.org/hatari/${PV}/${PNV}.tar.bz2"
-
-PLATFORMS="~amd64"
-
