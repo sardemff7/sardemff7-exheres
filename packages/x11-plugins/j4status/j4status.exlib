@@ -1,4 +1,4 @@
-# Copyright 2012-2014 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Copyright 2012-2014 Morgane "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
 require github [ user=sardemff7 ] tuxfamily [ group=j4tools suffix=tar.xz ]
