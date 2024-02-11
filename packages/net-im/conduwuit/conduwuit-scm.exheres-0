@@ -37,7 +37,7 @@ src_prepare() {
 }
 
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
-    conduit-example.toml
+    conduwuit-example.toml
 )
 
 src_install() {
