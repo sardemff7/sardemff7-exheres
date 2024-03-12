@@ -31,7 +31,7 @@ DEPENDENCIES="
         virtual/pkg-config
     build+run:
         dev-libs/glib:2[>=2.32]
-        x11-libs/gtk+:3
+        x11-libs/gtk+:3[>=3.24]
     recommendation:
         dev-libs/vte:2.91 [[ description = [ Integrated terminal support ] ]]
 "
