@@ -3,7 +3,7 @@
 
 require github [ user=girlbossceo branch=main ]
 require cargo [ rust_minimum_version=1.70.0 ]
-require systemd-service [ systemd_files=[ debian/matrix-conduit.service ] ]
+require systemd-service [ systemd_files=[ debian/conduwuit.service ] ]
 
 SUMMARY="Conduit is a simple, fast and reliable chat server powered by Matrix"
 HOMEPAGE="https://conduit.rs"
@@ -29,11 +29,11 @@ DEPENDENCIES="
 src_prepare() {
     default
     sed -i \
-        -e /User=/s:_matrix-conduit:matrix-conduit:g \
-        -e /Group=/s:_matrix-conduit:matrix-conduit:g \
+        -e /User=/s:_conduwuit:matrix-conduit:g \
+        -e /Group=/s:_conduwuit:matrix-conduit:g \
         -e /ExecStart=/s:/usr/sbin:/usr/host/bin:g \
-        -e /ExecStart=/s:matrix-conduit:conduit:g \
-        debian/matrix-conduit.service
+        -e /ExecStart=/s:conduwuit:conduit:g \
+        debian/conduwuit.service
 }
 
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
