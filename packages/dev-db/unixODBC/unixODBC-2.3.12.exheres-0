@@ -5,3 +5,7 @@ require unixODBC
 
 PLATFORMS="~amd64 ~x86"
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/45f501e1be2db6b017cc242c79bfb9de32b332a1.patch
+)
+

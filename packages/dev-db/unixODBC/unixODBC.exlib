@@ -6,10 +6,8 @@
 export_exlib_phases src_install
 
 SUMMARY="ODBC solution for UNIX/Linux"
-HOMEPAGE="http://www.unixodbc.org"
-DOWNLOADS="ftp://ftp.unixodbc.org/pub/${PN}/${PNV}.tar.gz"
-
-REMOTE_IDS="freecode:unixodbc"
+HOMEPAGE="https://www.unixodbc.org"
+DOWNLOADS="${HOMEPAGE}/${PNV}.tar.gz"
 
 LICENCES="|| ( GPL-2 LGPL-2 )"
 SLOT="0"
@@ -23,6 +21,7 @@ DEPENDENCIES="
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     --sysconfdir=/etc/${PN}
     --enable-fdb
+    --disable-editline
 )
 
 unixODBC_src_install() {
