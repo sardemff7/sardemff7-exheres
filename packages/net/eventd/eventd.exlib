@@ -60,7 +60,7 @@ DEPENDENCIES="
         dev-libs/libxslt
         virtual/pkg-config
     build+run:
-        dev-libs/glib:2[>=2.66.0]
+        dev-libs/glib:2[>=2.66.0][gobject-introspection(+)?]
         sys-apps/util-linux [[ note = [ For libuuid ] ]]
         dns-sd? ( net-dns/avahi )
         gobject-introspection? (
