@@ -17,22 +17,18 @@ DEPENDENCIES="
     build:
         dev-lang/clang:*
     build+run:
-        !net-im/conduit [[ 
+        !net-im/conduit [[
             description = [ Fork installing the same files ]
             resolution = uninstall-blocked-before
         ]]
     run:
-        user/matrix-conduit
-        group/matrix-conduit
+        user/conduwuit
 "
 
 src_prepare() {
     default
     sed -i \
-        -e /User=/s:_conduwuit:matrix-conduit:g \
-        -e /Group=/s:_conduwuit:matrix-conduit:g \
         -e /ExecStart=/s:/usr/sbin:/usr/host/bin:g \
-        -e /ExecStart=/s:conduwuit:conduit:g \
         debian/conduwuit.service
 }
 
@@ -42,6 +38,7 @@ DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
 
 src_install() {
     cargo_src_install
+    edo mv "${IMAGE}"/usr/$(exhost --target)/bin/{conduit,${PN}}
     install_systemd_files
 }
 
