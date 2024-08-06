@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require github [ user=girlbossceo branch=main ]
-require cargo [ rust_minimum_version=1.80.0 ]
+require cargo [ rust_minimum_version=1.80.0 crate_path=src/main ]
 require systemd-service [ systemd_files=[ debian/conduwuit.service ] ]
 
 SUMMARY="Conduit is a simple, fast and reliable chat server powered by Matrix"
