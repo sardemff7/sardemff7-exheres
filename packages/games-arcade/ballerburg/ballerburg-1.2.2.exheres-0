@@ -3,7 +3,7 @@
 
 require ballerburg
 
-DOWNLOADS="http://download.tuxfamily.org/baller/${PNV}.tar.gz"
+DOWNLOADS="https://download.tuxfamily.org/baller/${PNV}.tar.gz"
 
 PLATFORMS="~amd64"
 

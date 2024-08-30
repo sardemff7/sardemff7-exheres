@@ -3,7 +3,7 @@
 
 PREFIX=/usr
 
-require cmake [ api=2 ]
+require cmake
 
 export_exlib_phases src_prepare
 
@@ -24,13 +24,12 @@ CMAKE_SRC_CONFIGURE_PARAMS=(
     -DBINDIR:PATH="/usr/$(exhost --target)/bin"
     -DBIN2DATADIR:PATH="../../share/${PN}"
     -DBIN2LOCALEDIR:PATH="../../share/locale"
-    -DENABLE_SDL2:BOOL=TRUE
 )
 
 ballerburg_src_prepare() {
     cmake_src_prepare
 
-    # TODO(sardemff7) Patch upstreamç
+    # TODO(sardemff7) Patch upstream
     # Use prefixed pkg-config
     edo sed -i \
         -e "s:pkg-config:$(exhost --tool-prefix)&:" \
