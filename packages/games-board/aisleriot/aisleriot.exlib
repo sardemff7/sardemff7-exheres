@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gitlab [ prefix=https://gitlab.gnome.org user=GNOME new_download_scheme=true ] \
-        meson [ meson_minimum_version=0.62.0 ]
+        meson
 
 SUMMARY="A collection of card games which are easy to play with the aid of a mouse"
 HOMEPAGE="https://wiki.gnome.org/Apps/Aisleriot"
@@ -45,6 +45,7 @@ MESON_SRC_CONFIGURE_PARAMS=(
     -Dguile=2.2
     -Dgconf=false
     -Dhelp_format=html
+    -Dhelp_method=ghelp
     -Dtheme_fixed=true
     -Dtheme_kde=false
     -Dtheme_pysol=false
