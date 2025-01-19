@@ -1,0 +1,43 @@
+# Copyright 2025 Morgane “Sardem FF7” Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require meson
+require alternatives
+
+export_exlib_phases src_install
+
+SUMMARY="A much faster locate"
+HOMEPAGE="https://plocate.sesse.net/"
+DOWNLOADS="${HOMEPAGE}/download/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS="systemd"
+
+DEPENDENCIES="
+    build+run:
+        group/${PN}
+"
+
+MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
+    'systemd install_systemd'
+)
+
+plocate_src_install() {
+    meson_src_install
+
+    local alternatives=(
+        locate ${PN} 10
+
+        /usr/$(exhost --target)/bin/locate   ${PN}
+        /usr/$(exhost --target)/bin/updatedb ${PN}.updatedb
+        /usr/share/man/man1/locate.1         /usr/share/man/man1/${PN}.1
+        /usr/share/man/man5/updatedb.conf.5  /usr/share/man/man5/${PN}.updatedb.conf.5
+        /usr/share/man/man8/updatedb.8       /usr/share/man/man8/${PN}.updatedb.8
+    )
+
+    alternatives_for "${alternatives[@]}"
+
+    insinto /etc
+    doins "${FILES}"/updatedb.conf
+}
