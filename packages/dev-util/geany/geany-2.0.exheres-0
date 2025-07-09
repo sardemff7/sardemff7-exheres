@@ -1,9 +1,0 @@
-# Copyright 2011-2022 Morgane "Sardem FF7" Glidic <sardemff7@exherbo.org>
-# Distributed under the terms of the GNU General Public License v2
-
-require geany
-
-DOWNLOADS="https://download.geany.org/${PNV}.tar.bz2"
-
-PLATFORMS="~amd64"
-
