@@ -9,8 +9,11 @@ PLATFORMS="~amd64"
 AT_M4DIR=( build build/cache build/bundled )
 
 src_prepare() {
-    edo mkdir -p build/cache
+    edo mkdir -p build/cache build/build-aux
+    # gettextize does way more than comfortable and should udtimately be
+    # integrated in our autotools.exlib to be run at the correct time
+    edo cp /usr/share/gettext/config.rpath build/build-aux/
+    edo cp /usr/share/gettext/po/Makefile.in.in po/
     autotools_src_prepare
-    edo intltoolize --force --copy --automake
 }
 

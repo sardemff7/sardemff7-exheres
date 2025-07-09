@@ -26,14 +26,14 @@ MYOPTIONS="
         geanypg        [[ description = [ GPG support via GeanyPG ] ]]
         geniuspaste    [[ description = [ Pastebins client plugin ] ]]
         gitchangebar   [[ description = [ Highlight uncommited changes ] ]]
+        lsp            [[ description = [ Language Server Protocol plugin ] ]]
         markdown       [[ description = [ Preview Markdown generated HTML ] ]]
         pretty-printer [[ description = [ XML Pretty-Print plugin ] ]]
         scope          [[ description = [ GDB frontend plugin ] ]]
         spellcheck     [[ description = [ Spell checking plugin (using enchant) ] ]]
+        webhelper      [[ description = [ Web development helper using WebKit ] ]]
     )
 "
-# Still depends on webkit:3.0, reenable when it has been ported webkit:4.x
-# webhelper      [[ description = [ Web development helper using WebKit ] ]]
 
 DEPENDENCIES="
     build:
@@ -50,12 +50,17 @@ DEPENDENCIES="
         )
         plugins:geanylua? ( dev-lang/lua:5.1 )
         plugins:geanypg? ( app-crypt/gpgme )
-        plugins:geniuspaste? ( gnome-desktop/libsoup:2.4 )
+        plugins:geniuspaste? ( gnome-desktop/libsoup:3.0 )
         plugins:gitchangebar? ( dev-scm/libgit2:= )
-        plugins:markdown? ( net-libs/webkit:4.0 )
+        plugins:lsp? (
+            core/json-glib[>=1.10]
+            dev-libs/jsonrpc-glib[>=3.44]
+        )
+        plugins:markdown? ( net-libs/webkit:4.1[>=2.30] )
         plugins:pretty-printer? ( dev-libs/libxml2:2.0 )
         plugins:scope? ( dev-libs/vte:2.91 )
         plugins:spellcheck? ( app-spell/enchant:2 )
+        plugins:webhelper? ( net-libs/webkit:4.1[>=2.18] )
     run:
         plugins:scope? ( sys-devel/gdb[>=7.3] )
     test:
@@ -106,10 +111,12 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     plugins:geanypg
     plugins:geniuspaste
     plugins:gitchangebar
+    plugins:lsp
     plugins:markdown
     plugins:pretty-printer
     plugins:scope
     plugins:spellcheck
+    plugins:webhelper
 )
 
 DEFAULT_SRC_CONFIGURE_TESTS=(
