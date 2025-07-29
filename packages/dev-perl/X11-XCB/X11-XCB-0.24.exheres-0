@@ -1,7 +1,7 @@
-# Copyright 2012 Morgane "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Copyright 2012-2025 Morgane "Sardem FF7" Glidic <sardemff7@exherbo.org>
 # Distributed under the terms of the GNU General Public License v2
 
-require perl-module [ module_author=MSTPLBG ]
+require perl-module [ module_author=ZHMYLOVE ]
 
 SUMMARY="Perl bindings for libxcb"
 
@@ -22,7 +22,6 @@ DEPENDENCIES="
         dev-perl/XML-Simple
     build+run:
         dev-perl/Mouse
-        dev-perl/MouseX-NativeTraits
         dev-perl/Try-Tiny
         dev-perl/XS-Object-Magic
         x11-libs/libxcb[>=1.2]
