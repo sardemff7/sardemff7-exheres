@@ -1,7 +1,0 @@
-# Copyright 2012 Morgane "Sardem FF7" Glidic <sardemff7@exherbo.org>
-# Distributed under the terms of the GNU General Public License v2
-
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 ] ] sshguard
-
-PLATFORMS="~amd64"
-
