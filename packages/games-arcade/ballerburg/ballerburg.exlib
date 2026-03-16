@@ -17,7 +17,7 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     build+run:
-        media-libs/SDL:2
+        media-libs/sdl2-compat
 "
 
 CMAKE_SRC_CONFIGURE_PARAMS=(
